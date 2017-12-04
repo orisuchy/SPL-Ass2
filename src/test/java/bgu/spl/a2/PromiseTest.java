@@ -20,10 +20,11 @@ public class PromiseTest {
 //	}
 	
 	private Promise<Integer> promise;
-	
+	private int counter;
 	
 	PromiseTest(){
 		promise = new Promise<>();
+		counter = 0;
 	}
 	
 
@@ -35,6 +36,7 @@ public class PromiseTest {
 	@After
 	public void tearDown() throws Exception {
 		promise = new Promise<>();
+		counter = 0;
 	}
 
 	@Test
@@ -61,11 +63,23 @@ public class PromiseTest {
 
 	@Test
 	public final void testIsResolved() {
-		fail("Not yet implemented"); // TODO
+		boolean isResolvedBool = promise.isResolved();
+		Assert.assertEquals(isResolvedBool, false);	
+		
+		promise.resolve(150);
+		isResolvedBool = promise.isResolved();
+		Assert.assertEquals(isResolvedBool, true);	
 	}
 
 	@Test
 	public final void testResolve() {
+		promise.subscribe(addToCounter()) {
+			
+			
+			
+		});
+		promise.resolve(15);
+		
 		fail("Not yet implemented"); // TODO
 	}
 
@@ -73,5 +87,10 @@ public class PromiseTest {
 	public final void testSubscribe() {
 		fail("Not yet implemented"); // TODO
 	}
+	
+	public void addToCounter() {
+		counter++;
+	}
+	
 
 }
