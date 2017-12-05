@@ -20,23 +20,21 @@ public class PromiseTest {
 //	}
 	
 	private Promise<Integer> promise;
-	private int counter;
+	private final int[] counter = new int[1];
 	
 	PromiseTest(){
 		promise = new Promise<>();
-		counter = 0;
+		counter[0] = 0;
 	}
 	
 
 	@Before
 	public void setUp() throws Exception {
-		
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		promise = new Promise<>();
-		counter = 0;
 	}
 
 	@Test
@@ -46,7 +44,8 @@ public class PromiseTest {
 			Assert.fail();	
 		} 
 		catch(IllegalStateException e) {
-			promise.resolve(100);
+			Integer valueToResolve = new Integer(100);
+			promise.resolve(valueToResolve);
 			
 			try {
 				int i = promise.get();
@@ -63,34 +62,55 @@ public class PromiseTest {
 
 	@Test
 	public final void testIsResolved() {
+		Integer valueToResolve = new Integer(150);
+		
 		boolean isResolvedBool = promise.isResolved();
 		Assert.assertEquals(isResolvedBool, false);	
 		
-		promise.resolve(150);
+		promise.resolve(valueToResolve);
 		isResolvedBool = promise.isResolved();
 		Assert.assertEquals(isResolvedBool, true);	
 	}
 
 	@Test
 	public final void testResolve() {
-		promise.subscribe(addToCounter()) {
-			
-			
-			
-		});
-		promise.resolve(15);
 		
-		fail("Not yet implemented"); // TODO
+		Integer valueToResolve = new Integer(200);
+		
+		int numOfCallbacks = 5;
+		for(int i=0; i<numOfCallbacks; i++){
+			promise.subscribe(()->{
+				int tmp = counter[0];
+				counter[0] = tmp + 1;
+			});
+		}
+		
+		try {
+			promise.resolve(valueToResolve);
+			Assert.assertEquals(counter[0], numOfCallbacks);
+			
+			int getResolve = promise.get();
+			Assert.assertEquals(getResolve, 200);
+		} 
+		catch(Exception e) {
+			Assert.fail();
+		}
+		
+		try {
+			promise.resolve(valueToResolve);
+		} 
+		catch(IllegalStateException e) {
+			
+		}
+		catch(Exception e) {
+			Assert.fail();
+		}
+		
+		
 	}
 
 	@Test
 	public final void testSubscribe() {
 		fail("Not yet implemented"); // TODO
 	}
-	
-	public void addToCounter() {
-		counter++;
-	}
-	
-
 }
