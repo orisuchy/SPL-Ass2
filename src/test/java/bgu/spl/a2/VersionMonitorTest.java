@@ -57,8 +57,8 @@ public class VersionMonitorTest {
 				try {
 					versionMonitor.await(requiredVersion);
 				}
-				catch(Exception e) {
-					//TODO - what should be done here!?!?
+				catch(InterruptedException e) {
+					//ignore
 				}
 				boolArray[0] = true;
 			});	
@@ -74,8 +74,8 @@ public class VersionMonitorTest {
 		try{
 			t1.join();
 		}
-		catch(Exception e) {
-			//TODO - what should be done here!?!?}
+		catch(InterruptedException e) {
+			//ignore
 		}
 		Assert.assertEquals(boolArray[0], true);
 		
@@ -83,8 +83,8 @@ public class VersionMonitorTest {
 				try {
 					versionMonitor.await(requiredVersion);
 				}
-				catch(Exception e) {
-					//TODO - what should be done here!?!?
+				catch(InterruptedException e) {
+					//ignore
 				}
 				boolArray[0] = false;
 			});	
@@ -92,8 +92,8 @@ public class VersionMonitorTest {
 		try{
 			t2.join();
 		}
-		catch(Exception e) {
-			//TODO - what should be done here!?!?}
+		catch(InterruptedException e) {
+			//ignore
 		}
 		Assert.assertEquals(boolArray[0], false);
 	}
