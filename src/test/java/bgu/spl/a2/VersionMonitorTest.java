@@ -12,7 +12,8 @@ import junit.framework.Assert;
 
 public class VersionMonitorTest {
 	
-	private VersionMonitor versionMonitor;
+	public VersionMonitor versionMonitor;
+	public final boolean[] boolArray = new boolean[0];
 	
 	VersionMonitorTest(){
 		VersionMonitor versionMonitor = new VersionMonitor();
@@ -49,7 +50,52 @@ public class VersionMonitorTest {
 
 	@Test
 	public final void testAwait() {
-		fail("Not yet implemented"); // TODO
+		boolArray[0] = false;
+		int requiredVersion = 5;
+		
+			Thread t1 = new Thread( ()->{
+				try {
+					versionMonitor.await(requiredVersion);
+				}
+				catch(Exception e) {
+					//TODO - what should be done here!?!?
+				}
+				boolArray[0] = true;
+			});	
+				
+		Assert.assertEquals(boolArray[0], false);
+		
+		for(int i=0; i<requiredVersion-1; i++) {
+			versionMonitor.inc();
+			Assert.assertEquals(boolArray[0], false);
+		}
+		
+		versionMonitor.inc();
+		try{
+			t1.join();
+		}
+		catch(Exception e) {
+			//TODO - what should be done here!?!?}
+		}
+		Assert.assertEquals(boolArray[0], true);
+		
+			Thread t2 = new Thread( ()->{
+				try {
+					versionMonitor.await(requiredVersion);
+				}
+				catch(Exception e) {
+					//TODO - what should be done here!?!?
+				}
+				boolArray[0] = false;
+			});	
+	
+		try{
+			t2.join();
+		}
+		catch(Exception e) {
+			//TODO - what should be done here!?!?}
+		}
+		Assert.assertEquals(boolArray[0], false);
 	}
 
 }

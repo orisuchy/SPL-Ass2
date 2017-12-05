@@ -20,7 +20,7 @@ public class PromiseTest {
 //	}
 	
 	private Promise<Integer> promise;
-	private final int[] counter = new int[1];
+	public final int[] counter = new int[1];
 	
 	PromiseTest(){
 		promise = new Promise<>();
