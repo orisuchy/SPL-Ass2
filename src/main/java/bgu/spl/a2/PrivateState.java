@@ -1,5 +1,7 @@
 package bgu.spl.a2;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,10 +9,14 @@ import java.util.List;
  * it holds actions that the actor has executed so far 
  * IMPORTANT: You can not add any field to this class.
  */
-public abstract class PrivateState {
+public abstract class PrivateState implements Serializable{
 	
 	// holds the actions' name what were executed
 	private List<String> history;
+	
+	public PrivateState() {
+		history = new ArrayList<String>();
+	}
 
 	public List<String> getLogger(){
 		return history;
@@ -22,8 +28,8 @@ public abstract class PrivateState {
 	 * @param actionName
 	 */
 	public void addRecord(String actionName){
-		//TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
+		history.add(actionName);
+		
 	}
 	
 	

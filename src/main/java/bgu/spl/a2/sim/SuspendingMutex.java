@@ -1,4 +1,8 @@
 package bgu.spl.a2.sim;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import bgu.spl.a2.Promise;
 
 /**
@@ -12,28 +16,62 @@ import bgu.spl.a2.Promise;
  */
 public class SuspendingMutex {
 	
+	private Computer _computer;
+	private Queue<Promise<Computer>> _promiseQueue;
+	private AtomicInteger _numberOfRequests = new AtomicInteger();
 	
+	
+	/**
+	 * Constructor
+	 * @param computer
+	 */
+	public SuspendingMutex(Computer computer){
+		_computer = computer;
+		_promiseQueue = new ConcurrentLinkedQueue<Promise<Computer>>();
+		_numberOfRequests.set(0);
+	}
 	/**
 	 * Computer acquisition procedure
 	 * Note that this procedure is non-blocking and should return immediatly
 	 * 
-	 * @param computerType
-	 * 					computer's type
-	 * 
 	 * @return a promise for the requested computer
 	 */
-	public Promise<Computer> down(String computerType){
-		//TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
+	public Promise<Computer> down(){
+		Promise<Computer> returnedPromise = new Promise<Computer>();
+		if(_numberOfRequests.compareAndSet(0, 1)) { //Was first to request computer
+			Simulator.simOut("MUTEX DOWN: compared and set(0,1) - first!");
+			returnedPromise.resolve(_computer);
+		} else { //must wait in line
+			Simulator.simOut("MUTEX DOWN: waiting in line number" + _numberOfRequests.incrementAndGet());
+			_promiseQueue.add(returnedPromise);
+		}
+		
+		return returnedPromise;
 	}
 	/**
 	 * Computer return procedure
 	 * releases a computer which becomes available in the warehouse upon completion
-	 * 
-	 * @param computer
 	 */
-	public void up(Computer computer){
-		//TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
+	public void up(){	
+		if(_numberOfRequests.compareAndSet(1, 0)) {
+			Simulator.simOut("MUTEX UP: compared and set(1,0) - last one");
+			return;
+		} else {
+			Simulator.simOut("MUTEX UP: " + _numberOfRequests.decrementAndGet());
+			Promise<Computer> nextPromiseToHandle = _promiseQueue.poll();
+			if(nextPromiseToHandle == null) {
+				throw new RuntimeException("Popped NULL promise from mutex queue");
+			}
+			nextPromiseToHandle.resolve(_computer);
+		}
+	}
+	
+	
+	/**
+	 * get the type of the computer
+	 * @return computerType string
+	 */
+	public String getComputerType() {
+		return _computer.getComputerType();
 	}
 }

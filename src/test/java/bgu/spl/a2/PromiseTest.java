@@ -1,35 +1,21 @@
 package bgu.spl.a2;
 
-import static org.junit.Assert.*;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class PromiseTest {
 
-//	@BeforeClass
-//	public static void setUpBeforeClass() throws Exception {
-//	}
-//
-//	@AfterClass
-//	public static void tearDownAfterClass() throws Exception {
-//	}
-	
 	private Promise<Integer> promise;
-	private final int[] counter = new int[1];
-	
-	PromiseTest(){
-		promise = new Promise<>();
-		counter[0] = 0;
-	}
+	public final int[] counter = new int[1];
 	
 
 	@Before
 	public void setUp() throws Exception {
+		promise = new Promise<>();
+		counter[0] = 0;
 	}
 
 	@After

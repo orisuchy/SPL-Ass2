@@ -2,6 +2,9 @@ package bgu.spl.a2;
 
 import java.util.Collection;
 
+//TODO - delete
+import bgu.spl.a2.sim.Simulator;
+
 /**
  * an abstract class that represents an action that may be executed using the
  * {@link ActorThreadPool}
@@ -15,6 +18,17 @@ import java.util.Collection;
  */
 public abstract class Action<R> {
 
+	private String _actionName;
+	private Promise<R> _result;
+	private boolean _started = false;
+	private callback _callback;
+	private Collection<? extends Action<?>> _dependencies;
+	
+	private ActorThreadPool _pool;
+	private String _actorId;
+	private PrivateState _actorState;
+	
+	
 	/**
      * start handling the action - note that this method is protected, a thread
      * cannot call it directly.
@@ -34,7 +48,17 @@ public abstract class Action<R> {
     * public/private/protected
     *
     */
-   /*package*/ final void handle() {
+   /*package*/ final void handle(ActorThreadPool pool, String actorId, PrivateState actorState) {
+	   if(!_started) {
+		   _started = true;
+		   _actorId = actorId;
+		   _actorState = actorState;
+		   _pool = pool;
+		   start();
+	   }
+	   else if(dependenciesResolved() & !_result.isResolved()){
+		   _callback.call();
+	   }
    }
     
     
@@ -49,9 +73,27 @@ public abstract class Action<R> {
      * @param callback the callback to execute once all the results are resolved
      */
     protected final void then(Collection<? extends Action<?>> actions, callback callback) {
-       	//TODO: replace method body with real implementation
-        throw new UnsupportedOperationException("Not Implemented Yet.");
-   
+       	_dependencies = actions;
+       	_callback = callback;
+    }
+    
+    /**
+     * checks to see if all dependency actions are resolved
+     * 
+     * @return true if all dependency actions
+     */
+    private final boolean dependenciesResolved() {
+    	if(_dependencies == null) {
+    		return true;
+    	}
+    	
+    	for (Action<?> dependency : _dependencies) {
+    		Promise<?> promise = dependency.getResult();
+    		if(!promise.isResolved()) {
+    			return false;
+    		}
+    	}
+    	return true;
     }
 
     /**
@@ -61,17 +103,16 @@ public abstract class Action<R> {
      * @param result - the action calculated result
      */
     protected final void complete(R result) {
-       	//TODO: replace method body with real implementation
-        throw new UnsupportedOperationException("Not Implemented Yet.");
-   
+    	_actorState.addRecord(getActionName());
+       	_result.resolve(result);
+       	Simulator.simOut("Action: " + this.toString() + "    Result: " +  result.toString());
     }
     
     /**
      * @return action's promise (result)
      */
     public final Promise<R> getResult() {
-    	//TODO: replace method body with real implementation
-        throw new UnsupportedOperationException("Not Implemented Yet.");
+    	return _result;
     }
     
     /**
@@ -87,8 +128,69 @@ public abstract class Action<R> {
      * @return promise that will hold the result of the sent action
      */
 	public Promise<?> sendMessage(Action<?> action, String actorId, PrivateState actorState){
-        //TODO: replace method body with real implementation
-        throw new UnsupportedOperationException("Not Implemented Yet.");
-	}
+		_pool.submit(action, actorId, actorState); //add dependecy action to pool
+   
+		Promise<?> promise = action.getResult();
+		promise.subscribe(() ->{
+			
+			_pool.submit(this, _actorId, _actorState); //add callback to be put back into the pool when promise is resolved
+		});
 
+        return promise;
+	}
+	
+	/**
+	 * set action's name
+	 * @param actionName
+	 */
+	public void setActionName(String actionName){
+        _actionName = actionName;
+	}
+	
+	/**
+	 * @return action's name
+	 */
+	public String getActionName(){
+        return _actionName;
+	}
+	
+	/**
+	 * checks the type of the _actorState field against a given Class
+	 * @param 
+	 * 		Class expectedStateType - the expected type of the _actorState field
+	 * @return 
+	 * 		TRUE if _actorState in an instance of expectedStateType, FALSE otherwise
+	 */
+	private boolean checkActorStateType(Class expectedStateType) {
+		return (expectedStateType.isInstance(_actorState));
+	}
+	
+	/**
+	 * throw RuntimeException if current ActorState is not of valid type
+	 * @param 
+	 * 		Class expectedStateType - the expected type of the _actorState field
+	 * @throws RuntimeException if ActorState is not of the expected type
+	 */
+	protected void throwExceptionForInvalidActorStateType(Class expectedStateType) {
+		if(!checkActorStateType(expectedStateType)) {
+			throw new RuntimeException(getActionName() + " did not recieve correct ActorStateType. Expected: " + expectedStateType);
+		}
+	}
+	
+	protected PrivateState getCurrentPrivateState() {
+		return _actorState;
+	}
+	
+	protected ActorThreadPool getActorThreadPool() {
+		return _pool;
+	}
+	
+	
+	protected String getActorId() {
+		return _actorId;
+	}
+	
+	protected void setPromise(Promise<R> promise) {
+		_result = promise;
+	}
 }

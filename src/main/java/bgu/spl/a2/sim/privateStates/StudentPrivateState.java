@@ -18,8 +18,9 @@ public class StudentPrivateState extends PrivateState{
 	 * this may cause automatic tests to fail..
 	 */
 	public StudentPrivateState() {
-		//TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
+		super();
+		grades = new HashMap<String, Integer>();
+		signature = 0;
 	}
 
 	public HashMap<String, Integer> getGrades() {
@@ -29,4 +30,49 @@ public class StudentPrivateState extends PrivateState{
 	public long getSignature() {
 		return signature;
 	}
+
+	public void setSignature(long sig) {
+		signature = sig;
+	}
+	
+	/**
+	 * Add grade to course. If course not listed, then the course is added as well
+	 * @param course
+	 * @param grade
+	 * @return TRUE if grade successfully added, FALSE otherwise
+	 */
+	public boolean addGrade(String course, int grade) {
+		grades.put(course, grade);
+		
+		//extra verification:
+		return (grades.get(course)==grade);
+	}
+	
+	/**
+	 * Remove grade of course.
+	 * @param course
+	 * @return TRUE if grade successfully removed, FALSE otherwise
+	 */
+	public boolean removeGrade(String course) {
+		grades.remove(course);
+		
+		//extra verification:
+		return (!grades.containsKey(course));
+	}
+	
+	/**
+	 * Check if the student is registered to the course
+	 * @param course
+	 * @return TRUE if student's grades list contains the course
+	 */
+	public boolean isRegisteredToCourse(String course) {
+		return grades.containsKey(course);
+	}
+
+	@Override
+	public String toString() {
+		return "StudentPrivateState [actions=" + getLogger() + ", grades=" + grades + ", signature=" + signature + "]";
+	}
+	
+	
 }

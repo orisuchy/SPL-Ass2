@@ -1,5 +1,8 @@
 package bgu.spl.a2;
 
+//TODO - delete when done and remove simOut!!
+import bgu.spl.a2.sim.Simulator;
+
 /**
  * Describes a monitor that supports the concept of versioning - its idea is
  * simple, the monitor has a version number which you can receive via the method
@@ -17,19 +20,43 @@ package bgu.spl.a2;
  * methods
  */
 public class VersionMonitor {
-
-    public int getVersion() {
-        //TODO: replace method body with real implementation
-        throw new UnsupportedOperationException("Not Implemented Yet.");
+	
+	private int _version;
+	
+	
+	public VersionMonitor() {
+		_version = 0;
+	}
+	
+	/**
+	 * synchronized to ensure visibility and force cache flush
+	 * @return the current version int value
+	 */
+    public synchronized int getVersion() {
+    	return _version;
     }
 
-    public void inc() {
-        //TODO: replace method body with real implementation
-        throw new UnsupportedOperationException("Not Implemented Yet.");
+	/**
+	 * synchronized to ensure no overriding of values
+	 * returned value from {@link #getVersion()} increases by 1 after calling
+	 * this method
+	 */
+    public synchronized void inc() {
+    	_version++;
+    	this.notifyAll();
+    	Simulator.simOut("VERSION INCREASED TO " + _version);
     }
-
-    public void await(int version) throws InterruptedException {
-        //TODO: replace method body with real implementation
-        throw new UnsupportedOperationException("Not Implemented Yet.");
+    
+	/**
+	 * Causes the current thread to wait until the current version reaches a version value
+	 * @param version
+	 * 				- the target version that must be reached
+	 */
+    public synchronized void await(int version) throws InterruptedException {
+    	//wait until _version >= version
+    	while(getVersion()<version) {
+    		this.wait();
+    	//	Thread.currentThread().sleep(100);;
+    	}
     }
 }

@@ -1,4 +1,12 @@
 package bgu.spl.a2;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+//TODO - delete when done and remove simOut!!
+import bgu.spl.a2.sim.Simulator;
+
 
 /**
  * represents an actor thread pool - to understand what this class does please
@@ -11,9 +19,14 @@ package bgu.spl.a2;
  * methods
  */
 public class ActorThreadPool {
-
+	private int numOfThreads;
+	private Thread[] threadsArray;
+	private Map<String, PrivateState> actorsPrivateState;
+	private Map<String, ConcurrentLinkedQueue<Action<?>>> actorsQueues;
+	private Map<String, AtomicBoolean> actorsStatus; //true - in use, false - not in use
+	private VersionMonitor version;
 	/**
-	 * creates a {@link ActorThreadPool} which has nthreads. Note, threads
+	 * creates a {@link ActorThreadPool} which has n threads. Note, threads
 	 * should not get started until calling to the {@link #start()} method.
 	 *
 	 * Implementors note: you may not add other constructors to this class nor
@@ -25,9 +38,68 @@ public class ActorThreadPool {
 	 *            pool
 	 */
 	public ActorThreadPool(int nthreads) {
-		// TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
+		actorsPrivateState = new ConcurrentHashMap<String, PrivateState>();
+		actorsQueues = new ConcurrentHashMap<String, ConcurrentLinkedQueue<Action<?>>>();
+		actorsStatus = new ConcurrentHashMap<String, AtomicBoolean>();
+		version = new VersionMonitor();
+		numOfThreads = nthreads;
+		threadsArray = new Thread[numOfThreads];
+		for (int i=0; i<numOfThreads; i++) 
+		{ 
+			threadsArray[i] = new Thread( () ->
+			{
+				while (!Thread.interrupted())
+				{
+					int currentVersion = version.getVersion();
+					for(String actorId : actorsStatus.keySet()) 
+					{
+						if (actorsStatus.get(actorId).compareAndSet(false, true))  //try lock
+						{
+							if(!actorsQueues.get(actorId).isEmpty()) 
+							{
+								currentVersion = version.getVersion();
+								ConcurrentLinkedQueue<Action<?>> queueToRun = actorsQueues.get(actorId);
+								Action<?> action = queueToRun.poll();
+								Simulator.simOut("thread handeling action: " + action + "    from actor: " + actorId);
+								action.handle(this, actorId, getPrivateState(actorId));
+								version.inc();
+							}
+							actorsStatus.get(actorId).set(false); //unlock
+						}
+					}
+					try 
+					{ 
+						//Simulator.simOut("thread waiting for version " + (currentVersion+1));
+						version.await(currentVersion+1);
+						//Simulator.simOut("thread woken up");
+					}
+					catch (InterruptedException e) {
+						Thread.currentThread().interrupt();
+					};
+				}
+			});
+		}
 	}
+	
+
+	/**
+	 * getter for actors
+	 * @return actors
+	 */
+	public Map<String, PrivateState> getActors(){
+
+		return actorsPrivateState;
+	}
+
+	/**
+	 * getter for actor's private state
+	 * @param actorId actor's id
+	 * @return actor's private state
+	 */
+	public PrivateState getPrivateState(String actorId){ 
+		return actorsPrivateState.get(actorId);
+	}
+
 
 	/**
 	 * submits an action into an actor to be executed by a thread belongs to
@@ -41,8 +113,24 @@ public class ActorThreadPool {
 	 *            actor's private state (actor's information)
 	 */
 	public void submit(Action<?> action, String actorId, PrivateState actorState) {
-		// TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
+		if (actorsPrivateState.get(actorId)==null) { //If the actor not exists, create a new actor 
+			ConcurrentLinkedQueue<Action<?>> queue = new ConcurrentLinkedQueue<Action<?>>();
+			if (action!=null) {
+				queue.add(action);
+			}
+			actorsQueues.put(actorId,queue);
+			actorsPrivateState.put(actorId, actorState);
+			actorsStatus.put(actorId, new AtomicBoolean());
+		}
+		else {
+			//TODO - ori, shouldn't we check that the action is not null?
+			actorsQueues.get(actorId).add(action); //Add action to actors queue
+		}
+		if(action!=null) {
+			Simulator.simOut("Added action to ActorThreadPool:" + action.toString() + "  To Actor: " + actorId);
+		}
+		version.inc();
+
 	}
 
 	/**
@@ -56,16 +144,19 @@ public class ActorThreadPool {
 	 *             if the thread that shut down the threads is interrupted
 	 */
 	public void shutdown() throws InterruptedException {
-		// TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
+		for (int i=0; i<numOfThreads; i++) {
+			threadsArray[i].interrupt();
+		}
+		
 	}
 
 	/**
 	 * start the threads belongs to this thread pool
 	 */
 	public void start() {
-		// TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
+		for (int i=0; i<numOfThreads; i++) {
+			threadsArray[i].start();
+		}
 	}
 
 }

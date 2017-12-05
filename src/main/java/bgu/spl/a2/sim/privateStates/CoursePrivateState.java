@@ -1,5 +1,6 @@
 package bgu.spl.a2.sim.privateStates;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import bgu.spl.a2.PrivateState;
@@ -20,12 +21,21 @@ public class CoursePrivateState extends PrivateState{
 	 * this may cause automatic tests to fail..
 	 */
 	public CoursePrivateState() {
-		//TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
+		super();
+		availableSpots = 0;
+		registered = 0;
+		regStudents = new ArrayList<String>();
+		prequisites = new ArrayList<String>();
 	}
 
 	public Integer getAvailableSpots() {
 		return availableSpots;
+	}
+	
+	public Boolean addSpots(int numOfSpots) {
+		Integer currSpots = getAvailableSpots();
+		availableSpots = availableSpots + numOfSpots;
+		return (getAvailableSpots() == currSpots + numOfSpots);
 	}
 
 	public Integer getRegistered() {
@@ -39,4 +49,50 @@ public class CoursePrivateState extends PrivateState{
 	public List<String> getPrequisites() {
 		return prequisites;
 	}
+	
+	/**
+	 * Register student to the course.
+	 * @param student string - name of student to add
+	 * @return TRUE if the student was successfully added to the list
+	 * 		 FALSE otherwise or if the student is already registered
+	 */
+	public boolean registerStudent(String student) {
+		if(regStudents.contains(student)) {return false;} //student already exists!
+		regStudents.add(student);
+		registered = registered + 1;
+		availableSpots = availableSpots -1;
+		
+		return regStudents.contains(student);
+	}
+	public Boolean unregisterStudent(String student) {
+		if (regStudents.contains(student)) {
+			regStudents.remove(student);
+			availableSpots++;
+			registered--;
+		}
+			
+		return !regStudents.contains(student);
+	}
+	
+	public void addPrerequisites(String[] prequisitesArray) {
+		for (String course : prequisitesArray) {
+			prequisites.add(course);
+		}	
+	}
+	
+	public void removeCourseSpots() {
+		availableSpots = -1;
+	}
+	
+	public boolean containsStudent(String student) {
+		return regStudents.contains(student);
+	}
+
+	@Override
+	public String toString() {
+		return "CoursePrivateState [actions=" + getLogger() + ", availableSpots=" + availableSpots + ", registered=" + registered + ", regStudents="
+				+ regStudents + ", prequisites=" + prequisites + "]";
+	}
+	
+	
 }
