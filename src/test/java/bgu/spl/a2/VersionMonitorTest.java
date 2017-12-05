@@ -8,18 +8,19 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import junit.framework.Assert;
+
 public class VersionMonitorTest {
-
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
+	
+	private VersionMonitor versionMonitor;
+	
+	VersionMonitorTest(){
+		VersionMonitor versionMonitor = new VersionMonitor();
 	}
 
 	@Before
 	public void setUp() throws Exception {
+		versionMonitor = new VersionMonitor();
 	}
 
 	@After
@@ -28,12 +29,22 @@ public class VersionMonitorTest {
 
 	@Test
 	public final void testGetVersion() {
-		fail("Not yet implemented"); // TODO
+		int current_version = versionMonitor.getVersion();
+		Assert.assertEquals(current_version , 0);
+		
+		versionMonitor.inc();
+		current_version = versionMonitor.getVersion();
+		Assert.assertEquals(current_version , 1);
 	}
 
 	@Test
 	public final void testInc() {
-		fail("Not yet implemented"); // TODO
+		int final_version = 20;
+		for (int i=0; i<final_version; i++) {
+			versionMonitor.inc();
+		}
+		int current_version = versionMonitor.getVersion();
+		Assert.assertEquals(current_version , final_version);
 	}
 
 	@Test
