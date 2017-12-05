@@ -11,25 +11,14 @@ import org.junit.Test;
 
 public class PromiseTest {
 
-//	@BeforeClass
-//	public static void setUpBeforeClass() throws Exception {
-//	}
-//
-//	@AfterClass
-//	public static void tearDownAfterClass() throws Exception {
-//	}
-	
 	private Promise<Integer> promise;
 	public final int[] counter = new int[1];
-	
-	PromiseTest(){
-		promise = new Promise<>();
-		counter[0] = 0;
-	}
 	
 
 	@Before
 	public void setUp() throws Exception {
+		promise = new Promise<>();
+		counter[0] = 0;
 	}
 
 	@After

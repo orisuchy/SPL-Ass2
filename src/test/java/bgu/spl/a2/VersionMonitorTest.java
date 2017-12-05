@@ -15,9 +15,6 @@ public class VersionMonitorTest {
 	public VersionMonitor versionMonitor;
 	public final boolean[] boolArray = new boolean[0];
 	
-	VersionMonitorTest(){
-		VersionMonitor versionMonitor = new VersionMonitor();
-	}
 
 	@Before
 	public void setUp() throws Exception {
