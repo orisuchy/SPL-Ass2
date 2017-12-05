@@ -105,12 +105,35 @@ public class PromiseTest {
 		catch(Exception e) {
 			Assert.fail();
 		}
-		
-		
 	}
 
 	@Test
 	public final void testSubscribe() {
-		fail("Not yet implemented"); // TODO
+		
+		Integer valueToResolve = new Integer(250);
+		
+		int numOfCallbacks = 10;
+		for(int i=0; i<numOfCallbacks; i++){
+			promise.subscribe(()->{
+				int tmp = counter[0];
+				counter[0] = tmp + 1;
+			});
+		}
+		
+		try {
+			promise.resolve(valueToResolve);
+			Assert.assertEquals(counter[0], numOfCallbacks);
+		} 
+		catch(Exception e) {
+		}
+		
+		int jump = 2000;
+		
+		promise.subscribe(()->{
+			int tmp = counter[0];
+			counter[0] = tmp + jump;
+		});
+		
+		Assert.assertEquals(counter[0], numOfCallbacks + jump);
 	}
 }
