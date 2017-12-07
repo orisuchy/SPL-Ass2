@@ -4,16 +4,16 @@ import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import junit.framework.Assert;
 
 public class VersionMonitorTest {
 	
 	public VersionMonitor versionMonitor;
-	public final boolean[] boolArray = new boolean[0];
+	public final boolean[] boolArray = new boolean[1];
 	
 
 	@Before
