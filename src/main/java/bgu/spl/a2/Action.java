@@ -16,6 +16,11 @@ import java.util.Collection;
 public abstract class Action<R> {
 
 	private String _actionName;
+	private Promise<R> _result;
+	
+	private ActorThreadPool _pool;
+	private String _actorId;
+	private PrivateState _actorState;
 	
 	
 	/**
@@ -66,17 +71,14 @@ public abstract class Action<R> {
      * @param result - the action calculated result
      */
     protected final void complete(R result) {
-       	//TODO: replace method body with real implementation
-        throw new UnsupportedOperationException("Not Implemented Yet.");
-   
+       	_result.resolve(result);
     }
     
     /**
      * @return action's promise (result)
      */
     public final Promise<R> getResult() {
-    	//TODO: replace method body with real implementation
-        throw new UnsupportedOperationException("Not Implemented Yet.");
+    	return _result;
     }
     
     /**
@@ -92,8 +94,14 @@ public abstract class Action<R> {
      * @return promise that will hold the result of the sent action
      */
 	public Promise<?> sendMessage(Action<?> action, String actorId, PrivateState actorState){
-        //TODO: replace method body with real implementation
-        throw new UnsupportedOperationException("Not Implemented Yet.");
+		_pool.submit(action, actorId, actorState); //add dependecy action to pool
+   
+		Promise<?> promise = action.getResult();
+		promise.subscribe(() ->{		
+			_pool.submit(this, _actorId, _actorState); //add callback to be put back into the pool when promise is resolved
+		});
+
+        return promise;
 	}
 	
 	/**
