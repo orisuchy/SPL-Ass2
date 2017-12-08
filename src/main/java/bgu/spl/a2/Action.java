@@ -15,8 +15,12 @@ import java.util.Collection;
  */
 public abstract class Action<R> {
 
+	//TODO - Jonathan - should some of those be final?
 	private String _actionName;
 	private Promise<R> _result;
+	private boolean _started = false;
+	private callback _callback;
+	private Collection<? extends Action<?>> _dependenies;
 	
 	private ActorThreadPool _pool;
 	private String _actorId;
@@ -43,8 +47,13 @@ public abstract class Action<R> {
     *
     */
    /*package*/ final void handle(ActorThreadPool pool, String actorId, PrivateState actorState) {
-      	//TODO: replace method body with real implementation
-       throw new UnsupportedOperationException("Not Implemented Yet.");
+	   if(!_started) {
+		   _started = true;
+		   start();
+	   }
+	   else if(dependenciesResolved()){
+		   _callback.call();
+	   }
    }
     
     
@@ -59,9 +68,23 @@ public abstract class Action<R> {
      * @param callback the callback to execute once all the results are resolved
      */
     protected final void then(Collection<? extends Action<?>> actions, callback callback) {
-       	//TODO: replace method body with real implementation
-        throw new UnsupportedOperationException("Not Implemented Yet.");
-   
+       	_dependenies = actions;
+       	_callback = callback;
+    }
+    
+    /**
+     * checks to see if all dependency actions are resolved
+     * 
+     * @return true if all dependency actions
+     */
+    private final boolean dependenciesResolved() {
+    	for (Action<?> dependency : _dependenies) {
+    		Promise<?> promise = dependency.getResult();
+    		if(!promise.isResolved()) {
+    			return false;
+    		}
+    	}
+    	return true;
     }
 
     /**
