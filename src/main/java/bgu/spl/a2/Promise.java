@@ -1,5 +1,7 @@
 package bgu.spl.a2;
 
+import java.util.*;
+
 /**
  * this class represents a deferred result i.e., an object that eventually will
  * be resolved to hold a result of some operation, the class allows for getting
@@ -16,6 +18,9 @@ package bgu.spl.a2;
  *            the result type, <boolean> resolved - initialized ;
  */
 public class Promise<T>{
+	private T result;
+	private ArrayList<callback> callbacksList = new ArrayList<callback>();
+	
 
 	/**
 	 *
@@ -26,8 +31,12 @@ public class Promise<T>{
 	 *             not yet resolved
 	 */
 	public T get() {
-		//TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
+		if (isResolved())
+		{
+			return result;
+		}
+		else
+		throw new IllegalStateException("Not yet resolved.");
 	}
 
 	/**
@@ -37,8 +46,10 @@ public class Promise<T>{
 	 *         before.
 	 */
 	public boolean isResolved() {
-		//TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
+		if (result == null)
+			return false;
+		else
+			return true;
 	}
 
 
@@ -56,8 +67,14 @@ public class Promise<T>{
 	 *            - the value to resolve this promise object with
 	 */
 	public void resolve(T value){
-		//TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
+		if (!isResolved()) 
+		{
+			result = value;
+			for (int i=0; i<callbacksList.size();i++) 
+				callbacksList.get(i).call(); //release the callbacks list			
+		}
+		else		
+		throw new IllegalStateException("Already resolved.");
 	}
 
 	/**
@@ -74,7 +91,9 @@ public class Promise<T>{
 	 *            the callback to be called when the promise object is resolved
 	 */
 	public void subscribe(callback callback) {
-		//TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
-	}
+		if (!isResolved())
+		callbacksList.add(callback); //Add callback to callback list
+		else
+			callback.call(); //If there is result - call the callback
+		}
 }
