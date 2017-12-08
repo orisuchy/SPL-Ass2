@@ -15,6 +15,18 @@ import java.util.Collection;
  */
 public abstract class Action<R> {
 
+	//TODO - Jonathan - should some of those be final?
+	private String _actionName;
+	private Promise<R> _result;
+	private boolean _started = false;
+	private callback _callback;
+	private Collection<? extends Action<?>> _dependenies;
+	
+	private ActorThreadPool _pool;
+	private String _actorId;
+	private PrivateState _actorState;
+	
+	
 	/**
      * start handling the action - note that this method is protected, a thread
      * cannot call it directly.
@@ -35,6 +47,13 @@ public abstract class Action<R> {
     *
     */
    /*package*/ final void handle(ActorThreadPool pool, String actorId, PrivateState actorState) {
+	   if(!_started) {
+		   _started = true;
+		   start();
+	   }
+	   else if(dependenciesResolved()){
+		   _callback.call();
+	   }
    }
     
     
@@ -49,9 +68,23 @@ public abstract class Action<R> {
      * @param callback the callback to execute once all the results are resolved
      */
     protected final void then(Collection<? extends Action<?>> actions, callback callback) {
-       	//TODO: replace method body with real implementation
-        throw new UnsupportedOperationException("Not Implemented Yet.");
-   
+       	_dependenies = actions;
+       	_callback = callback;
+    }
+    
+    /**
+     * checks to see if all dependency actions are resolved
+     * 
+     * @return true if all dependency actions
+     */
+    private final boolean dependenciesResolved() {
+    	for (Action<?> dependency : _dependenies) {
+    		Promise<?> promise = dependency.getResult();
+    		if(!promise.isResolved()) {
+    			return false;
+    		}
+    	}
+    	return true;
     }
 
     /**
@@ -61,17 +94,14 @@ public abstract class Action<R> {
      * @param result - the action calculated result
      */
     protected final void complete(R result) {
-       	//TODO: replace method body with real implementation
-        throw new UnsupportedOperationException("Not Implemented Yet.");
-   
+       	_result.resolve(result);
     }
     
     /**
      * @return action's promise (result)
      */
     public final Promise<R> getResult() {
-    	//TODO: replace method body with real implementation
-        throw new UnsupportedOperationException("Not Implemented Yet.");
+    	return _result;
     }
     
     /**
@@ -87,8 +117,28 @@ public abstract class Action<R> {
      * @return promise that will hold the result of the sent action
      */
 	public Promise<?> sendMessage(Action<?> action, String actorId, PrivateState actorState){
-        //TODO: replace method body with real implementation
-        throw new UnsupportedOperationException("Not Implemented Yet.");
-	}
+		_pool.submit(action, actorId, actorState); //add dependecy action to pool
+   
+		Promise<?> promise = action.getResult();
+		promise.subscribe(() ->{		
+			_pool.submit(this, _actorId, _actorState); //add callback to be put back into the pool when promise is resolved
+		});
 
+        return promise;
+	}
+	
+	/**
+	 * set action's name
+	 * @param actionName
+	 */
+	public void setActionName(String actionName){
+        _actionName = actionName;
+	}
+	
+	/**
+	 * @return action's name
+	 */
+	public String getActionName(){
+        return _actionName;
+	}
 }
