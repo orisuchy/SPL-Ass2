@@ -17,19 +17,36 @@ package bgu.spl.a2;
  * methods
  */
 public class VersionMonitor {
-
-    public int getVersion() {
-        //TODO: replace method body with real implementation
-        throw new UnsupportedOperationException("Not Implemented Yet.");
+	
+	private int _version;
+	
+	/**
+	 * synchronized to ensure visibility and force cache flush
+	 * @return the current version int value
+	 */
+    public synchronized int getVersion() {
+    	return _version;
     }
 
-    public void inc() {
-        //TODO: replace method body with real implementation
-        throw new UnsupportedOperationException("Not Implemented Yet.");
+	/**
+	 * synchronized to ensure no overriding of values
+	 * returned value from {@link #getVersion()} increases by 1 after calling
+	 * this method
+	 */
+    public synchronized void inc() {
+    	_version++;
+    	this.notifyAll();
     }
-
+    
+	/**
+	 * Causes the current thread to wait until the current version reaches a version value
+	 * @param version
+	 * 				- the target version that must be reached
+	 */
     public void await(int version) throws InterruptedException {
-        //TODO: replace method body with real implementation
-        throw new UnsupportedOperationException("Not Implemented Yet.");
+    	//wait until _version >= version
+    	while(getVersion()<version) {
+    		this.wait();
+    	}
     }
 }
