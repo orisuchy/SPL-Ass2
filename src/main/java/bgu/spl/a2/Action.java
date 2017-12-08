@@ -15,6 +15,9 @@ import java.util.Collection;
  */
 public abstract class Action<R> {
 
+	private String _actionName;
+	
+	
 	/**
      * start handling the action - note that this method is protected, a thread
      * cannot call it directly.
@@ -35,6 +38,8 @@ public abstract class Action<R> {
     *
     */
    /*package*/ final void handle(ActorThreadPool pool, String actorId, PrivateState actorState) {
+      	//TODO: replace method body with real implementation
+       throw new UnsupportedOperationException("Not Implemented Yet.");
    }
     
     
@@ -96,15 +101,13 @@ public abstract class Action<R> {
 	 * @param actionName
 	 */
 	public void setActionName(String actionName){
-        //TODO: replace method body with real implementation
-        throw new UnsupportedOperationException("Not Implemented Yet.");
+        _actionName = actionName;
 	}
 	
 	/**
 	 * @return action's name
 	 */
 	public String getActionName(){
-        //TODO: replace method body with real implementation
-        throw new UnsupportedOperationException("Not Implemented Yet.");
+        return _actionName;
 	}
 }
