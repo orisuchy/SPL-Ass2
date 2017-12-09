@@ -22,9 +22,9 @@ public abstract class Action<R> {
 	private callback _callback;
 	private Collection<? extends Action<?>> _dependenies;
 	
-	private ActorThreadPool _pool;
-	private String _actorId;
-	private PrivateState _actorState;
+	protected ActorThreadPool _pool;
+	protected String _actorId;
+	protected PrivateState _actorState;
 	
 	
 	/**
