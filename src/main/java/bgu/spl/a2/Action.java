@@ -20,7 +20,7 @@ public abstract class Action<R> {
 	private Promise<R> _result;
 	private boolean _started = false;
 	private callback _callback;
-	private Collection<? extends Action<?>> _dependenies;
+	private Collection<? extends Action<?>> _dependencies;
 	
 	protected ActorThreadPool _pool;
 	protected String _actorId;
@@ -68,7 +68,7 @@ public abstract class Action<R> {
      * @param callback the callback to execute once all the results are resolved
      */
     protected final void then(Collection<? extends Action<?>> actions, callback callback) {
-       	_dependenies = actions;
+       	_dependencies = actions;
        	_callback = callback;
     }
     
@@ -78,7 +78,7 @@ public abstract class Action<R> {
      * @return true if all dependency actions
      */
     private final boolean dependenciesResolved() {
-    	for (Action<?> dependency : _dependenies) {
+    	for (Action<?> dependency : _dependencies) {
     		Promise<?> promise = dependency.getResult();
     		if(!promise.isResolved()) {
     			return false;
