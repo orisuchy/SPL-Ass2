@@ -8,6 +8,9 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 import com.google.gson.Gson;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -52,8 +55,15 @@ public class Simulator {
 	* returns list of private states
 	*/
 	public static HashMap<String,PrivateState> end(){
-		//TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
+		
+		try {
+			actorThreadPool.shutdown();
+		} catch (InterruptedException e) {
+		}
+		
+		//TODO - Fingers crossed this works
+		return (HashMap<String,PrivateState>)actorThreadPool.getActors();
+		
 	}
 	
 	
@@ -62,9 +72,21 @@ public class Simulator {
 		jsonInput = scanner.nextLine();
 		scanner.close();
 		
+		start();
 		
+		//TODO - should I wait or something? I am assuming the shutdown causes a wait...
 		
-		//TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
+		HashMap<String, PrivateState> SimulationResult;
+		SimulationResult = end();
+		try {
+		FileOutputStream fout = new FileOutputStream("result.ser");
+		ObjectOutputStream oos = new ObjectOutputStream(fout);
+		oos.writeObject(SimulationResult);
+		oos.close();
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}	
+		return 0;
 	}
 }
