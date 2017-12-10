@@ -4,10 +4,8 @@
  * and open the template in the editor.
  */
 package bgu.spl.a2.sim;
-import com.google.gson.Gson;
-
 import java.util.concurrent.ConcurrentLinkedQueue;
-
+import java.util.HashMap;
 import bgu.spl.a2.ActorThreadPool;
 import bgu.spl.a2.PrivateState;
 
@@ -33,20 +31,21 @@ public class Simulator {
 	* @param myActorThreadPool - the ActorThreadPool which will be used by the simulator
 	*/
 	public static void attachActorThreadPool(ActorThreadPool myActorThreadPool){
-		actorThreadPool = myActorThreadPool;
+		//TODO: replace method body with real implementation
+		throw new UnsupportedOperationException("Not Implemented Yet.");
 	}
 	
 	/**
 	* shut down the simulation
 	* returns list of private states
 	*/
-	public static ConcurrentLinkedQueue<PrivateState> end(){
+	public static HashMap<String,PrivateState> end(){
 		//TODO: replace method body with real implementation
 		throw new UnsupportedOperationException("Not Implemented Yet.");
 	}
 	
 	
-	public static int main(String [] args){		
+	public static int main(String [] args){
 		//TODO: replace method body with real implementation
 		throw new UnsupportedOperationException("Not Implemented Yet.");
 	}
