@@ -36,6 +36,9 @@ public class ActorThreadPool {
 	 * @return actors
 	 */
 	public Map<String, PrivateState> getActors(){
+		
+		//TODO - message to ORI - do me a favor and use HashMap here... I need it in Simluator Class
+		
 		// TODO: replace method body with real implementation
 		throw new UnsupportedOperationException("Not Implemented Yet.");
 	}
