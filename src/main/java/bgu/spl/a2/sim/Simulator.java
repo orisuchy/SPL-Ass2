@@ -40,6 +40,16 @@ public class Simulator {
 		//TODO: replace method body with real implementation
 		throw new UnsupportedOperationException("Not Implemented Yet.");
     }
+    
+    
+	
+	/**
+	* create the phase1,phase2,phase3 arrays from the jsonInput field.
+	*/
+    private static void generatePhaseArraysFromJSON() {
+		//TODO: replace method body with real implementation
+		throw new UnsupportedOperationException("Not Implemented Yet.");
+    }
 	
 	/**
 	* attach an ActorThreadPool to the Simulator, this ActorThreadPool will be used to run the simulation
