@@ -1,6 +1,6 @@
 package bgu.spl.a2;
+import java.util.*;
 
-import java.util.Map;
 
 /**
  * represents an actor thread pool - to understand what this class does please
@@ -13,9 +13,12 @@ import java.util.Map;
  * methods
  */
 public class ActorThreadPool {
-
+	private int numOfThreads;
+	private Thread[] threadsArray;
+	private Map<String, PrivateState> actorsPrivateState;
+	private Map<String, ArrayList<Action>> actorsQueues;
 	/**
-	 * creates a {@link ActorThreadPool} which has nthreads. Note, threads
+	 * creates a {@link ActorThreadPool} which has n threads. Note, threads
 	 * should not get started until calling to the {@link #start()} method.
 	 *
 	 * Implementors note: you may not add other constructors to this class nor
@@ -27,8 +30,14 @@ public class ActorThreadPool {
 	 *            pool
 	 */
 	public ActorThreadPool(int nthreads) {
-		// TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
+		actorsPrivateState = new HashMap<String, PrivateState>();
+		actorsQueues = new HashMap<String, ArrayList<Action>>();
+		numOfThreads = nthreads;
+		threadsArray = new Thread[numOfThreads];
+		for (int i=0; i<numOfThreads; i++) {
+			threadsArray[i] = new Thread(); //TODO: need to enter lambda as runnable
+		}
+		
 	}
 
 	/**
@@ -37,10 +46,7 @@ public class ActorThreadPool {
 	 */
 	public Map<String, PrivateState> getActors(){
 		
-		//TODO - message to ORI - do me a favor and use HashMap here... I need it in Simluator Class
-		
-		// TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
+	return actorsPrivateState;
 	}
 	
 	/**
@@ -48,9 +54,12 @@ public class ActorThreadPool {
 	 * @param actorId actor's id
 	 * @return actor's private state
 	 */
-	public PrivateState getPrivaetState(String actorId){
-		// TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
+	public PrivateState getPrivaetState(String actorId){ 
+		
+		//TODO: What if null? What if map is empty?
+		
+	return	actorsPrivateState.get(actorId);
+		
 	}
 
 
@@ -66,8 +75,16 @@ public class ActorThreadPool {
 	 *            actor's private state (actor's information)
 	 */
 	public void submit(Action<?> action, String actorId, PrivateState actorState) {
-		// TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
+		if (actorsPrivateState.get(actorId)==null) { //If the actor  exists, create a new actor 
+			ArrayList<Action> queue = new ArrayList<Action>();
+			queue.add(action);
+			actorsQueues.put(actorId,queue);
+			actorsPrivateState.put(actorId, actorState);
+			}
+		else {
+			actorsQueues.get(actorId).add(action); //Add action to actors queue
+		}
+		
 	}
 
 	/**
@@ -89,8 +106,9 @@ public class ActorThreadPool {
 	 * start the threads belongs to this thread pool
 	 */
 	public void start() {
-		// TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
+		for (int i=0; i<numOfThreads; i++) {
+			threadsArray[i].start();
+			}
 	}
 
 }
