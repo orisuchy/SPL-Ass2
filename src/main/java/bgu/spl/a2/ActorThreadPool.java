@@ -1,5 +1,7 @@
 package bgu.spl.a2;
 
+import java.util.Map;
+
 /**
  * represents an actor thread pool - to understand what this class does please
  * refer to your assignment.
@@ -28,6 +30,29 @@ public class ActorThreadPool {
 		// TODO: replace method body with real implementation
 		throw new UnsupportedOperationException("Not Implemented Yet.");
 	}
+
+	/**
+	 * getter for actors
+	 * @return actors
+	 */
+	public Map<String, PrivateState> getActors(){
+		
+		//TODO - message to ORI - do me a favor and use HashMap here... I need it in Simluator Class
+		
+		// TODO: replace method body with real implementation
+		throw new UnsupportedOperationException("Not Implemented Yet.");
+	}
+	
+	/**
+	 * getter for actor's private state
+	 * @param actorId actor's id
+	 * @return actor's private state
+	 */
+	public PrivateState getPrivaetState(String actorId){
+		// TODO: replace method body with real implementation
+		throw new UnsupportedOperationException("Not Implemented Yet.");
+	}
+
 
 	/**
 	 * submits an action into an actor to be executed by a thread belongs to
