@@ -1,7 +1,6 @@
 package bgu.spl.a2.sim;
-import java.util.LinkedList;
 import java.util.Queue;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import bgu.spl.a2.Promise;
@@ -19,7 +18,6 @@ public class SuspendingMutex {
 	
 	private Computer _computer;
 	private Queue<Promise<Computer>> _promiseQueue;
-	//private AtomicBoolean _free = new AtomicBoolean(false);
 	private AtomicInteger _numberOfRequests = new AtomicInteger();
 	
 	
@@ -29,8 +27,7 @@ public class SuspendingMutex {
 	 */
 	public SuspendingMutex(Computer computer){
 		_computer = computer;
-		_promiseQueue = new LinkedList<Promise<Computer>>();
-		//_free.set(true);
+		_promiseQueue = new ConcurrentLinkedQueue<Promise<Computer>>();
 		_numberOfRequests.set(0);
 	}
 	/**
@@ -41,7 +38,6 @@ public class SuspendingMutex {
 	 */
 	public Promise<Computer> down(){
 		Promise<Computer> returnedPromise = new Promise<Computer>();
-		//if(_free.compareAndSet(true, false)) {
 		if(_numberOfRequests.compareAndSet(0, 1)) { //Was first to request computer
 			returnedPromise.resolve(_computer);
 		} else { //must wait in line
@@ -64,18 +60,6 @@ public class SuspendingMutex {
 			if(nextPromiseToHandle == null) {
 				throw new RuntimeException("Popped NULL promise from mutex queue");
 			}
-			
-			
 		}
-		
-		
 	}
-	
-	/**
-	 * returns the number of promises currently waiting in the Queue
-	 */
-	public int getWaitingQueueSize() {
-		return _promiseQueue.size();
-	}
-	
 }
