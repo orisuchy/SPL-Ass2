@@ -18,7 +18,7 @@ public class SuspendingMutex {
 	
 	private Computer _computer;
 	private Queue<Promise<Computer>> _promiseQueue;
-	private AtomicBoolean _free;
+	private AtomicBoolean _free = new AtomicBoolean(false);
 	
 	/**
 	 * Constructor
