@@ -1,4 +1,8 @@
 package bgu.spl.a2.sim;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import bgu.spl.a2.Promise;
 
 /**
@@ -12,17 +16,18 @@ import bgu.spl.a2.Promise;
  */
 public class SuspendingMutex {
 	
-	
-	
-	
+	private Computer _computer;
+	private Queue<Promise<Computer>> _promiseQueue;
+	private AtomicBoolean _free;
 	
 	/**
 	 * Constructor
 	 * @param computer
 	 */
 	public SuspendingMutex(Computer computer){
-		//TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
+		_computer = computer;
+		_promiseQueue = new LinkedList<Promise<Computer>>();
+		_free.set(true);
 	}
 	/**
 	 * Computer acquisition procedure
@@ -42,4 +47,12 @@ public class SuspendingMutex {
 		//TODO: replace method body with real implementation
 		throw new UnsupportedOperationException("Not Implemented Yet.");
 	}
+	
+	/**
+	 * returns the number of promises currently waiting in the Queue
+	 */
+	public int getWaitingQueueSize() {
+		return _promiseQueue.size();
+	}
+	
 }
