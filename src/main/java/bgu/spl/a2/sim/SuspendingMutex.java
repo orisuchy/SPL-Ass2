@@ -2,6 +2,7 @@ package bgu.spl.a2.sim;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import bgu.spl.a2.Promise;
 
@@ -18,7 +19,9 @@ public class SuspendingMutex {
 	
 	private Computer _computer;
 	private Queue<Promise<Computer>> _promiseQueue;
-	private AtomicBoolean _free = new AtomicBoolean(false);
+	//private AtomicBoolean _free = new AtomicBoolean(false);
+	private AtomicInteger _numberOfRequests = new AtomicInteger();
+	
 	
 	/**
 	 * Constructor
@@ -27,7 +30,8 @@ public class SuspendingMutex {
 	public SuspendingMutex(Computer computer){
 		_computer = computer;
 		_promiseQueue = new LinkedList<Promise<Computer>>();
-		_free.set(true);
+		//_free.set(true);
+		_numberOfRequests.set(0);
 	}
 	/**
 	 * Computer acquisition procedure
@@ -36,16 +40,35 @@ public class SuspendingMutex {
 	 * @return a promise for the requested computer
 	 */
 	public Promise<Computer> down(){
-		//TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
+		Promise<Computer> returnedPromise = new Promise<Computer>();
+		//if(_free.compareAndSet(true, false)) {
+		if(_numberOfRequests.compareAndSet(0, 1)) { //Was first to request computer
+			returnedPromise.resolve(_computer);
+		} else { //must wait in line
+			_numberOfRequests.getAndIncrement();
+			_promiseQueue.add(returnedPromise);
+		}
+		
+		return returnedPromise;
 	}
 	/**
 	 * Computer return procedure
 	 * releases a computer which becomes available in the warehouse upon completion
 	 */
-	public void up(){
-		//TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
+	public void up(){	
+		if(_numberOfRequests.get()==0) {
+			return;
+		} else {
+			_numberOfRequests.getAndDecrement();
+			Promise<Computer> nextPromiseToHandle = _promiseQueue.poll();
+			if(nextPromiseToHandle == null) {
+				throw new RuntimeException("Popped NULL promise from mutex queue");
+			}
+			
+			
+		}
+		
+		
 	}
 	
 	/**
