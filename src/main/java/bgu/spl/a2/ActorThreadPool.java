@@ -1,5 +1,6 @@
 package bgu.spl.a2;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 /**
@@ -16,7 +17,9 @@ public class ActorThreadPool {
 	private int numOfThreads;
 	private Thread[] threadsArray;
 	private Map<String, PrivateState> actorsPrivateState;
-	private Map<String, ArrayList<Action>> actorsQueues;
+	private Map<String, ArrayList<Action<?>>> actorsQueues;
+	private Map<String, AtomicBoolean> actorsStatus; //true - in use, false - not in use
+	private VersionMonitor version;
 	/**
 	 * creates a {@link ActorThreadPool} which has n threads. Note, threads
 	 * should not get started until calling to the {@link #start()} method.
@@ -31,15 +34,28 @@ public class ActorThreadPool {
 	 */
 	public ActorThreadPool(int nthreads) {
 		actorsPrivateState = new HashMap<String, PrivateState>();
-		actorsQueues = new HashMap<String, ArrayList<Action>>();
+		actorsQueues = new HashMap<String, ArrayList<Action<?>>>();
+		actorsStatus = new HashMap<String, AtomicBoolean>();
+		version = new VersionMonitor();
 		numOfThreads = nthreads;
 		threadsArray = new Thread[numOfThreads];
-		for (int i=0; i<numOfThreads; i++) { //TODO: 
-			threadsArray[i] = new Thread(); 
-			//TODO: need to enter lambda as runnable 
-			//foreach over the queues map and run over them 
+		for (int i=0; i<numOfThreads; i++) { 
+			threadsArray[i] = new Thread();
+			//TODO: lambda
+			while (!interupted()) {
+				for(String actorId : actorsStatus.keySet()) {
+					if (actorsStatus.get(actorId).compareAndSet(false, true)) {
+						ArrayList<Action<?>> queueToRun = actorsQueues.get()
+						for ()
+					}
+
+				}
+			}
+			; 
+								//TODO: need to enter as lambda and runnable 
+								//foreach over the queues map and run over them 
 		}
-		
+
 	}
 
 	/**
@@ -47,21 +63,21 @@ public class ActorThreadPool {
 	 * @return actors
 	 */
 	public Map<String, PrivateState> getActors(){
-		
-	return actorsPrivateState;
+
+		return actorsPrivateState;
 	}
-	
+
 	/**
 	 * getter for actor's private state
 	 * @param actorId actor's id
 	 * @return actor's private state
 	 */
 	public PrivateState getPrivateState(String actorId){ 
-		
+
 		//TODO: What if null? What if map is empty?
-		
-	return	actorsPrivateState.get(actorId);
-		
+
+		return	actorsPrivateState.get(actorId);
+
 	}
 
 
@@ -78,15 +94,16 @@ public class ActorThreadPool {
 	 */
 	public void submit(Action<?> action, String actorId, PrivateState actorState) {
 		if (actorsPrivateState.get(actorId)==null) { //If the actor  exists, create a new actor 
-			ArrayList<Action> queue = new ArrayList<Action>();
+			ArrayList<Action<?>> queue = new ArrayList<Action<?>>();
 			queue.add(action);
 			actorsQueues.put(actorId,queue);
 			actorsPrivateState.put(actorId, actorState);
-			}
+			actorsStatus.put(actorId, new AtomicBoolean());
+		}
 		else {
 			actorsQueues.get(actorId).add(action); //Add action to actors queue
 		}
-		
+
 	}
 
 	/**
@@ -110,7 +127,7 @@ public class ActorThreadPool {
 	public void start() {
 		for (int i=0; i<numOfThreads; i++) {
 			threadsArray[i].start();
-			}
+		}
 	}
 
 }
