@@ -29,4 +29,20 @@ public class DepartmentPrivateState extends PrivateState{
 		return studentList;
 	}
 	
+	
+	/**
+	 * tries to add a student to the department. Does NOT add the student
+	 * if studentList already contains studentName
+	 * @param studentName string
+	 * @return TRUE if was able to add student, FALSE otherwise
+	 */
+	public boolean addStudent(String studentName) {
+		if(studentList.contains(studentName)) {
+			return false;
+		}
+		else {
+			studentList.add(studentName);
+			return true;
+		}
+	}
 }

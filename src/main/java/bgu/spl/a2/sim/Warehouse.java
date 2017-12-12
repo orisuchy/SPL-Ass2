@@ -27,7 +27,7 @@ public class Warehouse {
 	 * Constructor
 	 * @param computers array
 	 */
-	Warehouse(Computer[] computersArray){
+	public Warehouse(Computer[] computersArray){
 		if(computersArray.length==0) {
 			throw new RuntimeException("Computers array is empty. Cannot construct empt warehouse");
 		}
