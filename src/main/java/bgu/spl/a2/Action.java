@@ -141,4 +141,16 @@ public abstract class Action<R> {
 	public String getActionName(){
         return _actionName;
 	}
+	
+	/**
+	 * checks the type of the _actorState field against a given Class
+	 * @param 
+	 * 		Class expectedStateType - the expected type of the _actorState field
+	 * @return 
+	 * 		TRUE if _actorState in an instance of expectedStateType, FALSE otherwise
+	 */
+	protected boolean actorStateTypeChecker(Class expectedStateType) {
+		return (expectedStateType.isInstance(_actorState));
+	}
+	
 }
