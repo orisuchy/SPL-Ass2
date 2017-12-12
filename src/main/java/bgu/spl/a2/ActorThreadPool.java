@@ -54,7 +54,7 @@ public class ActorThreadPool {
 	 * @param actorId actor's id
 	 * @return actor's private state
 	 */
-	public PrivateState getPrivaetState(String actorId){ 
+	public PrivateState getPrivateState(String actorId){ 
 		
 		//TODO: What if null? What if map is empty?
 		
