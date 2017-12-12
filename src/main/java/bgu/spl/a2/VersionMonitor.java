@@ -20,6 +20,11 @@ public class VersionMonitor {
 	
 	private int _version;
 	
+	
+	public VersionMonitor() {
+		_version = 0;
+	}
+	
 	/**
 	 * synchronized to ensure visibility and force cache flush
 	 * @return the current version int value

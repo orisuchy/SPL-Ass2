@@ -1,28 +1,40 @@
 package bgu.spl.a2.sim.actions;
 
 import bgu.spl.a2.Action;
+import bgu.spl.a2.sim.privateStates.DepartmentPrivateState;
 
-class AddStudentAction<R> extends Action<R> {
+/*
+Add Student:
+	- Behavior: This action adds a new student to a specied department.
+	- Actor: Must be initially submitted to the Department's actor.
+*/
+class AddStudentAction extends Action<Boolean> {
 
-	
-	
-	/*
-	 * "Action": "Add Student",
-		"Department": "Math",
-		"Student": "132424353"
+	private DepartmentPrivateState _departmentState;
+	private String Student;
 		
-		
-		
-		Add Student:
-			 Behavior: This action adds a new student to a specied department.
-			 Actor: Must be initially submitted to the Department's actor.
+	/**
+	 * Constructor
+	 * @param Department string
+	 * @param Student string
 	 */
+	public AddStudentAction(String Student) {
+		setActionName("Add Student");
+		this.Student = Student;
+	}
 	
 	
+	/**
+	 * Try adding the student to the department and store the result
+	 */
 	@Override
 	protected void start() {
-		// TODO Auto-generated method stub
+		if(!(_actorState instanceof DepartmentPrivateState)) {
+			throw new RuntimeException("AddStudentAction did not recieve actor state of type DepartmentPrivateState");
+		}
+		_departmentState = (DepartmentPrivateState)_actorState; 
 
+		Boolean studentAdded = _departmentState.addStudent(Student);
+		complete(studentAdded);
 	}
-
 }
