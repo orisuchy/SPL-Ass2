@@ -34,8 +34,10 @@ public class ActorThreadPool {
 		actorsQueues = new HashMap<String, ArrayList<Action>>();
 		numOfThreads = nthreads;
 		threadsArray = new Thread[numOfThreads];
-		for (int i=0; i<numOfThreads; i++) {
-			threadsArray[i] = new Thread(); //TODO: need to enter lambda as runnable
+		for (int i=0; i<numOfThreads; i++) { //TODO: 
+			threadsArray[i] = new Thread(); 
+			//TODO: need to enter lambda as runnable 
+			//foreach over the queues map and run over them 
 		}
 		
 	}
