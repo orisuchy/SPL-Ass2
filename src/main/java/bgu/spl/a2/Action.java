@@ -157,6 +157,7 @@ public abstract class Action<R> {
 	 * throw RuntimeException if current ActorState is not of valid type
 	 * @param 
 	 * 		Class expectedStateType - the expected type of the _actorState field
+	 * @throws RuntimeException if ActorState is not of the expected type
 	 */
 	protected void throwExceptionForInvalidActorStateType(Class expectedStateType) {
 		if(!checkActorStateType(expectedStateType)) {
