@@ -29,4 +29,11 @@ public class StudentPrivateState extends PrivateState{
 	public long getSignature() {
 		return signature;
 	}
+	
+	public boolean addGrade(String course, int grade) {
+		grades.put(course, grade);
+		
+		//extra verification:
+		return (grades.get(course)==grade);
+	}
 }
