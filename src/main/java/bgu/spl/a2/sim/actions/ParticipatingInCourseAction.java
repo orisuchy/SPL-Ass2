@@ -1,6 +1,7 @@
 package bgu.spl.a2.sim.actions;
 
 import bgu.spl.a2.Action;
+import bgu.spl.a2.sim.privateStates.CoursePrivateState;
 
 /**
  * 
@@ -10,8 +11,7 @@ import bgu.spl.a2.Action;
 		- Actor: Must be initially submitted to the course's actor.
  */
 
-class ParticipatingInCourseAction<R> extends Action<R> {
-
+class ParticipatingInCourseAction extends Action<Boolean> {
 	/*
 	 * "Action": "Participate In Course",
 		"Student": "123456789",
@@ -19,15 +19,27 @@ class ParticipatingInCourseAction<R> extends Action<R> {
 		"Grade": ["98"]
 	 */
 	
+	private CoursePrivateState courseState;
+	private String Course;
+	private String Student;
+	private String[] Grade;
 	
-	ParticipatingInCourseAction(){
-		
+	
+	public ParticipatingInCourseAction(String course, String student, String[] grade) {
+		setActionName("Participate In Course");
+		this.Course = course;
+		this.Student = student;
+		this.Grade = grade;
 	}
-	
+
 	@Override
 	protected void start() {
-		// TODO Auto-generated method stub
-
+		throwExceptionForInvalidActorStateType(CoursePrivateState.class);
+		courseState = (CoursePrivateState)_actorState;
+		
+		
+		
+		
 	}
 
 }

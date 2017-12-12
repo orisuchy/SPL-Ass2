@@ -19,7 +19,7 @@ class AddStudentAction extends Action<Boolean> {
 	 * @param Student string
 	 */
 	public AddStudentAction(String Student) {
-		setActionName("Add Student");
+		setActionName("Add Student Course-Grade");
 		this.Student = Student;
 	}
 	
