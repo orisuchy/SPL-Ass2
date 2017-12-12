@@ -1,9 +1,14 @@
 package bgu.spl.a2.sim.actions;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import bgu.spl.a2.Action;
+import bgu.spl.a2.PrivateState;
+import bgu.spl.a2.Promise;
 import bgu.spl.a2.sim.privateStates.CoursePrivateState;
+import bgu.spl.a2.sim.privateStates.StudentPrivateState;
 
 /**
  * 
@@ -39,10 +44,46 @@ class ParticipatingInCourseAction extends Action<Boolean> {
 		throwExceptionForInvalidActorStateType(CoursePrivateState.class);
 		courseState = (CoursePrivateState)_actorState;
 		
+		List<Action<Boolean>> depencencies = new ArrayList();
+		
+		//create CheckStudentHasPrequisitesAction
 		List<String> prequisites = courseState.getPrequisites();
+		Action<Boolean> checkStudentHasPrequisites = new CheckStudentHasPrequisitesAction(prequisites);
+		Promise<Boolean> studentHasPrequisitesPromise = (Promise<Boolean>) sendMessage(checkStudentHasPrequisites, Student, new StudentPrivateState());
 		
-		//TODO - probably needs another action -> CheckStudentHasPrequisites
-		
+		//create callback
+		depencencies.add(checkStudentHasPrequisites);	
+		then(depencencies, () -> {
+			Boolean hasPrequisites = studentHasPrequisitesPromise.get();
+			if(hasPrequisites & courseHasAvailableSpace()) {
+				
+				//TODO - add student to courseState AND record it
+				
+				
+				
+				//Add the course and grade info to the student
+				Action<Boolean> addCourseAndGrade;
+				try {
+					int studentGrade = Integer.parseInt(Grade[0]);
+					addCourseAndGrade = new AddStudentGradeAction(Course, studentGrade);
+				}
+				catch(NumberFormatException e){
+					addCourseAndGrade = new AddStudentGradeAction(Course, -1);
+				}
+				_pool.submit(addCourseAndGrade, Student, new StudentPrivateState());
+				
+			}else {
+				complete(false);
+			}	
+		});
 	}
-
+	
+	
+	/**
+	 * checks the course private state for available spaces
+	 * @return TRUE if course has available spaces, FALSE otherwise
+	 */
+	private boolean courseHasAvailableSpace() {
+		return (courseState.getAvailableSpots()>0);
+	}
 }
