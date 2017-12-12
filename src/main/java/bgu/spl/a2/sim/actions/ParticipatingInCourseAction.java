@@ -1,5 +1,7 @@
 package bgu.spl.a2.sim.actions;
 
+import java.util.List;
+
 import bgu.spl.a2.Action;
 import bgu.spl.a2.sim.privateStates.CoursePrivateState;
 
@@ -37,8 +39,9 @@ class ParticipatingInCourseAction extends Action<Boolean> {
 		throwExceptionForInvalidActorStateType(CoursePrivateState.class);
 		courseState = (CoursePrivateState)_actorState;
 		
+		List<String> prequisites = courseState.getPrequisites();
 		
-		
+		//TODO - probably needs another action -> CheckStudentHasPrequisites
 		
 	}
 
