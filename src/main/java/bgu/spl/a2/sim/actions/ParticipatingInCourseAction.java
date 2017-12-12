@@ -41,6 +41,7 @@ class ParticipatingInCourseAction extends Action<Boolean> {
 		
 		List<String> prequisites = courseState.getPrequisites();
 		
+		//TODO - probably needs another action -> CheckStudentHasPrequisites
 		
 	}
 
