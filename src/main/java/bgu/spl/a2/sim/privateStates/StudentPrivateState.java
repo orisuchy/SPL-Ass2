@@ -30,10 +30,27 @@ public class StudentPrivateState extends PrivateState{
 		return signature;
 	}
 	
+	
+	/**
+	 * Add grade to course. If course not listed, then the course is added as well
+	 * @param course
+	 * @param grade
+	 * @return TRUE if grade successfully added, FALSE otherwise
+	 */
 	public boolean addGrade(String course, int grade) {
 		grades.put(course, grade);
 		
 		//extra verification:
 		return (grades.get(course)==grade);
+	}
+	
+	
+	/**
+	 * Check if the student is registered to the course
+	 * @param course
+	 * @return TRUE if student's grades list contains the course
+	 */
+	public boolean isRegisteredToCourse(String course) {
+		return grades.containsKey(course);
 	}
 }
