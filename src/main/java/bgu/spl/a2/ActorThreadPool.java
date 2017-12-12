@@ -39,24 +39,40 @@ public class ActorThreadPool {
 		version = new VersionMonitor();
 		numOfThreads = nthreads;
 		threadsArray = new Thread[numOfThreads];
-		for (int i=0; i<numOfThreads; i++) { 
-			threadsArray[i] = new Thread();
-			//TODO: lambda
-			while (!interupted()) {
-				for(String actorId : actorsStatus.keySet()) {
-					if (actorsStatus.get(actorId).compareAndSet(false, true)) {
-						ArrayList<Action<?>> queueToRun = actorsQueues.get()
-						for ()
+		for (int i=0; i<numOfThreads; i++) 
+		{ 
+			threadsArray[i] = new Thread()
+			{
+				public void run() 
+				{
+					while (!interrupted()) 
+					{
+						for(String actorId : actorsStatus.keySet()) 
+						{
+							if (actorsStatus.get(actorId).compareAndSet(false, true) & actorsQueues.get(actorId)!=null ) 
+							{
+								ArrayList<Action<?>> queueToRun = actorsQueues.get(actorId);
+								Action<?> action = queueToRun.get(queueToRun.size());
+								queueToRun.remove(queueToRun.size());
+								version.inc();
+								action.handle(action._pool, actorId, getPrivateState(actorId));//TODO: really not sure about this
+								try 
+								{ //TODO: WTF?!
+									version.await(version.getVersion()+1);
+								}
+								catch (InterruptedException e) {};
+							}
+						}
+							
 					}
-
 				}
-			}
-			; 
-								//TODO: need to enter as lambda and runnable 
-								//foreach over the queues map and run over them 
+			};
+		}
+			
+			
 		}
 
-	}
+	
 
 	/**
 	 * getter for actors
@@ -103,6 +119,7 @@ public class ActorThreadPool {
 		else {
 			actorsQueues.get(actorId).add(action); //Add action to actors queue
 		}
+		version.inc();
 
 	}
 
