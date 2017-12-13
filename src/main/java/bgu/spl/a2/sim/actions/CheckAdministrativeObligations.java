@@ -6,6 +6,7 @@ import bgu.spl.a2.Action;
 import bgu.spl.a2.Promise;
 import bgu.spl.a2.sim.Computer;
 import bgu.spl.a2.sim.privateStates.DepartmentPrivateState;
+import bgu.spl.a2.sim.privateStates.StudentPrivateState;
 
 /**
  * Check Administrative Obligations:
@@ -31,7 +32,13 @@ class CheckAdministrativeObligations extends Action<Boolean> {
 	private String Computer;
 	private String Department;
 	
-	
+	/**
+	 * Constructor
+	 * @param students to check
+	 * @param conditions - courses to check for grade >= 56
+	 * @param computer - type of computer to request from warehouse
+	 * @param department
+	 */
 	public CheckAdministrativeObligations(String[] students, String[] conditions, String computer, String department) {
 		Students = students;
 		Conditions = conditions;
@@ -40,6 +47,12 @@ class CheckAdministrativeObligations extends Action<Boolean> {
 	}
 
 
+	/**
+	 * Send action to retireve computer. Once computer is available, send the computer to 
+	 * 
+	 */
+	
+	//TODO - release computer!!!!
 	@Override
 	protected void start() {
 		//get computer
@@ -51,11 +64,26 @@ class CheckAdministrativeObligations extends Action<Boolean> {
 		then(dependencies1, ()->{
 			Computer receivedComputer = getComputer.getResult().get();
 			
-			//TODO - must create action for send computer to student states to verify
+			//create an action for each student that will verify their admin obligations
+			ArrayList<Action<Boolean>> dependencies2 = new  ArrayList<Action<Boolean>>();
+			for(String student : Students) {
+				Action<Boolean> checkStudent = 
+						new CheckStudentAdminObligationsAction(receivedComputer, Conditions);
+				dependencies2.add(checkStudent);
+				sendMessage(checkStudent, student, new StudentPrivateState());
+			}
 			
-			
-			
+			//make new dependency list on these "check student" actions
+			then(dependencies2, () ->{
+				boolean success = true;
+				for (Action<Boolean> action : dependencies2) {
+					if(!action.getResult().get()) {
+						success = false;
+						break;
+					}
+				}
+				complete(success);
+			});	
 		});
-		
 	}
 }

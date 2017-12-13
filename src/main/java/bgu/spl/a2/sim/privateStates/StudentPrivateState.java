@@ -29,7 +29,10 @@ public class StudentPrivateState extends PrivateState{
 	public long getSignature() {
 		return signature;
 	}
-	
+
+	public void setSignature(long sig) {
+		signature = sig;
+	}
 	
 	/**
 	 * Add grade to course. If course not listed, then the course is added as well
