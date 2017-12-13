@@ -47,7 +47,7 @@ class ParticipatingInCourseAction extends Action<Boolean> {
 	@Override
 	protected void start() {
 		throwExceptionForInvalidActorStateType(CoursePrivateState.class);
-		courseState = (CoursePrivateState)_actorState;
+		courseState = (CoursePrivateState)getCurrentPrivateState();
 		
 		List<Action<Boolean>> depencencies = new ArrayList();
 		
@@ -74,7 +74,7 @@ class ParticipatingInCourseAction extends Action<Boolean> {
 				catch(NumberFormatException e){
 					addCourseAndGrade = new AddStudentGradeAction(Course, -1);
 				}
-				_pool.submit(addCourseAndGrade, Student, new StudentPrivateState());
+				getActorThreadPool().submit(addCourseAndGrade, Student, new StudentPrivateState());
 				
 			}else {
 				complete(false);

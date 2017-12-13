@@ -22,9 +22,9 @@ public abstract class Action<R> {
 	private callback _callback;
 	private Collection<? extends Action<?>> _dependencies;
 	
-	protected ActorThreadPool _pool;
-	protected String _actorId;
-	protected PrivateState _actorState;
+	private ActorThreadPool _pool;
+	private String _actorId;
+	private PrivateState _actorState;
 	
 	
 	/**
@@ -165,4 +165,16 @@ public abstract class Action<R> {
 		}
 	}
 	
+	protected PrivateState getCurrentPrivateState() {
+		return _actorState;
+	}
+	
+	protected ActorThreadPool getActorThreadPool() {
+		return _pool;
+	}
+	
+	
+	protected String getActorId() {
+		return _actorId;
+	}
 }

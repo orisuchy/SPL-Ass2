@@ -21,7 +21,7 @@ class GetComputerAction extends Action<Computer> {
 	private String ComputerType;
 	
 	/**
-	 * Consturctor
+	 * Constructor
 	 * @param computerType
 	 * @param department
 	 */
@@ -47,7 +47,7 @@ class GetComputerAction extends Action<Computer> {
 		}
 		else {
 			computerPromise.subscribe(() ->{
-				 _pool.submit(this, Department, new DepartmentPrivateState());
+				 getActorThreadPool().submit(this, Department, new DepartmentPrivateState());
 			});	
 			
 			then(new ArrayList<Action<Object>>(), () -> {
