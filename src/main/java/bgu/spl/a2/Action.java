@@ -149,7 +149,7 @@ public abstract class Action<R> {
 	 * @return 
 	 * 		TRUE if _actorState in an instance of expectedStateType, FALSE otherwise
 	 */
-	protected boolean checkActorStateType(Class expectedStateType) {
+	private boolean checkActorStateType(Class expectedStateType) {
 		return (expectedStateType.isInstance(_actorState));
 	}
 	

@@ -24,7 +24,7 @@ class CheckStudentAdminObligationsAction extends Action<Boolean> {
 
 	@Override
 	protected void start() {
-		checkActorStateType(StudentPrivateState.class);
+		throwExceptionForInvalidActorStateType(StudentPrivateState.class);
 		studentState = (StudentPrivateState) getCurrentPrivateState();
 		
 		
