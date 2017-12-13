@@ -39,4 +39,19 @@ public class CoursePrivateState extends PrivateState{
 	public List<String> getPrequisites() {
 		return prequisites;
 	}
+	
+	/**
+	 * Register student to the course.
+	 * @param student string - name of student to add
+	 * @return TRUE if the student was successfully added to the list
+	 * 		 FALSE otherwise or if the student is already registered
+	 */
+	public boolean registerStudent(String student) {
+		if(regStudents.contains(student)) {return false;} //student already exists!
+		regStudents.add(student);
+		registered = registered + 1;
+		availableSpots = availableSpots -1;
+		
+		return regStudents.contains(student);
+	}
 }
