@@ -1,11 +1,10 @@
 package bgu.spl.a2.sim.actions;
 
+import java.util.ArrayList;
+
 import bgu.spl.a2.Action;
 import bgu.spl.a2.Promise;
-import bgu.spl.a2.sim.Simulator;
 import bgu.spl.a2.sim.Computer;
-import bgu.spl.a2.sim.SuspendingMutex;
-import bgu.spl.a2.sim.Warehouse;
 import bgu.spl.a2.sim.privateStates.DepartmentPrivateState;
 
 /**
@@ -43,7 +42,20 @@ class CheckAdministrativeObligations extends Action<Boolean> {
 
 	@Override
 	protected void start() {
-		 //TODO - must make action to get computer
-		 
+		//get computer
+		ArrayList<Action<Computer>> dependencies1 = new ArrayList<Action<Computer>>();
+		Action<Computer> getComputer = new GetComputerAction(Computer, Department);
+		dependencies1.add(getComputer);
+		sendMessage(getComputer, Department, new DepartmentPrivateState());
+		
+		then(dependencies1, ()->{
+			Computer receivedComputer = getComputer.getResult().get();
+			
+			//TODO - must create action for send computer to student states to verify
+			
+			
+			
+		});
+		
 	}
 }
