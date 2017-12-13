@@ -59,6 +59,8 @@ public class VersionMonitorTest {
 				}
 				boolArray[0] = true;
 			});	
+			
+			t1.start();
 				
 		Assert.assertEquals(boolArray[0], false);
 		
@@ -86,6 +88,7 @@ public class VersionMonitorTest {
 				boolArray[0] = false;
 			});	
 	
+			t2.start();
 		try{
 			t2.join();
 		}
