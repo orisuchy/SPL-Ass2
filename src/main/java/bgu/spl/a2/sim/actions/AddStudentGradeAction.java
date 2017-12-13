@@ -34,7 +34,7 @@ class AddStudentGradeAction extends Action<Boolean> {
 		studentState = (StudentPrivateState)_actorState;
 		
 		Boolean addedGrade = studentState.addGrade(course, grade);
-		
+		studentState.addRecord(getActionName());
 		complete(addedGrade);
 	}
 

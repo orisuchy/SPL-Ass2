@@ -19,19 +19,18 @@ import bgu.spl.a2.sim.privateStates.StudentPrivateState;
  */
 
 class ParticipatingInCourseAction extends Action<Boolean> {
-	/*
-	 * "Action": "Participate In Course",
-		"Student": "123456789",
-		"Course": "SPL",
-		"Grade": ["98"]
-	 */
 	
 	private CoursePrivateState courseState;
 	private String Course;
 	private String Student;
 	private String[] Grade;
 	
-	
+	/**
+	 * Constructor
+	 * @param course to add student to 
+	 * @param student to add 
+	 * @param grade of the student in the course (grade.size()==1)
+	 */
 	public ParticipatingInCourseAction(String course, String student, String[] grade) {
 		setActionName("Participate In Course");
 		this.Course = course;
@@ -39,6 +38,12 @@ class ParticipatingInCourseAction extends Action<Boolean> {
 		this.Grade = grade;
 	}
 
+	/**
+	 * register a student to a course only if there is available space
+	 * and if the student has passed the prerequisite courses (grade 56 or above)
+	 * the student will be added to the course private state
+	 * and the student private state will add the course and grade
+	 */
 	@Override
 	protected void start() {
 		throwExceptionForInvalidActorStateType(CoursePrivateState.class);
@@ -47,19 +52,18 @@ class ParticipatingInCourseAction extends Action<Boolean> {
 		List<Action<Boolean>> depencencies = new ArrayList();
 		
 		//create CheckStudentHasPrequisitesAction
-		List<String> prequisites = courseState.getPrequisites();
-		Action<Boolean> checkStudentHasPrequisites = new CheckStudentHasPrequisitesAction(prequisites);
-		Promise<Boolean> studentHasPrequisitesPromise = (Promise<Boolean>) sendMessage(checkStudentHasPrequisites, Student, new StudentPrivateState());
+		List<String> prerequisite = courseState.getPrequisites();
+		Action<Boolean> checkStudentHasPrerequisites = new CheckStudentHasPrerequisitesAction(prerequisite);
+		@SuppressWarnings("unchecked")
+		Promise<Boolean> studentHasPrerequisitesPromise = (Promise<Boolean>) sendMessage(checkStudentHasPrerequisites, Student, new StudentPrivateState());
 		
 		//create callback
-		depencencies.add(checkStudentHasPrequisites);	
+		depencencies.add(checkStudentHasPrerequisites);	
 		then(depencencies, () -> {
-			Boolean hasPrequisites = studentHasPrequisitesPromise.get();
+			Boolean hasPrequisites = studentHasPrerequisitesPromise.get();
 			if(hasPrequisites & courseHasAvailableSpace()) {
-				
-				//TODO - add student to courseState AND record it
-				
-				
+				courseState.registerStudent(Student);
+				courseState.addRecord(getActionName());
 				
 				//Add the course and grade info to the student
 				Action<Boolean> addCourseAndGrade;

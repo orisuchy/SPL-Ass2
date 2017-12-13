@@ -43,4 +43,12 @@ public class Computer {
 		long ret = (passedRequiredCourses) ? successSig : failSig;
 		return ret;
 	}
+	
+	/**
+	 * get the type of the computer
+	 * @return computerType string
+	 */
+	public String getComputerType() {
+		return computerType;
+	}
 }

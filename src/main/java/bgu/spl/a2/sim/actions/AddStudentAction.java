@@ -25,7 +25,7 @@ class AddStudentAction extends Action<Boolean> {
 	
 	
 	/**
-	 * Try adding the student to the department and store the result
+	 * Try adding the student to the department
 	 */
 	@Override
 	protected void start() {
@@ -35,6 +35,7 @@ class AddStudentAction extends Action<Boolean> {
 		_departmentState = (DepartmentPrivateState)_actorState; 
 
 		Boolean studentAdded = _departmentState.addStudent(Student);
+		_departmentState.addRecord(getActionName());
 		complete(studentAdded);
 	}
 }
