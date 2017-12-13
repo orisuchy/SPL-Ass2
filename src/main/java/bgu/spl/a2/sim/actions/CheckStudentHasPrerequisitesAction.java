@@ -29,7 +29,7 @@ class CheckStudentHasPrerequisitesAction extends Action<Boolean> {
 	@Override
 	protected void start() {
 		throwExceptionForInvalidActorStateType(StudentPrivateState.class);
-		studentState = (StudentPrivateState)_actorState;
+		studentState = (StudentPrivateState)getCurrentPrivateState();
 		
 		Boolean studentHasPrequisites = true;
 		

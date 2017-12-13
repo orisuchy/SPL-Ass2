@@ -55,7 +55,7 @@ public class ActorThreadPool {
 								Action<?> action = queueToRun.get(queueToRun.size());
 								queueToRun.remove(queueToRun.size());
 								version.inc();
-								action.handle(action._pool, actorId, getPrivateState(actorId));//TODO: really not sure about this
+								action.handle(action.getActorThreadPool(), actorId, getPrivateState(actorId));//TODO: really not sure about this
 								try 
 								{ //TODO: WTF?!
 									version.await(version.getVersion()+1);

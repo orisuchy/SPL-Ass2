@@ -31,7 +31,7 @@ class AddStudentGradeAction extends Action<Boolean> {
 	@Override
 	protected void start() {
 		throwExceptionForInvalidActorStateType(StudentPrivateState.class);
-		studentState = (StudentPrivateState)_actorState;
+		studentState = (StudentPrivateState)getCurrentPrivateState();
 		
 		Boolean addedGrade = studentState.addGrade(course, grade);
 		studentState.addRecord(getActionName());
