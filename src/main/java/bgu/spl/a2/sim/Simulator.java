@@ -99,4 +99,8 @@ public class Simulator {
 		}	
 		return 0;
 	}
+	
+	public static Warehouse getWarehouse() {
+		return warehouse;
+	}
 }
