@@ -52,8 +52,8 @@ public class ActorThreadPool {
 							if (actorsStatus.get(actorId).compareAndSet(false, true) & actorsQueues.get(actorId)!=null ) 
 							{
 								ArrayList<Action<?>> queueToRun = actorsQueues.get(actorId);
-								Action<?> action = queueToRun.get(queueToRun.size());
-								queueToRun.remove(queueToRun.size());
+								Action<?> action = queueToRun.get(queueToRun.size()-1);
+								queueToRun.remove(queueToRun.size()-1);
 								version.inc();
 								action.handle(action.getActorThreadPool(), actorId, getPrivateState(actorId));//TODO: really not sure about this
 								try 
