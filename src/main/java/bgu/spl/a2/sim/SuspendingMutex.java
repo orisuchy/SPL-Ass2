@@ -62,4 +62,13 @@ public class SuspendingMutex {
 			}
 		}
 	}
+	
+	
+	/**
+	 * get the type of the computer
+	 * @return computerType string
+	 */
+	public String getComputerType() {
+		return _computer.getComputerType();
+	}
 }

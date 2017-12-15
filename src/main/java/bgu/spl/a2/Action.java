@@ -22,9 +22,9 @@ public abstract class Action<R> {
 	private callback _callback;
 	private Collection<? extends Action<?>> _dependencies;
 	
-	protected ActorThreadPool _pool;
-	protected String _actorId;
-	protected PrivateState _actorState;
+	private ActorThreadPool _pool;
+	private String _actorId;
+	private PrivateState _actorState;
 	
 	
 	/**
@@ -149,7 +149,7 @@ public abstract class Action<R> {
 	 * @return 
 	 * 		TRUE if _actorState in an instance of expectedStateType, FALSE otherwise
 	 */
-	protected boolean checkActorStateType(Class expectedStateType) {
+	private boolean checkActorStateType(Class expectedStateType) {
 		return (expectedStateType.isInstance(_actorState));
 	}
 	
@@ -157,6 +157,7 @@ public abstract class Action<R> {
 	 * throw RuntimeException if current ActorState is not of valid type
 	 * @param 
 	 * 		Class expectedStateType - the expected type of the _actorState field
+	 * @throws RuntimeException if ActorState is not of the expected type
 	 */
 	protected void throwExceptionForInvalidActorStateType(Class expectedStateType) {
 		if(!checkActorStateType(expectedStateType)) {
@@ -164,4 +165,16 @@ public abstract class Action<R> {
 		}
 	}
 	
+	protected PrivateState getCurrentPrivateState() {
+		return _actorState;
+	}
+	
+	protected ActorThreadPool getActorThreadPool() {
+		return _pool;
+	}
+	
+	
+	protected String getActorId() {
+		return _actorId;
+	}
 }

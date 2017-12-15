@@ -10,8 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class Warehouse {
 	
-	ArrayList<SuspendingMutex> _computers;
-	AtomicInteger _currentIndex;
+	ArrayList<SuspendingMutex> _computerMutexes;
 	
 	
 	//TODO - delete if not needed
@@ -29,36 +28,29 @@ public class Warehouse {
 	 */
 	public Warehouse(Computer[] computersArray){
 		if(computersArray.length==0) {
-			throw new RuntimeException("Computers array is empty. Cannot construct empt warehouse");
+			throw new RuntimeException("Computers array is empty. Cannot construct empty warehouse");
 		}
-		_computers = new ArrayList<SuspendingMutex>();
-		_currentIndex.set(0);
+		_computerMutexes = new ArrayList<SuspendingMutex>();
 		for (int i=0; i<computersArray.length; i++) {
-			_computers.add(new SuspendingMutex(computersArray[i]));
+			_computerMutexes.add(new SuspendingMutex(computersArray[i]));
 		}
 	}
 	
 	/**
-	 * sets the current index to the next one
+	 * returns SuspendingMutex with a computer matching the received type
+	 * @param String type
 	 * @return SuspendingMutex containing a promise with a computer
+	 * 		NULL if the warehouse does not contain a computer of the required type
 	 */
-	public SuspendingMutex getComputer(){
-		SuspendingMutex ret = _computers.get(_currentIndex.get());
-		nextComputerIndex();
-		return ret;
-	}
-	
-	
-	/**
-	 * sets the current index to the next one
-	 * @return next index
-	 */
-	private int nextComputerIndex() {
-		int indexOfLastComputer = _computers.size()-1;
-		if(_currentIndex.compareAndSet(indexOfLastComputer, 0)) {
-			_currentIndex.getAndIncrement();
-		}	
-		return _currentIndex.get();
+	public SuspendingMutex getComputer(String type){
+		SuspendingMutex returnedMutex = null;
+		for(SuspendingMutex mutex : _computerMutexes) {
+			if(mutex.getComputerType() == type) {
+				returnedMutex = mutex;
+				break;
+			}
+		}
+		return returnedMutex;
 	}
 	
 	//TODO - erase if not needed

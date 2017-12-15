@@ -15,9 +15,9 @@ class ActionMock<R> extends Action<R> {
 	}
 	
 	protected void start() {
-		if(_actorState instanceof PrivateStateMock) {
-			((PrivateStateMock) _actorState).increaseBy(_amount, _print);
-			((PrivateStateMock) _actorState).getCounter();
+		if(getCurrentPrivateState() instanceof PrivateStateMock) {
+			((PrivateStateMock) getCurrentPrivateState()).increaseBy(_amount, _print);
+			((PrivateStateMock) getCurrentPrivateState()).getCounter();
 		}
 		else {
 			throw new IllegalArgumentException("Private state should be mock type");

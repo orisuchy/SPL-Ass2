@@ -25,16 +25,15 @@ class AddStudentAction extends Action<Boolean> {
 	
 	
 	/**
-	 * Try adding the student to the department and store the result
+	 * Try adding the student to the department
 	 */
 	@Override
 	protected void start() {
-		if(!(_actorState instanceof DepartmentPrivateState)) {
-			throw new RuntimeException("AddStudentAction did not recieve actor state of type DepartmentPrivateState");
-		}
-		_departmentState = (DepartmentPrivateState)_actorState; 
+		throwExceptionForInvalidActorStateType(DepartmentPrivateState.class);
+		_departmentState = (DepartmentPrivateState)getCurrentPrivateState();
 
 		Boolean studentAdded = _departmentState.addStudent(Student);
+		_departmentState.addRecord(getActionName());
 		complete(studentAdded);
 	}
 }
