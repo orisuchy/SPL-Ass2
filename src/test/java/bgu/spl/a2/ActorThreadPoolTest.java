@@ -23,21 +23,7 @@ public class ActorThreadPoolTest {
 
 //	@Test
 //	public final void testSubmit() {
-//		
-//		int amount = 50;
-//		
-//		Action<Integer> actionMock = new ActionMock<>(amount, true);
-//		PrivateStateMock stateMock = new PrivateStateMock();
-//		_pool.submit(actionMock, "actor1", stateMock);
-//		
-//		_pool.start();
-//		
-//		try{
-//			Thread.sleep(1000);
-//		}
-//		catch(InterruptedException e){}
-//		
-//		Assert.assertEquals(amount, stateMock.getCounter());
+//		fail("Not yet implemented"); // TODO
 //	}
 
 //	@Test
