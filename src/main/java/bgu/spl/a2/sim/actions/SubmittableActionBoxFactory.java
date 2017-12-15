@@ -10,7 +10,7 @@ import bgu.spl.a2.Action;
  * Has public method {@link getAndSubmit(ActorThreadPool)} that automatically gets 
  * the {@link SubmittableActionBox} class and submits it to the pool.
  */
-class SubmittableActionBoxFactory {
+public class SubmittableActionBoxFactory {
 	
 	//TODO - erase when done
 	/* 

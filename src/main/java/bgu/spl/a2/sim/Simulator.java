@@ -13,11 +13,11 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Scanner;
-
 import bgu.spl.a2.Action;
 import bgu.spl.a2.ActorThreadPool;
 import bgu.spl.a2.PrivateState;
-
+import bgu.spl.a2.sim.actions.SubmittableActionBoxFactory;
+import bgu.spl.a2.sim.actions.SubmittableActionBox;
 
 /**
  * A class describing the simulator for part 2 of the assignment
