@@ -47,26 +47,29 @@ public class ActorThreadPool {
 				{
 					for(String actorId : actorsStatus.keySet()) 
 					{
-						if (actorsStatus.get(actorId).compareAndSet(false, true) & actorsQueues.get(actorId)!=null ) 
+						if (actorsStatus.get(actorId).compareAndSet(false, true))  //try lock
 						{
-							ArrayList<Action<?>> queueToRun = actorsQueues.get(actorId);
-							Action<?> action = queueToRun.get(queueToRun.size()-1);
-							queueToRun.remove(queueToRun.size()-1);
-							version.inc();
-							action.handle(this, actorId, getPrivateState(actorId));//TODO: really not sure about this
-							try 
-							{ //TODO: WTF?!
-								version.await(version.getVersion()+1);
+							if(actorsQueues.get(actorId).isEmpty()) {
+								ArrayList<Action<?>> queueToRun = actorsQueues.get(actorId);
+								Action<?> action = queueToRun.get(queueToRun.size()-1);
+								queueToRun.remove(queueToRun.size()-1);
+								action.handle(this, actorId, getPrivateState(actorId));//TODO: really not sure about this
+								actorsStatus.get(actorId).set(false); //unlock
+								version.inc();
 							}
-							catch (InterruptedException e) {};
 						}
 					}
-						
+					try 
+					{ //TODO: WTF?!
+						version.await(version.getVersion()+1);
+					}
+					catch (InterruptedException e) {
+						//TODO - suicide ?
+					};
 				}
 			});
 		}
 	}
-
 	
 
 	/**
@@ -104,7 +107,7 @@ public class ActorThreadPool {
 	 *            actor's private state (actor's information)
 	 */
 	public void submit(Action<?> action, String actorId, PrivateState actorState) {
-		if (actorsPrivateState.get(actorId)==null) { //If the actor  exists, create a new actor 
+		if (actorsPrivateState.get(actorId)==null) { //If the actor not exists, create a new actor 
 			ArrayList<Action<?>> queue = new ArrayList<Action<?>>();
 			queue.add(action);
 			actorsQueues.put(actorId,queue);
