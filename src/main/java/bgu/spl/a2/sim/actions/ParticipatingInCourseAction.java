@@ -1,11 +1,9 @@
 package bgu.spl.a2.sim.actions;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import bgu.spl.a2.Action;
-import bgu.spl.a2.PrivateState;
 import bgu.spl.a2.Promise;
 import bgu.spl.a2.sim.privateStates.CoursePrivateState;
 import bgu.spl.a2.sim.privateStates.StudentPrivateState;
@@ -49,7 +47,7 @@ class ParticipatingInCourseAction extends Action<Boolean> {
 		throwExceptionForInvalidActorStateType(CoursePrivateState.class);
 		courseState = (CoursePrivateState)getCurrentPrivateState();
 		
-		List<Action<Boolean>> depencencies = new ArrayList();
+		List<Action<Boolean>> depencencies = new ArrayList<Action<Boolean>>();
 		
 		//create CheckStudentHasPrequisitesAction
 		List<String> prerequisite = courseState.getPrequisites();

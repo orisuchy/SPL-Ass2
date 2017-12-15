@@ -9,7 +9,6 @@ import bgu.spl.a2.sim.Computer;
 import bgu.spl.a2.sim.Simulator;
 import bgu.spl.a2.sim.SuspendingMutex;
 import bgu.spl.a2.sim.Warehouse;
-import bgu.spl.a2.sim.privateStates.DepartmentPrivateState;
 import bgu.spl.a2.sim.privateStates.StudentPrivateState;
 
 /**

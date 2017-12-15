@@ -23,7 +23,7 @@ class CheckStudentHasPrerequisitesAction extends Action<Boolean> {
 	}
 
 	/**
-	 * check if the student has passed all courses in a given course list
+	 * check if the student has is registered in all courses in a given course list
 	 * store the result (TRUE/FALSE) in the Action's promise
 	 */
 	@Override
