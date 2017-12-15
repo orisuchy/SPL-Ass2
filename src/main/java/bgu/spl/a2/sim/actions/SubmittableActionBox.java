@@ -8,7 +8,7 @@ import bgu.spl.a2.PrivateState;
  * This class acts as a wrapper for <Action, ActorId, PrivateState>
  * This class is meant to streamline the submission process 
  */
-class SubmittableActionBox {
+public class SubmittableActionBox {
 	
 	private Action<?> action;
 	private String actorId;
