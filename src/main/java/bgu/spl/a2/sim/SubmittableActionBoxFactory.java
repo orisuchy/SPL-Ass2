@@ -1,10 +1,16 @@
-package bgu.spl.a2.sim.actions;
+package bgu.spl.a2.sim;
 
-import bgu.spl.a2.Action;
+import bgu.spl.a2.ActorThreadPool;
 
-class SimActionTemplate {
-	/*
-	  
+
+/**
+ * A class that is designed to be create by JSON string.
+ * Has a public method - {@link getAction()} that returns a {@link SubmittableActionBox} class
+ */
+class SubmittableActionBoxFactory {
+	
+	//TODO - erase when done
+	/* 
 	"Action":"Open Course",
 	"Department": "CS",
 	"Course": "SPL",
@@ -45,7 +51,6 @@ class SimActionTemplate {
 	 
 	 */
 	
-	
 	private String Action;
 	private String Department;
 	private String Course;
@@ -57,10 +62,10 @@ class SimActionTemplate {
 	private String Space;
 	private String Number;
 	
-	public Action<?> getAction(){
+	public SubmittableActionBox getAction(){
 		
 		if(Action=="Open Course") {
-			
+			//TODO - wait for Ori implementation of action
 			
 			
 			
@@ -107,6 +112,10 @@ class SimActionTemplate {
 		}
 		
 		return null;
+	}
+	
+	public void getAndSubmit(ActorThreadPool pool) {
+		
 	}
 	
 }
