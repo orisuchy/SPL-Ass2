@@ -15,7 +15,6 @@ import java.util.Collection;
  */
 public abstract class Action<R> {
 
-	//TODO - Jonathan - should some of those be final?
 	private String _actionName;
 	private Promise<R> _result;
 	private boolean _started = false;
