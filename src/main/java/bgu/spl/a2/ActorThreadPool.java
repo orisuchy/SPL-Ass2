@@ -41,36 +41,31 @@ public class ActorThreadPool {
 		threadsArray = new Thread[numOfThreads];
 		for (int i=0; i<numOfThreads; i++) 
 		{ 
-			threadsArray[i] = new Thread()
+			threadsArray[i] = new Thread( () ->
 			{
-				public void run() 
+				while (!Thread.interrupted()) 
 				{
-					while (!interrupted()) 
+					for(String actorId : actorsStatus.keySet()) 
 					{
-						for(String actorId : actorsStatus.keySet()) 
+						if (actorsStatus.get(actorId).compareAndSet(false, true) & actorsQueues.get(actorId)!=null ) 
 						{
-							if (actorsStatus.get(actorId).compareAndSet(false, true) & actorsQueues.get(actorId)!=null ) 
-							{
-								ArrayList<Action<?>> queueToRun = actorsQueues.get(actorId);
-								Action<?> action = queueToRun.get(queueToRun.size()-1);
-								queueToRun.remove(queueToRun.size()-1);
-								version.inc();
-								action.handle(action.getActorThreadPool(), actorId, getPrivateState(actorId));//TODO: really not sure about this
-								try 
-								{ //TODO: WTF?!
-									version.await(version.getVersion()+1);
-								}
-								catch (InterruptedException e) {};
+							ArrayList<Action<?>> queueToRun = actorsQueues.get(actorId);
+							Action<?> action = queueToRun.get(queueToRun.size()-1);
+							queueToRun.remove(queueToRun.size()-1);
+							version.inc();
+							action.handle(this, actorId, getPrivateState(actorId));//TODO: really not sure about this
+							try 
+							{ //TODO: WTF?!
+								version.await(version.getVersion()+1);
 							}
+							catch (InterruptedException e) {};
 						}
-							
 					}
+						
 				}
-			};
+			});
 		}
-			
-			
-		}
+	}
 
 	
 
