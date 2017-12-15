@@ -53,17 +53,19 @@ public class ActorThreadPool {
 								ArrayList<Action<?>> queueToRun = actorsQueues.get(actorId);
 								Action<?> action = queueToRun.get(queueToRun.size()-1);
 								queueToRun.remove(queueToRun.size()-1);
-								version.inc();
 								action.handle(this, actorId, getPrivateState(actorId));//TODO: really not sure about this
 								actorsStatus.get(actorId).set(false); //unlock
-								try 
-								{ //TODO: WTF?!
-									version.await(version.getVersion()+1);
-								}
-								catch (InterruptedException e) {};
+								version.inc();
 							}
 						}
 					}
+					try 
+					{ //TODO: WTF?!
+						version.await(version.getVersion()+1);
+					}
+					catch (InterruptedException e) {
+						//TODO - suicide ?
+					};
 				}
 			});
 		}
