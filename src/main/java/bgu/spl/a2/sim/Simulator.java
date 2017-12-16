@@ -4,49 +4,44 @@
  * and open the template in the editor.
  */
 package bgu.spl.a2.sim;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 import com.google.gson.Gson;
-
+import com.google.gson.annotations.SerializedName;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
-import java.util.Scanner;
-import bgu.spl.a2.Action;
 import bgu.spl.a2.ActorThreadPool;
 import bgu.spl.a2.PrivateState;
 import bgu.spl.a2.sim.actions.SubmittableActionBoxFactory;
-import bgu.spl.a2.sim.actions.SubmittableActionBox;
-
 /**
  * A class describing the simulator for part 2 of the assignment
  */
 public class Simulator {
 
-	
+	public static String JSONinput;
 	public static ActorThreadPool actorThreadPool;
 	public static Warehouse warehouse;
 	
-	private static String jsonInput;
-	private static Action[] phase1;
-	private static Action[] phase2;
-	private static Action[] phase3;
+	@SerializedName(value = "Phase 1", alternate = "phase1")
+	private static SubmittableActionBoxFactory[] phase1;
+	private boolean phase1Finished;
+	
+	@SerializedName(value = "Phase 2", alternate = "phase2")
+	private static SubmittableActionBoxFactory[] phase2;
+	private static boolean phase2Finished;
+	
+	@SerializedName(value = "Phase 3", alternate = "phase3")
+	private static SubmittableActionBoxFactory[] phase3;
+	private static boolean phase3Finished;
 	
 	/**
 	* Begin the simulation Should not be called before attachActorThreadPool()
 	*/
     public static void start(){
-		//TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
-    }
-    
-    
-	
-	/**
-	* create the phase1,phase2,phase3 arrays from the jsonInput field.
-	*/
-    private static void generatePhaseArraysFromJSON() {
+    	
+		Gson gson = new Gson();
+    	
 		//TODO: replace method body with real implementation
 		throw new UnsupportedOperationException("Not Implemented Yet.");
     }
@@ -78,9 +73,9 @@ public class Simulator {
 	
 	
 	public static int main(String [] args){
-		Scanner scanner = new Scanner(System.in);
-		jsonInput = scanner.nextLine();
-		scanner.close();
+		
+		String JSONinput = args[0];
+
 		
 		start();
 		
