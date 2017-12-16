@@ -5,10 +5,17 @@ import java.util.Map;
 
 import org.omg.PortableInterceptor.SUCCESSFUL;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Computer {
 
+	@SerializedName(value = "Type", alternate = "computerType")
 	String computerType;
+	
+	@SerializedName(value = "Sig Fail", alternate = "failSig")
 	long failSig;
+	
+	@SerializedName(value = "Sig Success", alternate = "successSig")
 	long successSig;
 	
 	public Computer(String computerType) {

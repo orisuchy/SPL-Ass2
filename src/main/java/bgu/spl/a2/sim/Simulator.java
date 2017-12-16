@@ -4,53 +4,66 @@
  * and open the template in the editor.
  */
 package bgu.spl.a2.sim;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 import com.google.gson.Gson;
-
+import com.google.gson.annotations.SerializedName;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
-
+import java.util.List;
 import bgu.spl.a2.Action;
 import bgu.spl.a2.ActorThreadPool;
 import bgu.spl.a2.PrivateState;
-
-
+import bgu.spl.a2.Promise;
+import bgu.spl.a2.callback;
+import bgu.spl.a2.sim.actions.SubmittableActionBox;
+import bgu.spl.a2.sim.actions.SubmittableActionBoxFactory;
 /**
  * A class describing the simulator for part 2 of the assignment
  */
 public class Simulator {
 
-	
-	public static ActorThreadPool actorThreadPool;
-	public static Warehouse warehouse;
-	
-	private static String jsonInput;
-	private static Action[] phase1;
-	private static Action[] phase2;
-	private static Action[] phase3;
+	private static String JSONinput;
+	private static ActorThreadPool actorThreadPool;
+	private static Warehouse warehouse;
+	private static SimulatorInput simInput;
+	private static List<Promise<?>> phase1;
+	private static boolean phase1Finished;
+	private static List<Promise<?>> phase2;
+	private static boolean phase2Finished;
+	private static List<Promise<?>> phase3;
+	private static boolean phase3Finished;
 	
 	/**
 	* Begin the simulation Should not be called before attachActorThreadPool()
 	*/
     public static void start(){
-		//TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
+    	
+		Gson gson = new Gson();
+		simInput = gson.fromJson(JSONinput, SimulatorInput.class);
+		
+		//warehouse = new Warehouse(SimulatorInput.getComputers());  //TODO - WTF... how the hell can I solve this?!!?
+		
+		
+    }
+	
+    
+    
+    private static boolean allPromisesAreResolved(List<Promise<?>> promiseList) {
+    	boolean ret = true;
+    	for(Promise<?> promise : promiseList) {
+    		if(!promise.isResolved()) {
+    			ret = false;
+    		}
+    	}
+    	return ret;
     }
     
     
-	
-	/**
-	* create the phase1,phase2,phase3 arrays from the jsonInput field.
-	*/
-    private static void generatePhaseArraysFromJSON() {
-		//TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
-    }
-	
+    
+    
 	/**
 	* attach an ActorThreadPool to the Simulator, this ActorThreadPool will be used to run the simulation
 	* 
@@ -59,6 +72,7 @@ public class Simulator {
 	public static void attachActorThreadPool(ActorThreadPool myActorThreadPool){
 		actorThreadPool = myActorThreadPool;
 	}
+	
 	
 	/**
 	* shut down the simulation
@@ -78,10 +92,7 @@ public class Simulator {
 	
 	
 	public static int main(String [] args){
-		Scanner scanner = new Scanner(System.in);
-		jsonInput = scanner.nextLine();
-		scanner.close();
-		
+		String JSONinput = args[0];
 		start();
 		
 		//TODO - should I wait or something? I am assuming the shutdown causes a wait...
@@ -98,6 +109,11 @@ public class Simulator {
 			e.printStackTrace();
 		}	
 		return 0;
+	}
+	
+	
+	public static void setWarehouse(Warehouse myWarehouse) {
+		warehouse = myWarehouse;
 	}
 	
 	public static Warehouse getWarehouse() {
