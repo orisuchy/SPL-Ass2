@@ -1,6 +1,7 @@
 package bgu.spl.a2.sim.actions;
 
 import bgu.spl.a2.ActorThreadPool;
+import bgu.spl.a2.Promise;
 import bgu.spl.a2.sim.privateStates.*;
 import bgu.spl.a2.Action;
 
@@ -120,10 +121,9 @@ public class SubmittableActionBoxFactory {
 	 * Automatically get and submit into the provided pool
 	 * @param pool
 	 */
-	public SubmittableActionBox getAndSubmit(ActorThreadPool pool) {
+	public Promise<?> getAndSubmit(ActorThreadPool pool) {
 		SubmittableActionBox toSubmit = getAction();
-		toSubmit.submitAction(pool);
-		return toSubmit;
+		return toSubmit.submitAction(pool);
 	}
 	
 }

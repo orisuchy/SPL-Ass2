@@ -3,6 +3,7 @@ package bgu.spl.a2.sim.actions;
 import bgu.spl.a2.Action;
 import bgu.spl.a2.ActorThreadPool;
 import bgu.spl.a2.PrivateState;
+import bgu.spl.a2.Promise;
 
 /**
  * This class acts as a wrapper for <Action, ActorId, PrivateState>
@@ -30,8 +31,9 @@ public class SubmittableActionBox {
 	 * Submit the action to the provided {@link ActorThreadPool}
 	 * @param pool
 	 */
-	public void submitAction(ActorThreadPool pool) {
+	public Promise<?> submitAction(ActorThreadPool pool) {
 		pool.submit(action, actorId, privateState);
+		return action.getResult();
 	}
 	
 	public Action<?> getAction() {
