@@ -10,9 +10,16 @@ import com.google.gson.annotations.SerializedName;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
+import bgu.spl.a2.Action;
 import bgu.spl.a2.ActorThreadPool;
 import bgu.spl.a2.PrivateState;
+import bgu.spl.a2.Promise;
+import bgu.spl.a2.callback;
+import bgu.spl.a2.sim.actions.SubmittableActionBox;
 import bgu.spl.a2.sim.actions.SubmittableActionBoxFactory;
 /**
  * A class describing the simulator for part 2 of the assignment
@@ -22,17 +29,12 @@ public class Simulator {
 	public static String JSONinput;
 	public static ActorThreadPool actorThreadPool;
 	public static Warehouse warehouse;
-	
-	@SerializedName(value = "Phase 1", alternate = "phase1")
-	private static SubmittableActionBoxFactory[] phase1;
-	private boolean phase1Finished;
-	
-	@SerializedName(value = "Phase 2", alternate = "phase2")
-	private static SubmittableActionBoxFactory[] phase2;
+	public static SimulatorInput simInput;
+	public static List<Promise<?>> phase1;
+	private static boolean phase1Finished;
+	public static List<Promise<?>> phase2;
 	private static boolean phase2Finished;
-	
-	@SerializedName(value = "Phase 3", alternate = "phase3")
-	private static SubmittableActionBoxFactory[] phase3;
+	public static List<Promise<?>> phase3;
 	private static boolean phase3Finished;
 	
 	/**
@@ -41,11 +43,28 @@ public class Simulator {
     public static void start(){
     	
 		Gson gson = new Gson();
-    	
-		//TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
+		simInput = gson.fromJson(JSONinput, SimulatorInput.class);
+		
+		
+		
+		
     }
 	
+    
+    
+    private static boolean allPromisesAreResolved(List<Promise<?>> promiseList) {
+    	boolean ret = true;
+    	for(Promise<?> promise : promiseList) {
+    		if(!promise.isResolved()) {
+    			ret = false;
+    		}
+    	}
+    	return ret;
+    }
+    
+    
+
+    
 	/**
 	* attach an ActorThreadPool to the Simulator, this ActorThreadPool will be used to run the simulation
 	* 
@@ -54,6 +73,7 @@ public class Simulator {
 	public static void attachActorThreadPool(ActorThreadPool myActorThreadPool){
 		actorThreadPool = myActorThreadPool;
 	}
+	
 	
 	/**
 	* shut down the simulation
@@ -73,10 +93,7 @@ public class Simulator {
 	
 	
 	public static int main(String [] args){
-		
 		String JSONinput = args[0];
-
-		
 		start();
 		
 		//TODO - should I wait or something? I am assuming the shutdown causes a wait...
@@ -93,6 +110,11 @@ public class Simulator {
 			e.printStackTrace();
 		}	
 		return 0;
+	}
+	
+	
+	public static void setWarehouse(Warehouse myWarehouse) {
+		warehouse = myWarehouse;
 	}
 	
 	public static Warehouse getWarehouse() {
