@@ -30,7 +30,7 @@ public class Promise<T>{
 	 *             in the case where this method is called and this object is
 	 *             not yet resolved
 	 */
-	public T get() {
+	public T get() { 
 		if (isResolved())
 		{
 			return result;
