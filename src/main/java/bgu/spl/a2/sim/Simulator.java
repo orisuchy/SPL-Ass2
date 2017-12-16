@@ -13,7 +13,6 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import bgu.spl.a2.Action;
 import bgu.spl.a2.ActorThreadPool;
 import bgu.spl.a2.PrivateState;
@@ -26,15 +25,15 @@ import bgu.spl.a2.sim.actions.SubmittableActionBoxFactory;
  */
 public class Simulator {
 
-	public static String JSONinput;
-	public static ActorThreadPool actorThreadPool;
-	public static Warehouse warehouse;
-	public static SimulatorInput simInput;
-	public static List<Promise<?>> phase1;
+	private static String JSONinput;
+	private static ActorThreadPool actorThreadPool;
+	private static Warehouse warehouse;
+	private static SimulatorInput simInput;
+	private static List<Promise<?>> phase1;
 	private static boolean phase1Finished;
-	public static List<Promise<?>> phase2;
+	private static List<Promise<?>> phase2;
 	private static boolean phase2Finished;
-	public static List<Promise<?>> phase3;
+	private static List<Promise<?>> phase3;
 	private static boolean phase3Finished;
 	
 	/**
@@ -45,7 +44,7 @@ public class Simulator {
 		Gson gson = new Gson();
 		simInput = gson.fromJson(JSONinput, SimulatorInput.class);
 		
-		
+		//warehouse = new Warehouse(SimulatorInput.getComputers());  //TODO - WTF... how the hell can I solve this?!!?
 		
 		
     }
@@ -63,7 +62,7 @@ public class Simulator {
     }
     
     
-
+    
     
 	/**
 	* attach an ActorThreadPool to the Simulator, this ActorThreadPool will be used to run the simulation
