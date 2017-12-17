@@ -48,10 +48,11 @@ public class VersionMonitor {
 	 * @param version
 	 * 				- the target version that must be reached
 	 */
-    public void await(int version) throws InterruptedException {
+    public synchronized void await(int version) throws InterruptedException {
     	//wait until _version >= version
     	while(getVersion()<version) {
-    		Thread.currentThread().sleep(100);;
+    		this.wait();
+    	//	Thread.currentThread().sleep(100);;
     	}
     }
 }
