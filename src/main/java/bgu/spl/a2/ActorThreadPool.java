@@ -1,5 +1,6 @@
 package bgu.spl.a2;
 import java.util.*;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 
@@ -17,7 +18,7 @@ public class ActorThreadPool {
 	private int numOfThreads;
 	private Thread[] threadsArray;
 	private Map<String, PrivateState> actorsPrivateState;
-	private Map<String, ArrayList<Action<?>>> actorsQueues;
+	private Map<String, ConcurrentLinkedQueue<Action<?>>> actorsQueues;
 	private Map<String, AtomicBoolean> actorsStatus; //true - in use, false - not in use
 	private VersionMonitor version;
 	/**
@@ -34,7 +35,7 @@ public class ActorThreadPool {
 	 */
 	public ActorThreadPool(int nthreads) {
 		actorsPrivateState = new HashMap<String, PrivateState>();
-		actorsQueues = new HashMap<String, ArrayList<Action<?>>>();
+		actorsQueues = new HashMap<String, ConcurrentLinkedQueue<Action<?>>>();
 		actorsStatus = new HashMap<String, AtomicBoolean>();
 		version = new VersionMonitor();
 		numOfThreads = nthreads;
@@ -49,11 +50,10 @@ public class ActorThreadPool {
 					{
 						if (actorsStatus.get(actorId).compareAndSet(false, true))  //try lock
 						{
-							if(actorsQueues.get(actorId).isEmpty()) {
-								ArrayList<Action<?>> queueToRun = actorsQueues.get(actorId);
-								Action<?> action = queueToRun.get(queueToRun.size()-1);
-								queueToRun.remove(queueToRun.size()-1);
-								action.handle(this, actorId, getPrivateState(actorId));//TODO: really not sure about this
+							if(!actorsQueues.get(actorId).isEmpty()) {
+								ConcurrentLinkedQueue<Action<?>> queueToRun = actorsQueues.get(actorId);
+								Action<?> action = queueToRun.poll();
+								action.handle(this, actorId, getPrivateState(actorId));
 								actorsStatus.get(actorId).set(false); //unlock
 								version.inc();
 							}
@@ -108,7 +108,7 @@ public class ActorThreadPool {
 	 */
 	public void submit(Action<?> action, String actorId, PrivateState actorState) {
 		if (actorsPrivateState.get(actorId)==null) { //If the actor not exists, create a new actor 
-			ArrayList<Action<?>> queue = new ArrayList<Action<?>>();
+			ConcurrentLinkedQueue<Action<?>> queue = new ConcurrentLinkedQueue<Action<?>>();
 			queue.add(action);
 			actorsQueues.put(actorId,queue);
 			actorsPrivateState.put(actorId, actorState);
