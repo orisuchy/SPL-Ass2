@@ -44,25 +44,27 @@ public class ActorThreadPool {
 		{ 
 			threadsArray[i] = new Thread( () ->
 			{
-				while (!Thread.interrupted()) 
+				while (!Thread.interrupted())
 				{
+					int currentVersion = version.getVersion();
 					for(String actorId : actorsStatus.keySet()) 
 					{
 						if (actorsStatus.get(actorId).compareAndSet(false, true))  //try lock
 						{
 							if(!actorsQueues.get(actorId).isEmpty()) 
 							{
+								currentVersion = version.getVersion();
 								ConcurrentLinkedQueue<Action<?>> queueToRun = actorsQueues.get(actorId);
 								Action<?> action = queueToRun.poll();
 								action.handle(this, actorId, getPrivateState(actorId));
 								version.inc();
-								actorsStatus.get(actorId).set(false); //unlock
 							}
+							actorsStatus.get(actorId).set(false); //unlock
 						}
 					}
 					try 
 					{ 
-						version.await(version.getVersion()+1);
+						version.await(currentVersion+1);
 					}
 					catch (InterruptedException e) {
 						Thread.currentThread().interrupt();
