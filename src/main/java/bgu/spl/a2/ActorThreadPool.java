@@ -132,8 +132,10 @@ public class ActorThreadPool {
 	 *             if the thread that shut down the threads is interrupted
 	 */
 	public void shutdown() throws InterruptedException {
-		// TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
+		for (int i=0; i<numOfThreads; i++) {
+			threadsArray[i].interrupt();
+		}
+		
 	}
 
 	/**
