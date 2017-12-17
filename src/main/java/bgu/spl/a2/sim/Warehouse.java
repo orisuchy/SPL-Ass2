@@ -1,7 +1,7 @@
 package bgu.spl.a2.sim;
 
-import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * represents a warehouse that holds a finite amount of computers
@@ -10,17 +10,15 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class Warehouse {
 	
-	ArrayList<SuspendingMutex> _computerMutexes;
+	Map<String, SuspendingMutex> _computerMutexes;
 	
 	
-	//TODO - delete if not needed
 	/**
 	 * Empty Constructor
 	 */
-//	Warehouse(){
-//		_computers = new ArrayList<SuspendingMutex>();
-//		_rotatingIndex.set(0);
-//	}
+	Warehouse(){
+		_computerMutexes = new HashMap<String, SuspendingMutex>();
+	}
 	
 	/**
 	 * Constructor
@@ -30,9 +28,9 @@ public class Warehouse {
 		if(computersArray.length==0) {
 			throw new RuntimeException("Computers array is empty. Cannot construct empty warehouse");
 		}
-		_computerMutexes = new ArrayList<SuspendingMutex>();
+		_computerMutexes = new HashMap<String, SuspendingMutex>();
 		for (int i=0; i<computersArray.length; i++) {
-			_computerMutexes.add(new SuspendingMutex(computersArray[i]));
+			_computerMutexes.put(computersArray[i].getComputerType(), new SuspendingMutex(computersArray[i]));
 		}
 	}
 	
@@ -43,20 +41,13 @@ public class Warehouse {
 	 * 		NULL if the warehouse does not contain a computer of the required type
 	 */
 	public SuspendingMutex getComputer(String type){
-		SuspendingMutex returnedMutex = null;
-		for(SuspendingMutex mutex : _computerMutexes) {
-			if(mutex.getComputerType() == type) {
-				returnedMutex = mutex;
-				break;
-			}
-		}
-		return returnedMutex;
+		return _computerMutexes.get(type);
 	}
 	
-	//TODO - erase if not needed
-	//public void addComputer(Computer computer) {
-	//	_computers.add(new SuspendingMutex(computer));
-	//}
+	
+	public void addComputer(Computer computer) {
+		_computerMutexes.put(computer.getComputerType(), new SuspendingMutex(computer));
+	}
 	
 
 }
