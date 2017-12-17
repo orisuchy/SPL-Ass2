@@ -38,8 +38,10 @@ public class Simulator {
     	phase3 = simInput.getPromiseListPhase3();   	
     	runPhase1();		
     }
-	
     
+    /**
+     * submit actions in phase1
+     */
     private static void runPhase1() {
     	subscribeToPromiseList(phase1, ()->{
     		runPhase2();
@@ -47,7 +49,9 @@ public class Simulator {
     	submitAllActions(simInput.getPhase1()); 	
     }
     
-    
+    /**
+     * submit actions in phase2 only if the actions in phase1 are resolved
+     */
     private static void runPhase2() {
     	if(allPromisesAreResolved(phase1)) {
     		return;
@@ -58,7 +62,9 @@ public class Simulator {
     	submitAllActions(simInput.getPhase2());
     }
     
-    
+    /**
+     * submit actions in phase3 only if the actions in phase2 are resolved
+     */
     private static void runPhase3() {
     	if(allPromisesAreResolved(phase2)) {
     		return;
@@ -69,7 +75,9 @@ public class Simulator {
     	submitAllActions(simInput.getPhase3());
     }
     
-    
+    /**
+     * shutdown the threadpool if phase3 is resolved and save result in file
+     */
     private static void endPhase() {
     	if(allPromisesAreResolved(phase3)) {
     		return;
@@ -89,13 +97,21 @@ public class Simulator {
     }
     
     
-    
+    /**
+     * Submits all actions in a given SubmittableActionBoxFactory[] array to the threadpool
+     * @param SubmittableActionBoxFactory[] array
+     */
     private static void submitAllActions(SubmittableActionBoxFactory[] array) {
     	for(SubmittableActionBoxFactory factory : array) {
     		factory.getPromiseAndSubmit(actorThreadPool);
     	}
     }
     
+    /**
+     * Verifies if all promises in a list are resolved
+     * @param promiseList
+     * @return TRUE if all are resolved, FALSE otherwise
+     */
     private static boolean allPromisesAreResolved(List<Promise<?>> promiseList) {
     	boolean ret = true;
     	for(Promise<?> promise : promiseList) {
@@ -107,6 +123,11 @@ public class Simulator {
     }
     
     
+    /**
+     * Subscribes a callback to all the promises in the the list
+     * @param promiseList
+     * @param callback
+     */
     private static void subscribeToPromiseList(List<Promise<?>> promiseList, callback callback) {
     	for(Promise<?> promise : promiseList) {
     		promise.subscribe(callback);
