@@ -1,7 +1,10 @@
 package bgu.spl.a2.sim;
 
+import java.util.ArrayList;
+
 import com.google.gson.annotations.SerializedName;
 
+import bgu.spl.a2.Promise;
 import bgu.spl.a2.sim.actions.SubmittableActionBoxFactory;
 
 class SimulatorInput {
@@ -40,6 +43,30 @@ class SimulatorInput {
 	}
 
 
+	public ArrayList<Promise<?>> getPromiseListPhase1(){
+		ArrayList<Promise<?>> ret = new ArrayList<Promise<?>>();
+		for(SubmittableActionBoxFactory factory : phase1) {
+			ret.add(factory.getPromise());
+		}
+		return ret;
+	}
+	
+	public ArrayList<Promise<?>> getPromiseListPhase2(){
+		ArrayList<Promise<?>> ret = new ArrayList<Promise<?>>();
+		for(SubmittableActionBoxFactory factory : phase2) {
+			ret.add(factory.getPromise());
+		}
+		return ret;
+	}
+	
+	public ArrayList<Promise<?>> getPromiseListPhase3(){
+		ArrayList<Promise<?>> ret = new ArrayList<Promise<?>>();
+		for(SubmittableActionBoxFactory factory : phase3) {
+			ret.add(factory.getPromise());
+		}
+		return ret;
+	}
+	
 	public int getThreads() {
 		return threads;
 	}
