@@ -58,8 +58,8 @@ public class ActorThreadPool {
 								Action<?> action = queueToRun.poll();
 								action.handle(this, actorId, getPrivateState(actorId));
 								version.inc();
-								actorsStatus.get(actorId).set(false); //unlock
 							}
+							actorsStatus.get(actorId).set(false); //unlock
 						}
 					}
 					try 
