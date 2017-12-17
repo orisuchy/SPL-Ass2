@@ -51,7 +51,7 @@ public class VersionMonitor {
     public void await(int version) throws InterruptedException {
     	//wait until _version >= version
     	while(getVersion()<version) {
-    		this.wait();
+    		Thread.currentThread().sleep(100);;
     	}
     }
 }

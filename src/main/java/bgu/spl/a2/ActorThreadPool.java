@@ -50,21 +50,22 @@ public class ActorThreadPool {
 					{
 						if (actorsStatus.get(actorId).compareAndSet(false, true))  //try lock
 						{
-							if(!actorsQueues.get(actorId).isEmpty()) {
+							if(!actorsQueues.get(actorId).isEmpty()) 
+							{
 								ConcurrentLinkedQueue<Action<?>> queueToRun = actorsQueues.get(actorId);
 								Action<?> action = queueToRun.poll();
 								action.handle(this, actorId, getPrivateState(actorId));
-								actorsStatus.get(actorId).set(false); //unlock
 								version.inc();
+								actorsStatus.get(actorId).set(false); //unlock
 							}
 						}
 					}
 					try 
-					{ //TODO: WTF?!
+					{ 
 						version.await(version.getVersion()+1);
 					}
 					catch (InterruptedException e) {
-						//TODO - suicide ?
+						Thread.currentThread().interrupt();
 					};
 				}
 			});
@@ -132,8 +133,10 @@ public class ActorThreadPool {
 	 *             if the thread that shut down the threads is interrupted
 	 */
 	public void shutdown() throws InterruptedException {
-		// TODO: replace method body with real implementation
-		throw new UnsupportedOperationException("Not Implemented Yet.");
+		for (int i=0; i<numOfThreads; i++) {
+			threadsArray[i].interrupt();
+		}
+		
 	}
 
 	/**
