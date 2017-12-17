@@ -53,7 +53,7 @@ public class ActorThreadPoolTest {
 		}
 		catch(InterruptedException e){}
 		
-		for(int j=0; j<numOfActions; j++) {
+		for(int j=0; j<numOfActors; j++) {
 			Assert.assertEquals(amount*4, actors[j].getCounter());
 		}	
 	}
