@@ -48,6 +48,9 @@ public abstract class Action<R> {
    /*package*/ final void handle(ActorThreadPool pool, String actorId, PrivateState actorState) {
 	   if(!_started) {
 		   _started = true;
+		   _actorId = actorId;
+		   _actorState = actorState;
+		   _pool = pool;
 		   start();
 	   }
 	   else if(dependenciesResolved()){
