@@ -68,26 +68,30 @@ public class SubmittableActionBoxFactory {
 	private String Space;
 	private String Number;
 	
+	private SubmittableActionBox creation = null;
 	
 	/**
 	 * Create the appropriate {@link SubmittableActionBox} class by using the fields that were
 	 * initialized by the JSON deserialization
 	 * @return {@link SubmittableActionBox} class corresponding with the initialized fields
 	 */
-	public SubmittableActionBox getAction(){
+	public SubmittableActionBox createAction(){
+		
+		if(creation!=null) {
+			return creation;
+		}
 		
 		if(Action=="Open Course") {
 			//TODO - wait for Ori implementation of action
-			
-			
+				
 			
 		}else if(Action=="Add Student") {
 			Action<Boolean> action = new AddStudentAction(Student);
-			return (new SubmittableActionBox(action, Department, new DepartmentPrivateState()));
+			creation = (new SubmittableActionBox(action, Department, new DepartmentPrivateState()));
 			
 		}else if(Action=="Participate In Course") {
 			Action<Boolean> action = new ParticipatingInCourseAction(Course, Student, Grade);
-			return (new SubmittableActionBox(action, Course, new CoursePrivateState()));
+			creation = (new SubmittableActionBox(action, Course, new CoursePrivateState()));
 				
 		}else if(Action=="Add Spaces") {
 			//TODO - wait for Ori implementation of action
@@ -95,7 +99,7 @@ public class SubmittableActionBoxFactory {
 			
 		}else if(Action=="Register With Preferences") {
 			Action<Boolean> action = new RegisterWithPreferences(Student, Preferences, Grade);
-			return (new SubmittableActionBox(action, Student, new StudentPrivateState()));
+			creation = (new SubmittableActionBox(action, Student, new StudentPrivateState()));
 			
 		}else if(Action=="Unregister") {
 			//TODO - wait for Ori implementation of action
@@ -109,20 +113,27 @@ public class SubmittableActionBoxFactory {
 			
 		}else if(Action=="Administrative Check") {
 			Action<Boolean> action = new CheckAdministrativeObligations(Students, Conditions, Computer, Department);	
-					return (new SubmittableActionBox(action, Department, new DepartmentPrivateState()));
+			creation = (new SubmittableActionBox(action, Department, new DepartmentPrivateState()));
 
 		}else {
 			throw new RuntimeException("SubmittableActionBoxFactory recieved illegal Action");
 		}
-		return null;
+			
+		return creation;
 	}
+	
+	
+	public Promise<?> getPromise() {
+		return createAction().getAction().getResult();
+	}
+	
 	
 	/**
 	 * Automatically get and submit into the provided pool
 	 * @param pool
 	 */
-	public Promise<?> getAndSubmit(ActorThreadPool pool) {
-		SubmittableActionBox toSubmit = getAction();
+	public Promise<?> getPromiseAndSubmit(ActorThreadPool pool) {
+		SubmittableActionBox toSubmit = createAction();
 		return toSubmit.submitAction(pool);
 	}
 	
