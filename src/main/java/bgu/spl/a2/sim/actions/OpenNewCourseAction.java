@@ -22,7 +22,7 @@ class OpenNewCourseAction<R> extends Action<Boolean> {
 		Boolean courseAdded = _departmentState.addCourse(Course);
 		_departmentState.addRecord(getActionName());
 		complete(courseAdded);
-		
+		//TODO:  The course has an initially available spaces and a list of prerequisites.
 	}
 
 }
