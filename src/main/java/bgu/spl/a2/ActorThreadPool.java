@@ -1,5 +1,6 @@
 package bgu.spl.a2;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -34,9 +35,9 @@ public class ActorThreadPool {
 	 *            pool
 	 */
 	public ActorThreadPool(int nthreads) {
-		actorsPrivateState = new HashMap<String, PrivateState>();
-		actorsQueues = new HashMap<String, ConcurrentLinkedQueue<Action<?>>>();
-		actorsStatus = new HashMap<String, AtomicBoolean>();
+		actorsPrivateState = new ConcurrentHashMap<String, PrivateState>();
+		actorsQueues = new ConcurrentHashMap<String, ConcurrentLinkedQueue<Action<?>>>();
+		actorsStatus = new ConcurrentHashMap<String, AtomicBoolean>();
 		version = new VersionMonitor();
 		numOfThreads = nthreads;
 		threadsArray = new Thread[numOfThreads];
