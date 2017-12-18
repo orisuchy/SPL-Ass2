@@ -35,6 +35,8 @@ class CheckAdministrativeObligations extends Action<Boolean> {
 	 * @param department
 	 */
 	public CheckAdministrativeObligations(String[] students, String[] conditions, String computer, String department) {
+		setPromise(new Promise<Boolean>());
+		setActionName("Administrative Check");
 		Students = students;
 		Conditions = conditions;
 		Computer = computer;

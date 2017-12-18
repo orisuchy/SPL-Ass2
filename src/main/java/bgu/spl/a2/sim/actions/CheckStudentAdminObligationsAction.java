@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bgu.spl.a2.Action;
+import bgu.spl.a2.Promise;
 import bgu.spl.a2.sim.Computer;
 import bgu.spl.a2.sim.privateStates.StudentPrivateState;
 
@@ -19,6 +20,7 @@ class CheckStudentAdminObligationsAction extends Action<Boolean> {
 	 * @param conditions - list of courses student must pass
 	 */
 	public CheckStudentAdminObligationsAction(Computer computer, String[] conditions) {
+		setPromise(new Promise<Boolean>());
 		setActionName("Administrative Check");
 		Computer = computer;
 		Conditions = new ArrayList<String>();
