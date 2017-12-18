@@ -30,6 +30,7 @@ class ParticipatingInCourseAction extends Action<Boolean> {
 	 * @param grade of the student in the course (grade.size()==1)
 	 */
 	public ParticipatingInCourseAction(String course, String student, String[] grade) {
+		setPromise(new Promise<Boolean>());
 		setActionName("Participate In Course");
 		this.Course = course;
 		this.Student = student;

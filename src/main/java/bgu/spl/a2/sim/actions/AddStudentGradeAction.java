@@ -1,6 +1,7 @@
 package bgu.spl.a2.sim.actions;
 
 import bgu.spl.a2.Action;
+import bgu.spl.a2.Promise;
 import bgu.spl.a2.sim.privateStates.StudentPrivateState;
 
 
@@ -21,6 +22,8 @@ class AddStudentGradeAction extends Action<Boolean> {
 	 * @param grade
 	 */
 	public AddStudentGradeAction(String course, int grade){
+		setPromise(new Promise<Boolean>());
+		setActionName("Participate In Course");
 		this.course = course;
 		this.grade = grade;
 	}
