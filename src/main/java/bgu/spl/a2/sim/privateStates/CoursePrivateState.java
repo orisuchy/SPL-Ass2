@@ -54,4 +54,13 @@ public class CoursePrivateState extends PrivateState{
 		
 		return regStudents.contains(student);
 	}
+	public Boolean unregisterStudent(String student) {
+		if (regStudents.contains(student)) {
+			regStudents.remove(student);
+			availableSpots++;
+			registered--;
+		}
+			
+		return !regStudents.contains(student);
+	}
 }
