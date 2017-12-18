@@ -175,7 +175,6 @@ public class Simulator {
 		try {
 			JSONinput = readFile(path, StandardCharsets.UTF_8);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Gson gson = new Gson();
