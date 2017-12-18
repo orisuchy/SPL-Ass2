@@ -9,6 +9,10 @@ import com.google.gson.Gson;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import bgu.spl.a2.ActorThreadPool;
@@ -166,7 +170,14 @@ public class Simulator {
 	
 	
 	public static int main(String [] args){
-		JSONinput = args[0];
+		String path = args[0];
+		
+		try {
+			JSONinput = readFile(path, StandardCharsets.UTF_8);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Gson gson = new Gson();
 		
 		//create object from JSON
@@ -183,6 +194,13 @@ public class Simulator {
 		start();
 		
 		return 0;
+	}
+	
+	
+	private static String readFile(String path, Charset encoding) throws IOException 
+	{
+	  byte[] encoded = Files.readAllBytes(Paths.get(path));
+	  return new String(encoded, encoding);
 	}
 	
 	public static Warehouse getWarehouse() {

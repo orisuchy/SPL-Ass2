@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bgu.spl.a2.Action;
+import bgu.spl.a2.Promise;
 import bgu.spl.a2.sim.privateStates.StudentPrivateState;
 
 class CheckStudentHasPrerequisitesAction extends Action<Boolean> {
@@ -16,6 +17,8 @@ class CheckStudentHasPrerequisitesAction extends Action<Boolean> {
 	 * @param prequisites - list of courses to check
 	 */
 	public CheckStudentHasPrerequisitesAction(List<String> prequisites) {
+		setPromise(new Promise<Boolean>());
+		setActionName("Check student has prerequisites");
 		this.prequisites = new ArrayList<>();
 		for(String course : prequisites) {
 			this.prequisites.add(course);

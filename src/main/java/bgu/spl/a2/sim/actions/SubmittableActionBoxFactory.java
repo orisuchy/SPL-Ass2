@@ -81,37 +81,37 @@ public class SubmittableActionBoxFactory {
 			return creation;
 		}
 		
-		if(Action=="Open Course") {
+		if(Action.equals("Open Course")) {
 			//TODO - wait for Ori implementation of action
 				
 			
-		}else if(Action=="Add Student") {
+		}else if(Action.equals("Add Student")) {
 			Action<Boolean> action = new AddStudentAction(Student);
 			creation = (new SubmittableActionBox(action, Department, new DepartmentPrivateState()));
 			
-		}else if(Action=="Participate In Course") {
+		}else if(Action.equals("Participate In Course")) {
 			Action<Boolean> action = new ParticipatingInCourseAction(Course, Student, Grade);
 			creation = (new SubmittableActionBox(action, Course, new CoursePrivateState()));
 				
-		}else if(Action=="Add Spaces") {
+		}else if(Action.equals("Add Spaces")) {
 			//TODO - wait for Ori implementation of action
 			
 			
-		}else if(Action=="Register With Preferences") {
+		}else if(Action.equals("Register With Preferences")) {
 			Action<Boolean> action = new RegisterWithPreferences(Student, Preferences, Grade);
 			creation = (new SubmittableActionBox(action, Student, new StudentPrivateState()));
 			
-		}else if(Action=="Unregister") {
+		}else if(Action.equals("Unregister")) {
 			//TODO - wait for Ori implementation of action
 			
 			
 			
-		}else if(Action=="Close Course") {
+		}else if(Action.equals("Close Course")) {
 			//TODO - wait for Ori implementation of action
 			
 			
 			
-		}else if(Action=="Administrative Check") {
+		}else if(Action.equals("Administrative Check")) {
 			Action<Boolean> action = new CheckAdministrativeObligations(Students, Conditions, Computer, Department);	
 			creation = (new SubmittableActionBox(action, Department, new DepartmentPrivateState()));
 
