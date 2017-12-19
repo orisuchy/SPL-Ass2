@@ -8,7 +8,7 @@ class OpenNewCourseAction<R> extends Action<Boolean> {
 	private DepartmentPrivateState _departmentState;
 	private String Course;
 	
-	public OpenNewCourseAction(String course) {
+	public OpenNewCourseAction(String course) { //TODO: Do I need to get prequisites and availableSpots?
 		setPromise(new Promise<Boolean>());
 		setActionName("Open New Course");
 		this.Course = course;
