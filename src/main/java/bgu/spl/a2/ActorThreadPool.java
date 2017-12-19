@@ -114,9 +114,9 @@ public class ActorThreadPool {
 		if (actorsPrivateState.get(actorId)==null) { //If the actor not exists, create a new actor 
 			ConcurrentLinkedQueue<Action<?>> queue = new ConcurrentLinkedQueue<Action<?>>();
 			if (action!=null) {
-			queue.add(action);
-			actorsQueues.put(actorId,queue);
+				queue.add(action);
 			}
+			actorsQueues.put(actorId,queue);
 			actorsPrivateState.put(actorId, actorState);
 			actorsStatus.put(actorId, new AtomicBoolean());
 		}
