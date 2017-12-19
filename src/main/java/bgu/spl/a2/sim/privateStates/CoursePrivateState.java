@@ -72,4 +72,10 @@ public class CoursePrivateState extends PrivateState{
 			
 		return !regStudents.contains(student);
 	}
+	
+	public void addPrerequisites(String[] prequisitesArray) {
+		for (String course : prequisites) {
+			prequisites.add(course);
+		}	
+	}
 }

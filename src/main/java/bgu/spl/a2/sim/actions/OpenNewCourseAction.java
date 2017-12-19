@@ -2,12 +2,12 @@ package bgu.spl.a2.sim.actions;
 
 import bgu.spl.a2.Action;
 import bgu.spl.a2.Promise;
+import bgu.spl.a2.sim.privateStates.CoursePrivateState;
 import bgu.spl.a2.sim.privateStates.DepartmentPrivateState;
 
 class OpenNewCourseAction extends Action<Boolean> {
 	private DepartmentPrivateState _departmentState;
 	private String _course;
-	private String _department;
 	private int _space;
 	private String[] _prerequisites ;
 	
@@ -17,7 +17,6 @@ class OpenNewCourseAction extends Action<Boolean> {
 		setPromise(new Promise<Boolean>());
 		setActionName("Open New Course");
 		this._course = _course;
-		this._department = _department;
 		this._space = _space;
 		this._prerequisites = _prerequisites;
 	}
@@ -30,8 +29,12 @@ class OpenNewCourseAction extends Action<Boolean> {
 
 		Boolean courseAdded = _departmentState.addCourse(_course);
 		_departmentState.addRecord(getActionName());
+		
+		CoursePrivateState newCourse = new CoursePrivateState();
+		newCourse.addSpots(_space);
+		newCourse.addPrerequisites(_prerequisites);
+		getActorThreadPool().submit(null, _course, newCourse);
+		
 		complete(courseAdded);
-		//TODO:  The course has an initially available spaces and a list of prerequisites.
 	}
-
 }
