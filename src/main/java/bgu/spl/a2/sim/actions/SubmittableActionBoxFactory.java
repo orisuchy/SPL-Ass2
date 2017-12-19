@@ -95,22 +95,21 @@ public class SubmittableActionBoxFactory {
 			creation = (new SubmittableActionBox(action, Course, new CoursePrivateState()));
 				
 		}else if(Action.equals("Add Spaces")) {
-			//TODO - wait for Ori implementation of action
-			
+			int number = Integer.parseInt(Number);
+			Action<Boolean> action = new AddSpacesAction(number);
+			creation = (new SubmittableActionBox(action, Course, new CoursePrivateState()));	
 			
 		}else if(Action.equals("Register With Preferences")) {
 			Action<Boolean> action = new RegisterWithPreferences(Student, Preferences, Grade);
 			creation = (new SubmittableActionBox(action, Student, new StudentPrivateState()));
 			
 		}else if(Action.equals("Unregister")) {
-			//TODO - wait for Ori implementation of action
-			
-			
-			
+			Action<Boolean> action = new UnregisterAction(Student, Course);
+			creation = (new SubmittableActionBox(action, Course, new CoursePrivateState()));
+
 		}else if(Action.equals("Close Course")) {
-			//TODO - wait for Ori implementation of action
-			
-			
+			Action<Boolean> action = new CloseACourseAction(Course);	
+			creation = (new SubmittableActionBox(action, Department, new DepartmentPrivateState()));
 			
 		}else if(Action.equals("Administrative Check")) {
 			Action<Boolean> action = new CheckAdministrativeObligations(Students, Conditions, Computer, Department);	
