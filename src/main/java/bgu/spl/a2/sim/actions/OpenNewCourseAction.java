@@ -12,8 +12,7 @@ class OpenNewCourseAction extends Action<Boolean> {
 	private String[] _prerequisites ;
 	
 	
-	public OpenNewCourseAction(String _course, String _department, int _space,
-			String[] _prerequisites) {
+	public OpenNewCourseAction(String _course, int _space, String[] _prerequisites) {
 		setPromise(new Promise<Boolean>());
 		setActionName("Open New Course");
 		this._course = _course;
