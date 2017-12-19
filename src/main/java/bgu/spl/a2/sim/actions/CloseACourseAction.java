@@ -5,6 +5,7 @@ import java.util.List;
 
 import bgu.spl.a2.Action;
 import bgu.spl.a2.Promise;
+import bgu.spl.a2.sim.privateStates.CoursePrivateState;
 import bgu.spl.a2.sim.privateStates.DepartmentPrivateState;
 import bgu.spl.a2.sim.privateStates.StudentPrivateState;
 
