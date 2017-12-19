@@ -21,7 +21,7 @@ class AddStudentAction extends Action<Boolean> {
 	 */
 	public AddStudentAction(String Student) {
 		setPromise(new Promise<Boolean>());
-		setActionName("Add Student Course-Grade");
+		setActionName("Add Student");
 		this.Student = Student;
 	}
 	
