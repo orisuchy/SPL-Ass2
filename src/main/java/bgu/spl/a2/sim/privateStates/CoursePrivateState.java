@@ -78,4 +78,8 @@ public class CoursePrivateState extends PrivateState{
 			prequisites.add(course);
 		}	
 	}
+	
+	public void removeCourseSpots() {
+		availableSpots = -1;
+	}
 }
