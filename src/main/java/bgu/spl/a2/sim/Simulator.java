@@ -50,14 +50,16 @@ public class Simulator {
     	subscribeToPromiseList(phase1, ()->{
     		runPhase2();
     		});
-    	submitAllActions(simInput.getPhase1()); 	
+    	submitAllActions(simInput.getPhase1()); 
+    	
+    	actorThreadPool.start();
     }
     
     /**
      * submit actions in phase2 only if the actions in phase1 are resolved
      */
     private static void runPhase2() {
-    	if(allPromisesAreResolved(phase1)) {
+    	if(!allPromisesAreResolved(phase1)) {
     		return;
     	}
     	subscribeToPromiseList(phase2, ()->{
@@ -70,7 +72,7 @@ public class Simulator {
      * submit actions in phase3 only if the actions in phase2 are resolved
      */
     private static void runPhase3() {
-    	if(allPromisesAreResolved(phase2)) {
+    	if(!allPromisesAreResolved(phase2)) {
     		return;
     	}
     	subscribeToPromiseList(phase3, ()->{
@@ -83,7 +85,7 @@ public class Simulator {
      * shutdown the threadpool if phase3 is resolved and save result in file
      */
     private static void endPhase() {
-    	if(allPromisesAreResolved(phase3)) {
+    	if(!allPromisesAreResolved(phase3)) {
     		return;
     	}
   	
