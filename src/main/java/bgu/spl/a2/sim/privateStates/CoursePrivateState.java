@@ -27,6 +27,12 @@ public class CoursePrivateState extends PrivateState{
 	public Integer getAvailableSpots() {
 		return availableSpots;
 	}
+	
+	public Boolean addSpots(int numOfSpots) {
+		Integer currSpots = getAvailableSpots();
+		availableSpots = availableSpots + numOfSpots;
+		return (getAvailableSpots() == currSpots + numOfSpots);
+	}
 
 	public Integer getRegistered() {
 		return registered;
