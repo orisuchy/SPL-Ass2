@@ -45,4 +45,14 @@ public class DepartmentPrivateState extends PrivateState{
 			return true;
 		}
 	}
+
+	public Boolean addCourse(String courseName) {
+		if(courseList.contains(courseName)) {
+			return false;
+		}
+		else {
+			courseList.add(courseName);
+			return true;
+		}
+	}
 }

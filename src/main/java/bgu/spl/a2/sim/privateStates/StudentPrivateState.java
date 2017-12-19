@@ -47,6 +47,17 @@ public class StudentPrivateState extends PrivateState{
 		return (grades.get(course)==grade);
 	}
 	
+	/**
+	 * Remove grade of course.
+	 * @param course
+	 * @return TRUE if grade successfully removed, FALSE otherwise
+	 */
+	public boolean removeGrade(String course) {
+		grades.remove(course);
+		
+		//extra verification:
+		return (!grades.containsKey(course));
+	}
 	
 	/**
 	 * Check if the student is registered to the course
