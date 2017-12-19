@@ -13,10 +13,6 @@ class AddSpacesAction extends Action<Boolean> {
 		setPromise(new Promise<Boolean>());
 		setActionName("Add Spaces");
 		this.spaceToAdd = spaceToAdd;
-		
-	}
-	public AddSpacesAction() {
-		this(1);
 	}
 	
 	@Override
