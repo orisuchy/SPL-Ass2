@@ -55,4 +55,11 @@ public class DepartmentPrivateState extends PrivateState{
 			return true;
 		}
 	}
+
+	public Boolean removeCourse(String course) {
+		if (courseList.contains(course))
+			courseList.remove(course);
+		return !courseList.contains(course);
+		
+	}
 }
