@@ -64,6 +64,8 @@ class ParticipatingInCourseAction extends Action<Boolean> {
 				courseState.registerStudent(Student);
 				courseState.addRecord(getActionName());
 				
+				
+				//TODO - send action after?!?!
 				//Add the course and grade info to the student
 				Action<Boolean> addCourseAndGrade;
 				try {
