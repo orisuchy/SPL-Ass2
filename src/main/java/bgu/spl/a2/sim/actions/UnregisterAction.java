@@ -9,12 +9,12 @@ import bgu.spl.a2.sim.privateStates.*;
 
 class UnregisterAction<R> extends Action<Boolean> {
 	private CoursePrivateState _CourseState;
-	private String Student;
+	private String _student;
 	
 	public UnregisterAction(String Student) {
 		setPromise(new Promise<Boolean>());
 		setActionName("unregister the student " + Student);
-		this.Student = Student;
+		this._student = Student;
 	}
 
 	@Override
@@ -22,9 +22,9 @@ class UnregisterAction<R> extends Action<Boolean> {
 		throwExceptionForInvalidActorStateType(CoursePrivateState.class);
 		_CourseState = (CoursePrivateState)getCurrentPrivateState();
 		List<Action<Boolean>> depencencies = new ArrayList<Action<Boolean>>();
-		Action<Boolean> RemoveCourseFromGradesSheet = new RemoveCourseFromGradesSheet(Student);
+		Action<Boolean> RemoveCourseFromGradesSheet = new RemoveCourseFromGradesSheet(_student);
 		
-		Promise<Boolean> removeCourseGradePromise = (Promise<Boolean>) sendMessage(RemoveCourseFromGradesSheet, Student, new StudentPrivateState());
+		Promise<Boolean> removeCourseGradePromise = (Promise<Boolean>) sendMessage(RemoveCourseFromGradesSheet, _student, new StudentPrivateState());
 		depencencies.add(RemoveCourseFromGradesSheet);
 		then(depencencies,()->{
 			complete(removeCourseGradePromise.get());
