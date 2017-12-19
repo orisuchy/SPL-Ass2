@@ -11,7 +11,12 @@ class OpenNewCourseAction extends Action<Boolean> {
 	private int _space;
 	private String[] _prerequisites ;
 	
-	
+	/**
+	 * Constructor
+	 * @param Course name
+	 * @param Available Spots in course
+	 * @param Prerequisites list of the course
+	 */
 	public OpenNewCourseAction(String _course, int _space, String[] _prerequisites) {
 		setPromise(new Promise<Boolean>());
 		setActionName("Open New Course");
@@ -20,7 +25,9 @@ class OpenNewCourseAction extends Action<Boolean> {
 		this._prerequisites = _prerequisites;
 	}
 
-
+	/**
+	 * Opens a new course in a specified department
+	 */
 	@Override
 	protected void start() {
 		throwExceptionForInvalidActorStateType(DepartmentPrivateState.class);

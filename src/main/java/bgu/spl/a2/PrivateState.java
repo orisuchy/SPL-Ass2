@@ -1,5 +1,6 @@
 package bgu.spl.a2;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,6 +12,10 @@ public abstract class PrivateState {
 	
 	// holds the actions' name what were executed
 	private List<String> history;
+	
+	public PrivateState() {
+		history = new ArrayList<String>();
+	}
 
 	public List<String> getLogger(){
 		return history;

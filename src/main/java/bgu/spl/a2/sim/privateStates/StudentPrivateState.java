@@ -18,6 +18,7 @@ public class StudentPrivateState extends PrivateState{
 	 * this may cause automatic tests to fail..
 	 */
 	public StudentPrivateState() {
+		super();
 		grades = new HashMap<String, Integer>();
 		signature = 0;
 	}
