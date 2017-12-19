@@ -5,13 +5,13 @@ import bgu.spl.a2.Promise;
 import bgu.spl.a2.sim.privateStates.*;
 
 
-class AddSpacesAction<R> extends Action<Boolean> {
+class AddSpacesAction extends Action<Boolean> {
 	private CoursePrivateState _courseState;
 	private int spaceToAdd;
 	
 	public AddSpacesAction(int spaceToAdd) {
 		setPromise(new Promise<Boolean>());
-		setActionName("Opening New places In a Course");
+		setActionName("Add Spaces");
 		this.spaceToAdd = spaceToAdd;
 		
 	}
