@@ -12,13 +12,23 @@ class UnregisterAction extends Action<Boolean> {
 	private String _student;
 	private String _course;
 	
+	/**
+	 * Constructor
+	 * @param Student string
+	 * @param Course string
+	 */
 	public UnregisterAction(String Student, String Course) {
 		setPromise(new Promise<Boolean>());
 		setActionName("Unregister");
 		this._student = Student;
 		this._course = Course;
 	}
-
+	
+	/**
+	 * Unregister student from course
+	 * Update the list of students of course
+	 * Remove the course from the grades sheet of the student and increases the number of available spaces
+	 */
 	@Override
 	protected void start() {
 		throwExceptionForInvalidActorStateType(CoursePrivateState.class);
