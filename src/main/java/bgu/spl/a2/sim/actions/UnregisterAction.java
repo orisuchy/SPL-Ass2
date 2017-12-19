@@ -24,13 +24,16 @@ class UnregisterAction extends Action<Boolean> {
 		throwExceptionForInvalidActorStateType(CoursePrivateState.class);
 		_CourseState = (CoursePrivateState)getCurrentPrivateState();
 		List<Action<Boolean>> depencencies = new ArrayList<Action<Boolean>>();
-		Action<Boolean> RemoveCourseFromGradesSheet = new RemoveCourseFromGradesSheet(_student);
+		Action<Boolean> RemoveCourseFromGradesSheet = new RemoveCourseFromGradesSheet(_course);
+		//update the list of students of course
+		Boolean studentUnregistered = _CourseState.unregisterStudent(_student);
 		
-		StudentPrivateState studentState = (StudentPrivateState)getActorThreadPool().getPrivateState(_student);
-		Promise<Boolean> removeCourseGradePromise = (Promise<Boolean>) sendMessage(RemoveCourseFromGradesSheet,_course, studentState);
+		//remove the course from the grades sheet of the student and increases the number of available spaces
+		@SuppressWarnings("unchecked")
+		Promise<Boolean> removeCourseGradePromise = (Promise<Boolean>) sendMessage(RemoveCourseFromGradesSheet,_student, new StudentPrivateState());
 		depencencies.add(RemoveCourseFromGradesSheet);
 		then(depencencies,()->{
-			complete(removeCourseGradePromise.get());
+			complete(removeCourseGradePromise.get() & studentUnregistered);
 		});
 		
 	}
