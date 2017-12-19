@@ -13,7 +13,7 @@ class UnregisterAction<R> extends Action<Boolean> {
 	
 	public UnregisterAction(String Student) {
 		setPromise(new Promise<Boolean>());
-		setActionName("unregister the student " + Student);
+		setActionName("Unregister");
 		this._student = Student;
 	}
 

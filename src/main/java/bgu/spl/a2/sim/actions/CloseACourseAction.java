@@ -13,7 +13,7 @@ class CloseACourseAction<R> extends Action<Boolean> {
 	
 	public CloseACourseAction(String course) {
 		setPromise(new Promise<Boolean>());
-		setActionName("Close The Course " + course);
+		setActionName("Close Course");
 		_course = course;
 	}
 	
