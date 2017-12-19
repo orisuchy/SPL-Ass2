@@ -82,8 +82,9 @@ public class SubmittableActionBoxFactory {
 		}
 		
 		if(Action.equals("Open Course")) {
-			//TODO - wait for Ori implementation of action
-				
+			int space = Integer.parseInt(Space);
+			Action<Boolean>  action = new OpenNewCourseAction(Course,space,Prerequisites);
+			creation = (new SubmittableActionBox(action, Department, new DepartmentPrivateState()));	
 			
 		}else if(Action.equals("Add Student")) {
 			Action<Boolean> action = new AddStudentAction(Student);
