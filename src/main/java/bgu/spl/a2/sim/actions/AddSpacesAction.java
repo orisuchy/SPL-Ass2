@@ -9,12 +9,18 @@ class AddSpacesAction extends Action<Boolean> {
 	private CoursePrivateState _courseState;
 	private int spaceToAdd;
 	
+	/**
+	 * Constructor
+	 * @param How much space to add
+	 */
 	public AddSpacesAction(int spaceToAdd) {
 		setPromise(new Promise<Boolean>());
 		setActionName("Add Spaces");
 		this.spaceToAdd = spaceToAdd;
 	}
-	
+	/**
+	 * Opening New places In a Course
+	 */
 	@Override
 	protected void start() {
 		throwExceptionForInvalidActorStateType(CoursePrivateState.class);
