@@ -80,9 +80,11 @@ public class Simulator {
      * submit actions in phase1
      */
     private static void runPhase1() {
+    	simOut("********************************************************************** STARTING PHASE 1 **********************************************************************");
+    	
     	subscribeToPromiseList(phase1, ()->{
     		countDownLatch1.countDown();
-    		simOut("countDownLatch1 turned Down. Count is" + countDownLatch1.getCount());
+    		simOut("LATCH 1 DOWN "  + countDownLatch1.getCount());
     		});
     	submitAllActions(simInput.getPhase1()); 
     }
@@ -91,9 +93,11 @@ public class Simulator {
      * submit actions in phase2 only if the actions in phase1 are resolved
      */
     private static void runPhase2() {
+    	simOut("********************************************************************** STARTING PHASE 2 **********************************************************************");
+    	
     	subscribeToPromiseList(phase2, ()->{
     		countDownLatch2.countDown();
-    		simOut("countDownLatch2 turned Down. Count is" + countDownLatch2.getCount());
+    		simOut("LATCH 2 DOWN " + countDownLatch2.getCount());
     		});
     	submitAllActions(simInput.getPhase2());
     }
@@ -102,9 +106,11 @@ public class Simulator {
      * submit actions in phase3 only if the actions in phase2 are resolved
      */
     private static void runPhase3() {
+    	simOut("*********************************************************************** STARTING PHASE 3 **********************************************************************");
+    	
     	subscribeToPromiseList(phase3, ()->{
     		countDownLatch3.countDown();
-    		simOut("countDownLatch3 turned Down. Count is" + countDownLatch3.getCount());
+    		simOut("LATCH 3 DOWN "  + countDownLatch3.getCount());
     		});
     	submitAllActions(simInput.getPhase3());
     }

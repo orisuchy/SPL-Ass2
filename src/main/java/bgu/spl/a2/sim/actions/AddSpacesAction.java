@@ -31,5 +31,10 @@ class AddSpacesAction extends Action<Boolean> {
 		complete(spaceAdded);
 
 	}
+	
+	@Override
+	public String toString() {
+		return "AddSpacesAction [spaceToAdd=" + spaceToAdd + "]";
+	}
 
 }

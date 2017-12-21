@@ -57,4 +57,10 @@ class CloseACourseAction extends Action<Boolean> {
 			complete(action.getResult().get());
 		});
 	}
+
+
+	@Override
+	public String toString() {
+		return "CloseACourseAction [_course=" + _course + "]";
+	}
 }

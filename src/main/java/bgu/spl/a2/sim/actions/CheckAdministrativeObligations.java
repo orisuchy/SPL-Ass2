@@ -1,6 +1,7 @@
 package bgu.spl.a2.sim.actions;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import bgu.spl.a2.Action;
 import bgu.spl.a2.Promise;
@@ -81,8 +82,7 @@ class CheckAdministrativeObligations extends Action<Boolean> {
 			});
 		}
 	}
-	
-	
+
 	/**
 	 * Once a computer is obtained - create a "CheckStudentAdminObligationsAction"
 	 * for each student and send to the pool;
@@ -120,5 +120,11 @@ class CheckAdministrativeObligations extends Action<Boolean> {
 		}
 		mutex.up(); //release mutex
 		complete(success);
+	}
+
+	@Override
+	public String toString() {
+		return "CheckAdministrativeObligations [Students=" + Arrays.toString(Students) + ", Conditions="
+				+ Arrays.toString(Conditions) + ", Computer=" + Computer + "]";
 	}
 }
