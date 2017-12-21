@@ -121,14 +121,17 @@ public class ActorThreadPool {
 			ConcurrentLinkedQueue<Action<?>> queue = new ConcurrentLinkedQueue<Action<?>>();
 			if (action!=null) {
 				queue.add(action);
-				Simulator.simOut("Added action to ActorThreadPool:" + action.toString());
 			}
 			actorsQueues.put(actorId,queue);
 			actorsPrivateState.put(actorId, actorState);
 			actorsStatus.put(actorId, new AtomicBoolean());
 		}
 		else {
+			//TODO - ori, shouldn't we check that the action is not null?
 			actorsQueues.get(actorId).add(action); //Add action to actors queue
+		}
+		if(action!=null) {
+			Simulator.simOut("Added action to ActorThreadPool:" + action.toString());
 		}
 		version.inc();
 
