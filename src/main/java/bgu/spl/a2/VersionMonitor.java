@@ -1,5 +1,8 @@
 package bgu.spl.a2;
 
+//TODO - delete when done and remove simOut!!
+import bgu.spl.a2.sim.Simulator;
+
 /**
  * Describes a monitor that supports the concept of versioning - its idea is
  * simple, the monitor has a version number which you can receive via the method
@@ -41,6 +44,7 @@ public class VersionMonitor {
     public synchronized void inc() {
     	_version++;
     	this.notifyAll();
+    	Simulator.simOut("version increased to " + _version);
     }
     
 	/**

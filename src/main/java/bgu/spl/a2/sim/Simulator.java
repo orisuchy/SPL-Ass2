@@ -26,6 +26,8 @@ import bgu.spl.a2.sim.actions.SubmittableActionBoxFactory;
  */
 public class Simulator {
 
+	private static boolean DEBUG_MODE = true;
+	
 	private static String JSONinput;
 	private static ActorThreadPool actorThreadPool;
 	private static Warehouse warehouse;
@@ -80,6 +82,7 @@ public class Simulator {
     private static void runPhase1() {
     	subscribeToPromiseList(phase1, ()->{
     		countDownLatch1.countDown();
+    		simOut("countDownLatch1 turned Down. Count is" + countDownLatch1.getCount());
     		});
     	submitAllActions(simInput.getPhase1()); 
     }
@@ -90,6 +93,7 @@ public class Simulator {
     private static void runPhase2() {
     	subscribeToPromiseList(phase2, ()->{
     		countDownLatch2.countDown();
+    		simOut("countDownLatch2 turned Down. Count is" + countDownLatch2.getCount());
     		});
     	submitAllActions(simInput.getPhase2());
     }
@@ -100,6 +104,7 @@ public class Simulator {
     private static void runPhase3() {
     	subscribeToPromiseList(phase3, ()->{
     		countDownLatch3.countDown();
+    		simOut("countDownLatch3 turned Down. Count is" + countDownLatch3.getCount());
     		});
     	submitAllActions(simInput.getPhase3());
     }
@@ -189,6 +194,24 @@ public class Simulator {
 		return (HashMap<String,PrivateState>)actorThreadPool.getActors();	
 	}
 	
+	private static String readFile(String path, Charset encoding) throws IOException 
+	{
+	  byte[] encoded = Files.readAllBytes(Paths.get(path));
+	  return new String(encoded, encoding);
+	}
+	
+	public static Warehouse getWarehouse() {
+		return warehouse;
+	}
+	
+	/**
+	 * used for printing out to the console if DEBUG_MODE == true
+	 */
+	public static void simOut(String output) {
+		if(DEBUG_MODE) {
+			System.out.println(Thread.currentThread().getName() + ": " + output);
+		}
+	}	
 	
 	public static int main(String [] args){
 		String path = args[0];
@@ -214,16 +237,5 @@ public class Simulator {
 		start();
 		
 		return 0;
-	}
-	
-	
-	private static String readFile(String path, Charset encoding) throws IOException 
-	{
-	  byte[] encoded = Files.readAllBytes(Paths.get(path));
-	  return new String(encoded, encoding);
-	}
-	
-	public static Warehouse getWarehouse() {
-		return warehouse;
 	}
 }
