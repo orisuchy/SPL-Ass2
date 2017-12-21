@@ -10,6 +10,7 @@ import bgu.spl.a2.sim.Computer;
 import bgu.spl.a2.sim.Simulator;
 import bgu.spl.a2.sim.SuspendingMutex;
 import bgu.spl.a2.sim.Warehouse;
+import bgu.spl.a2.sim.privateStates.DepartmentPrivateState;
 import bgu.spl.a2.sim.privateStates.StudentPrivateState;
 
 /**
@@ -27,6 +28,7 @@ class CheckAdministrativeObligations extends Action<Boolean> {
 	private String[] Conditions;
 	private String Computer;
 	private String Department;
+	private DepartmentPrivateState departmentState;
 	
 	/**
 	 * Constructor
@@ -52,6 +54,8 @@ class CheckAdministrativeObligations extends Action<Boolean> {
 	 */
 	@Override
 	protected void start() {
+		throwExceptionForInvalidActorStateType(DepartmentPrivateState.class);
+		departmentState = (DepartmentPrivateState) getCurrentPrivateState();
 		
 		//Get computer promise from warehouse
 		Warehouse warehouse = Simulator.getWarehouse();
@@ -110,7 +114,9 @@ class CheckAdministrativeObligations extends Action<Boolean> {
 			}
 		}
 		mutex.up(); //release mutex
+		departmentState.addRecord(getActionName());
 		complete(success);
+		
 	}
 
 	@Override
