@@ -36,7 +36,6 @@ class AddStudentAction extends Action<Boolean> {
 		_departmentState = (DepartmentPrivateState)getCurrentPrivateState();
 
 		Boolean studentAdded = _departmentState.addStudent(Student);
-		_departmentState.addRecord(getActionName());
 		getActorThreadPool().submit(null, Student, new StudentPrivateState());
 		complete(studentAdded);
 	}

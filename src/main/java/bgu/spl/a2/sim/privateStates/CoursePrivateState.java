@@ -75,7 +75,7 @@ public class CoursePrivateState extends PrivateState{
 	}
 	
 	public void addPrerequisites(String[] prequisitesArray) {
-		for (String course : prequisites) {
+		for (String course : prequisitesArray) {
 			prequisites.add(course);
 		}	
 	}

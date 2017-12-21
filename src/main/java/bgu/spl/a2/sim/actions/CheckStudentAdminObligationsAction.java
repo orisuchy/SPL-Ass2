@@ -40,7 +40,6 @@ class CheckStudentAdminObligationsAction extends Action<Boolean> {
 		
 		long sig = Computer.checkAndSign(Conditions, studentState.getGrades());
 		studentState.setSignature(sig);
-		studentState.addRecord(getActionName());
 		
 		boolean success = (studentState.getSignature() == sig);
 		complete(success);

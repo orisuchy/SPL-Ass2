@@ -27,7 +27,6 @@ class AddSpacesAction extends Action<Boolean> {
 		_courseState = (CoursePrivateState)getCurrentPrivateState();
 		
 		Boolean spaceAdded = _courseState.addSpots(spaceToAdd);
-		_courseState.addRecord(getActionName());
 		complete(spaceAdded);
 
 	}
