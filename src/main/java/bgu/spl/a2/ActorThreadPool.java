@@ -97,11 +97,7 @@ public class ActorThreadPool {
 	 * @return actor's private state
 	 */
 	public PrivateState getPrivateState(String actorId){ 
-
-		//TODO: What if null? What if map is empty?
-
-		return	actorsPrivateState.get(actorId);
-
+		return actorsPrivateState.get(actorId);
 	}
 
 

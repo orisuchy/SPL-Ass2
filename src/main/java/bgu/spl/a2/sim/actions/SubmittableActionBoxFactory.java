@@ -13,48 +13,6 @@ import bgu.spl.a2.Action;
  */
 public class SubmittableActionBoxFactory {
 	
-	//TODO - erase when done
-	/* 
-	"Action":"Open Course",
-	"Department": "CS",
-	"Course": "SPL",
-	"Space": "400",
-	"Prerequisites" : ["Data Structures", "Intro to CS"]
-	 
-	"Action": "Add Student",
-	"Department": "CS",
-	"Student": "123456789"
-	 
-	"Action": "Participate In Course",
-	"Student": "123456789",
-	"Course": "SPL",
-	"Grade": ["98"]
-	 
-	"Action": "Add Spaces",
-	"Course": "SPL",
-	"Number": "100"
-	
-	"Action": "Register With Preferences",
-	"Student": "5959595959",
-	"Preferences": ["Data Bases","SPL"],
-	"Grade": ["98","56"]
-	 
-	"Action": "Unregister",
-	"Student": "123456789",
-	"Course": "Data Bases"
-	 
-	"Action": "Close Course",
-	"Department": "CS",
-	"Course": "Data Bases"
-	 
-	"Action" : "Administrative Check",
-	"Department": "CS",
-	"Students": ["123456789","5959595959"],
-	"Computer": "A",
-	"Conditions" : ["SPL", "Data Bases"]
-	 
-	 */
-	
 	private String Action;
 	private String Department;
 	private String Course;

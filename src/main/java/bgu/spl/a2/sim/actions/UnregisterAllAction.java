@@ -58,18 +58,6 @@ class UnregisterAllAction extends Action<Boolean> {
 				}
 				complete(success);
 			}
-			
-			 //TODO - we are already flagging the course by having -1 spaces... so basically unnessaceary?
-			/*
-			 boolean success = _courseState.getRegStudents().isEmpty();
-			 
-			if(success) {
-				complete(success);
-			}
-			else {
-				start();
-			}
-			*/
 		});
 	}
 

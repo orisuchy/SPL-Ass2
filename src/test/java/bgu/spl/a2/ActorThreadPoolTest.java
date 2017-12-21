@@ -1,11 +1,12 @@
 package bgu.spl.a2;
 
-import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
+
+//TODO - delete this test!
 
 public class ActorThreadPoolTest {
 	
@@ -20,16 +21,6 @@ public class ActorThreadPoolTest {
 	public void tearDown() throws Exception {
 		_pool.shutdown();
 	}
-
-//	@Test
-//	public final void testSubmit() {
-//		fail("Not yet implemented"); // TODO
-//	}
-
-//	@Test
-//	public final void testShutdown() {
-//		fail("Not yet implemented"); // TODO
-//	}
 
 	@Test
 	public final void testStart() {

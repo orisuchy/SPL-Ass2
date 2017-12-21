@@ -2,9 +2,6 @@ package bgu.spl.a2.sim;
 
 import java.util.List;
 import java.util.Map;
-
-import org.omg.PortableInterceptor.SUCCESSFUL;
-
 import com.google.gson.annotations.SerializedName;
 
 public class Computer {

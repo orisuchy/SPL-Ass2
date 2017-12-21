@@ -54,7 +54,6 @@ class RegisterWithPreferences extends Action<Boolean> {
 		String course = Preferences[currCourse];
 		String grade = Grade[currCourse];
 		Action<Boolean> attemptToRegisterStudent = new ParticipatingInCourseAction(course, Student ,new String[] {grade});
-		@SuppressWarnings("unchecked")
 		Promise<Boolean> registerResult = (Promise<Boolean>) sendMessage(attemptToRegisterStudent, course, new CoursePrivateState());
 		
 		List<Action<Boolean>> dependency = new ArrayList<Action<Boolean>>();
