@@ -62,9 +62,7 @@ class ParticipatingInCourseAction extends Action<Boolean> {
 		then(depencencies, () -> {
 			Boolean hasPrequisites = studentHasPrerequisitesPromise.get();
 			if(hasPrequisites & courseHasAvailableSpace()) {
-				courseState.registerStudent(Student);
-				courseState.addRecord(getActionName());
-				
+				courseState.registerStudent(Student);	
 				//Add the course and grade info to the student
 				Action<Boolean> addCourseAndGrade;
 				try {
@@ -83,6 +81,7 @@ class ParticipatingInCourseAction extends Action<Boolean> {
 				});
 				
 			}else {
+				courseState.addRecord(getActionName());
 				complete(false);
 			}	
 		});
