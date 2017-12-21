@@ -15,6 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 import bgu.spl.a2.ActorThreadPool;
 import bgu.spl.a2.PrivateState;
 import bgu.spl.a2.Promise;
@@ -32,6 +33,9 @@ public class Simulator {
 	private static List<Promise<?>> phase1;
 	private static List<Promise<?>> phase2;
 	private static List<Promise<?>> phase3;
+	private static CountDownLatch countDownLatch1;
+	private static CountDownLatch countDownLatch2;
+	private static CountDownLatch countDownLatch3;
 	
 	/**
 	* Begin the simulation Should not be called before attachActorThreadPool()
@@ -39,8 +43,35 @@ public class Simulator {
     public static void start(){
     	phase1 = simInput.getPromiseListPhase1();
     	phase2 = simInput.getPromiseListPhase2();	    	
-    	phase3 = simInput.getPromiseListPhase3();   	
-    	runPhase1();		
+    	phase3 = simInput.getPromiseListPhase3();  
+    	countDownLatch1 = new CountDownLatch(phase1.size());
+    	countDownLatch2 = new CountDownLatch(phase2.size());
+    	countDownLatch3 = new CountDownLatch(phase3.size());
+    	
+    	actorThreadPool.start();
+    	
+    	runPhase1();
+
+    	try{
+    		countDownLatch1.await();
+    	}
+    	catch(InterruptedException e) {}
+    	
+    	runPhase2();
+    	
+    	try{
+    		countDownLatch2.await();
+    	}
+    	catch(InterruptedException e) {}
+    	
+    	runPhase3();
+    	
+    	try{
+    		countDownLatch3.await();
+    	}
+    	catch(InterruptedException e) {}
+    	
+    	endPhase();
     }
     
     /**
@@ -48,22 +79,17 @@ public class Simulator {
      */
     private static void runPhase1() {
     	subscribeToPromiseList(phase1, ()->{
-    		runPhase2();
+    		countDownLatch1.countDown();
     		});
     	submitAllActions(simInput.getPhase1()); 
-    	
-    	actorThreadPool.start();
     }
     
     /**
      * submit actions in phase2 only if the actions in phase1 are resolved
      */
     private static void runPhase2() {
-    	if(!allPromisesAreResolved(phase1)) {
-    		return;
-    	}
     	subscribeToPromiseList(phase2, ()->{
-    		runPhase3();
+    		countDownLatch2.countDown();
     		});
     	submitAllActions(simInput.getPhase2());
     }
@@ -72,11 +98,8 @@ public class Simulator {
      * submit actions in phase3 only if the actions in phase2 are resolved
      */
     private static void runPhase3() {
-    	if(!allPromisesAreResolved(phase2)) {
-    		return;
-    	}
     	subscribeToPromiseList(phase3, ()->{
-    		endPhase();
+    		countDownLatch3.countDown();
     		});
     	submitAllActions(simInput.getPhase3());
     }
@@ -85,10 +108,6 @@ public class Simulator {
      * shutdown the threadpool if phase3 is resolved and save result in file
      */
     private static void endPhase() {
-    	if(!allPromisesAreResolved(phase3)) {
-    		return;
-    	}
-  	
 		HashMap<String, PrivateState> SimulationResult;
 		SimulationResult = end();
 		try {
