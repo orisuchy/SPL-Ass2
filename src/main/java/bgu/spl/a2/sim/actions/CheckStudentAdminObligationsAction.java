@@ -45,4 +45,11 @@ class CheckStudentAdminObligationsAction extends Action<Boolean> {
 		boolean success = (studentState.getSignature() == sig);
 		complete(success);
 	}
+
+
+	@Override
+	public String toString() {
+		return "CheckStudentAdminObligationsAction [Computer=" + Computer + ", Conditions=" + Conditions + "]";
+	}
+	
 }
