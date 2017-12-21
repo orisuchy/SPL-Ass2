@@ -3,6 +3,7 @@ package bgu.spl.a2.sim.actions;
 import bgu.spl.a2.Action;
 import bgu.spl.a2.Promise;
 import bgu.spl.a2.sim.privateStates.DepartmentPrivateState;
+import bgu.spl.a2.sim.privateStates.StudentPrivateState;
 
 /*
 Add Student:
@@ -36,6 +37,7 @@ class AddStudentAction extends Action<Boolean> {
 
 		Boolean studentAdded = _departmentState.addStudent(Student);
 		_departmentState.addRecord(getActionName());
+		getActorThreadPool().submit(null, Student, new StudentPrivateState());
 		complete(studentAdded);
 	}
 
