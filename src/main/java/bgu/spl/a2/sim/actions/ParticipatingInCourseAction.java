@@ -54,7 +54,6 @@ class ParticipatingInCourseAction extends Action<Boolean> {
 		//create CheckStudentHasPrequisitesAction
 		List<String> prerequisite = courseState.getPrequisites();
 		Action<Boolean> checkStudentHasPrerequisites = new CheckStudentHasPrerequisitesAction(prerequisite);
-		@SuppressWarnings("unchecked") //TODO - maybe delete?
 		Promise<Boolean> studentHasPrerequisitesPromise = (Promise<Boolean>) sendMessage(checkStudentHasPrerequisites, Student, new StudentPrivateState());
 		
 		//create callback
