@@ -68,4 +68,11 @@ public class StudentPrivateState extends PrivateState{
 	public boolean isRegisteredToCourse(String course) {
 		return grades.containsKey(course);
 	}
+
+	@Override
+	public String toString() {
+		return "StudentPrivateState [grades=" + grades + ", signature=" + signature + "]";
+	}
+	
+	
 }
