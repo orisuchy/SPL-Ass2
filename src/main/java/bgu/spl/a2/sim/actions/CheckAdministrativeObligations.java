@@ -58,29 +58,20 @@ class CheckAdministrativeObligations extends Action<Boolean> {
 		SuspendingMutex mutex = warehouse.getComputer(Computer);
 		Promise<Computer> promisedComputer = mutex.down();
 		
+		//subscribe to the promise to get back into the pool
+		promisedComputer.subscribe(()->{
+			getActorThreadPool().submit(this, Department, getCurrentPrivateState());
+		});
 		
-		if(promisedComputer.isResolved()) { //mutex was clear and immediately received computer
+		//create empty dependency list for "then" and make "then" callback be phase1
+		ArrayList<Action<Computer>> dependencies0 = new ArrayList<Action<Computer>>(); //list is empty to allow immediate follow-up when calling action.handle again
+		then(dependencies0, ()->{
 			//Do phase1 and insert phase2 as "then" callback
 			ArrayList<Action<Boolean>> dependencies1 = phase1(promisedComputer);
 			then(dependencies1, () ->{
 				phase2(dependencies1, mutex);
-			});
-		}else { //computer is unavailable
-			//subscribe to the promise to get back into the pool
-			promisedComputer.subscribe(()->{
-				getActorThreadPool().submit(this, Department, getCurrentPrivateState());
-			});
-			
-			//create empty dependency list for "then" and make "then" callback be phase1
-			ArrayList<Action<Computer>> dependencies0 = new ArrayList<Action<Computer>>(); //list is empty to allow immediate follow-up when calling action.handle again
-			then(dependencies0, ()->{
-				//Do phase1 and insert phase2 as "then" callback
-				ArrayList<Action<Boolean>> dependencies1 = phase1(promisedComputer);
-				then(dependencies1, () ->{
-					phase2(dependencies1, mutex);
-				});	
-			});
-		}
+			});	
+		});
 	}
 
 	/**
