@@ -39,7 +39,6 @@ class UnregisterAction extends Action<Boolean> {
 		Boolean studentUnregistered = _CourseState.unregisterStudent(_student);
 		
 		//remove the course from the grades sheet of the student and increases the number of available spaces
-		@SuppressWarnings("unchecked")
 		Promise<Boolean> removeCourseGradePromise = (Promise<Boolean>) sendMessage(RemoveCourseFromGradesSheet,_student, new StudentPrivateState());
 		depencencies.add(RemoveCourseFromGradesSheet);
 		then(depencencies,()->{
