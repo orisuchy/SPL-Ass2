@@ -5,12 +5,10 @@ import java.util.Arrays;
 
 import bgu.spl.a2.Action;
 import bgu.spl.a2.Promise;
-import bgu.spl.a2.callback;
 import bgu.spl.a2.sim.Computer;
 import bgu.spl.a2.sim.Simulator;
 import bgu.spl.a2.sim.SuspendingMutex;
 import bgu.spl.a2.sim.Warehouse;
-import bgu.spl.a2.sim.privateStates.DepartmentPrivateState;
 import bgu.spl.a2.sim.privateStates.StudentPrivateState;
 
 /**
@@ -28,8 +26,7 @@ class CheckAdministrativeObligations extends Action<Boolean> {
 	private String[] Conditions;
 	private String Computer;
 	private String Department;
-	private DepartmentPrivateState departmentState;
-	
+
 	/**
 	 * Constructor
 	 * @param students to check
@@ -53,10 +50,7 @@ class CheckAdministrativeObligations extends Action<Boolean> {
 	 * Once their admin obligations are checked - release the computer
 	 */
 	@Override
-	protected void start() {
-		throwExceptionForInvalidActorStateType(DepartmentPrivateState.class);
-		departmentState = (DepartmentPrivateState) getCurrentPrivateState();
-		
+	protected void start() {	
 		//Get computer promise from warehouse
 		Warehouse warehouse = Simulator.getWarehouse();
 		SuspendingMutex mutex = warehouse.getComputer(Computer);
