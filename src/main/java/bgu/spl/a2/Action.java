@@ -2,6 +2,9 @@ package bgu.spl.a2;
 
 import java.util.Collection;
 
+//TODO - delete
+import bgu.spl.a2.sim.Simulator;
+
 /**
  * an abstract class that represents an action that may be executed using the
  * {@link ActorThreadPool}
@@ -97,6 +100,7 @@ public abstract class Action<R> {
      */
     protected final void complete(R result) {
        	_result.resolve(result);
+       	Simulator.simOut("Action: " + this.toString() + "    Result: " +  result.toString());
     }
     
     /**
