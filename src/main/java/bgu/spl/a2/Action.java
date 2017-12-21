@@ -56,7 +56,7 @@ public abstract class Action<R> {
 		   _pool = pool;
 		   start();
 	   }
-	   else if(dependenciesResolved()){
+	   else if(dependenciesResolved() & !_result.isResolved()){
 		   _callback.call();
 	   }
    }
@@ -83,6 +83,10 @@ public abstract class Action<R> {
      * @return true if all dependency actions
      */
     private final boolean dependenciesResolved() {
+    	if(_dependencies == null) {
+    		return true;
+    	}
+    	
     	for (Action<?> dependency : _dependencies) {
     		Promise<?> promise = dependency.getResult();
     		if(!promise.isResolved()) {
@@ -126,7 +130,8 @@ public abstract class Action<R> {
 		_pool.submit(action, actorId, actorState); //add dependecy action to pool
    
 		Promise<?> promise = action.getResult();
-		promise.subscribe(() ->{		
+		promise.subscribe(() ->{
+			
 			_pool.submit(this, _actorId, _actorState); //add callback to be put back into the pool when promise is resolved
 		});
 

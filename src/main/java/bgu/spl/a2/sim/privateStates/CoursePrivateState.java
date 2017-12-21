@@ -83,4 +83,12 @@ public class CoursePrivateState extends PrivateState{
 	public void removeCourseSpots() {
 		availableSpots = -1;
 	}
+
+	@Override
+	public String toString() {
+		return "CoursePrivateState [actions=" + getLogger() + ", availableSpots=" + availableSpots + ", registered=" + registered + ", regStudents="
+				+ regStudents + ", prequisites=" + prequisites + "]";
+	}
+	
+	
 }

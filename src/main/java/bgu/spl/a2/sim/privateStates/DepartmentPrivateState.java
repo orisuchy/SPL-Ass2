@@ -64,4 +64,10 @@ public class DepartmentPrivateState extends PrivateState{
 		return !courseList.contains(course);
 		
 	}
+
+	@Override
+	public String toString() {
+		return "DepartmentPrivateState [actions=" + getLogger() + ", courseList=" + courseList + ", studentList=" + studentList + "]";
+	}
+	
 }
