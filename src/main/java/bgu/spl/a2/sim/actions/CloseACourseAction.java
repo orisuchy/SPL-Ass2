@@ -53,7 +53,6 @@ class CloseACourseAction extends Action<Boolean> {
 
 		//complete results
 		then(depencencies, ()->{
-			_departmentState.addRecord(getActionName());
 			complete(action.getResult().get());
 		});
 	}

@@ -81,7 +81,6 @@ class ParticipatingInCourseAction extends Action<Boolean> {
 				});
 				
 			}else {
-				courseState.addRecord(getActionName());
 				complete(false);
 			}	
 		});

@@ -114,7 +114,6 @@ class CheckAdministrativeObligations extends Action<Boolean> {
 			}
 		}
 		mutex.up(); //release mutex
-		departmentState.addRecord(getActionName());
 		complete(success);
 		
 	}

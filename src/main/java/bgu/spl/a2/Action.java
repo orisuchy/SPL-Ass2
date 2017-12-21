@@ -103,7 +103,7 @@ public abstract class Action<R> {
      * @param result - the action calculated result
      */
     protected final void complete(R result) {
-//    	_actorState.addRecord(getActionName());
+    	_actorState.addRecord(getActionName());
        	_result.resolve(result);
        	Simulator.simOut("Action: " + this.toString() + "    Result: " +  result.toString());
     }
