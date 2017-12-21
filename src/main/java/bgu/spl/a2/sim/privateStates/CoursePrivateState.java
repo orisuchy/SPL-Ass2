@@ -86,7 +86,7 @@ public class CoursePrivateState extends PrivateState{
 
 	@Override
 	public String toString() {
-		return "CoursePrivateState [availableSpots=" + availableSpots + ", registered=" + registered + ", regStudents="
+		return "CoursePrivateState [actions=" + getLogger() + ", availableSpots=" + availableSpots + ", registered=" + registered + ", regStudents="
 				+ regStudents + ", prequisites=" + prequisites + "]";
 	}
 	
