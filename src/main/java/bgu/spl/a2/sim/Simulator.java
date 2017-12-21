@@ -15,6 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import bgu.spl.a2.ActorThreadPool;
 import bgu.spl.a2.PrivateState;
@@ -189,15 +190,17 @@ public class Simulator {
 	* returns list of private states
 	*/
 	public static HashMap<String,PrivateState> end(){
-		
 		try {
 			actorThreadPool.shutdown();
-		} catch (InterruptedException e) {
-			//do nothing
-		}
+		} catch (InterruptedException e) {}
+	
+		HashMap<String, PrivateState> ret = new HashMap<>();
+		Map<String,PrivateState> map = actorThreadPool.getActors();
+		for(String actorId : map.keySet()) {
+			ret.put(actorId, map.get(actorId));
+		}	
 		
-		//TODO - will this work?
-		return (HashMap<String,PrivateState>)actorThreadPool.getActors();	
+		return ret;
 	}
 	
 	private static String readFile(String path, Charset encoding) throws IOException 
