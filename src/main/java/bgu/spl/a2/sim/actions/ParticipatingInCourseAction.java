@@ -54,7 +54,7 @@ class ParticipatingInCourseAction extends Action<Boolean> {
 		//create CheckStudentHasPrequisitesAction
 		List<String> prerequisite = courseState.getPrequisites();
 		Action<Boolean> checkStudentHasPrerequisites = new CheckStudentHasPrerequisitesAction(prerequisite);
-		@SuppressWarnings("unchecked")
+		@SuppressWarnings("unchecked") //TODO - maybe delete?
 		Promise<Boolean> studentHasPrerequisitesPromise = (Promise<Boolean>) sendMessage(checkStudentHasPrerequisites, Student, new StudentPrivateState());
 		
 		//create callback
@@ -65,8 +65,6 @@ class ParticipatingInCourseAction extends Action<Boolean> {
 				courseState.registerStudent(Student);
 				courseState.addRecord(getActionName());
 				
-				
-				//TODO - send action after?!?!
 				//Add the course and grade info to the student
 				Action<Boolean> addCourseAndGrade;
 				try {
@@ -76,7 +74,13 @@ class ParticipatingInCourseAction extends Action<Boolean> {
 				catch(NumberFormatException e){
 					addCourseAndGrade = new AddStudentGradeAction(Course, -1);
 				}
-				getActorThreadPool().submit(addCourseAndGrade, Student, new StudentPrivateState());
+				
+				depencencies.clear();
+				depencencies.add(addCourseAndGrade);
+				Promise<Boolean> courseGradeAdded = (Promise<Boolean>) sendMessage(addCourseAndGrade, Student, new StudentPrivateState());
+				then(depencencies, ()->{
+					complete(courseGradeAdded.get());
+				});
 				
 			}else {
 				complete(false);
