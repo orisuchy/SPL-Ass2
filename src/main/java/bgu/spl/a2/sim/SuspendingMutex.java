@@ -52,7 +52,7 @@ public class SuspendingMutex {
 	 * releases a computer which becomes available in the warehouse upon completion
 	 */
 	public void up(){	
-		if(_numberOfRequests.get()==0) {
+		if(_numberOfRequests.compareAndSet(1, 0)) {
 			return;
 		} else {
 			_numberOfRequests.getAndDecrement();
