@@ -69,7 +69,7 @@ public class ActorThreadPool {
 					}
 					try 
 					{ 
-						Simulator.simOut("thread waiting for version " + currentVersion+1);
+						Simulator.simOut("thread waiting for version " + (currentVersion+1));
 						version.await(currentVersion+1);
 						Simulator.simOut("thread woken up");
 					}
