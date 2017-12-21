@@ -36,7 +36,6 @@ class OpenNewCourseAction extends Action<Boolean> {
 		_departmentState = (DepartmentPrivateState)getCurrentPrivateState();
 
 		Boolean courseAdded = _departmentState.addCourse(_course);
-		_departmentState.addRecord(getActionName());
 		
 		CoursePrivateState newCourse = new CoursePrivateState();
 		newCourse.addSpots(_space);

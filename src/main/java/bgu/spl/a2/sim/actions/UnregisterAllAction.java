@@ -56,7 +56,6 @@ class UnregisterAllAction extends Action<Boolean> {
 					success = false;
 					break;
 				}
-				_courseState.addRecord(getActionName());
 				complete(success);
 			}
 			
