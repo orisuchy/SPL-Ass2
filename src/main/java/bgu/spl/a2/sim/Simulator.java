@@ -120,6 +120,7 @@ public class Simulator {
      * shutdown the threadpool if phase3 is resolved and save result in file
      */
     private static void endPhase() {
+    	simOut("*********************************************************************** STARTING PHASE END **********************************************************************");
 		HashMap<String, PrivateState> SimulationResult;
 		SimulationResult = end();
 		try {
@@ -131,6 +132,7 @@ public class Simulator {
 		catch(IOException e) {
 			e.printStackTrace();
 		}	
+		simOut("*********************************************************************** END **********************************************************************");
     }
     
     
@@ -222,7 +224,7 @@ public class Simulator {
 		}
 	}	
 	
-	public static int main(String [] args){
+	public static void main(String [] args){
 		String path = args[0];
 		
 		try {
@@ -244,7 +246,5 @@ public class Simulator {
 		attachWarehouse(newWarehouse);
 	
 		start();
-		
-		return 0;
 	}
 }
