@@ -41,4 +41,9 @@ class AddStudentGradeAction extends Action<Boolean> {
 		complete(addedGrade);
 	}
 
+	@Override
+	public String toString() {
+		return "AddStudentGradeAction [course=" + course + ", grade=" + grade + "]";
+	}
+
 }

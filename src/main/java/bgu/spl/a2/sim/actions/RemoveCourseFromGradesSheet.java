@@ -30,4 +30,11 @@ public class RemoveCourseFromGradesSheet extends Action<Boolean> {
 		Boolean courseGradeRemoved = studentState.removeGrade(course);			
 		complete(courseGradeRemoved);
 	}
+
+
+	@Override
+	public String toString() {
+		return "RemoveCourseFromGradesSheet [course=" + course + "]";
+	}
+	
 }

@@ -73,4 +73,11 @@ class UnregisterAllAction extends Action<Boolean> {
 			*/
 		});
 	}
+
+
+	@Override
+	public String toString() {
+		return "UnregisterAllAction [_course=" + _course + "]";
+	}
+	
 }
