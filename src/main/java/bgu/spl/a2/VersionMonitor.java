@@ -44,7 +44,7 @@ public class VersionMonitor {
     public synchronized void inc() {
     	_version++;
     	this.notifyAll();
-    	Simulator.simOut("version increased to " + _version);
+    	Simulator.simOut("VERSION INCREASED TO " + _version);
     }
     
 	/**
