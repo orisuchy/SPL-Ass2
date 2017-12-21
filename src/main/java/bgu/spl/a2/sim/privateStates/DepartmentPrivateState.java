@@ -67,7 +67,7 @@ public class DepartmentPrivateState extends PrivateState{
 
 	@Override
 	public String toString() {
-		return "DepartmentPrivateState [courseList=" + courseList + ", studentList=" + studentList + "]";
+		return "DepartmentPrivateState [actions=" + getLogger() + ", courseList=" + courseList + ", studentList=" + studentList + "]";
 	}
 	
 }

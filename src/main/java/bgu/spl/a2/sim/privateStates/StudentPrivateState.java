@@ -71,7 +71,7 @@ public class StudentPrivateState extends PrivateState{
 
 	@Override
 	public String toString() {
-		return "StudentPrivateState [grades=" + grades + ", signature=" + signature + "]";
+		return "StudentPrivateState [actions=" + getLogger() + ", grades=" + grades + ", signature=" + signature + "]";
 	}
 	
 	
