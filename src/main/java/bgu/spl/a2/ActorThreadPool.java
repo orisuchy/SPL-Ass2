@@ -131,7 +131,7 @@ public class ActorThreadPool {
 			actorsQueues.get(actorId).add(action); //Add action to actors queue
 		}
 		if(action!=null) {
-			Simulator.simOut("Added action to ActorThreadPool:" + action.toString());
+			Simulator.simOut("Added action to ActorThreadPool:" + action.toString() + "  To Actor: " + actorId);
 		}
 		version.inc();
 

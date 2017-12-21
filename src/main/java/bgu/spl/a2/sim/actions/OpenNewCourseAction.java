@@ -1,5 +1,7 @@
 package bgu.spl.a2.sim.actions;
 
+import java.util.Arrays;
+
 import bgu.spl.a2.Action;
 import bgu.spl.a2.Promise;
 import bgu.spl.a2.sim.privateStates.CoursePrivateState;
@@ -43,4 +45,11 @@ class OpenNewCourseAction extends Action<Boolean> {
 		
 		complete(courseAdded);
 	}
+
+	@Override
+	public String toString() {
+		return "OpenNewCourseAction [_course=" + _course + ", _space=" + _space + ", _prerequisites="
+				+ Arrays.toString(_prerequisites) + "]";
+	}
+
 }

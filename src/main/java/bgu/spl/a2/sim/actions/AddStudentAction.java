@@ -38,4 +38,9 @@ class AddStudentAction extends Action<Boolean> {
 		_departmentState.addRecord(getActionName());
 		complete(studentAdded);
 	}
+
+	@Override
+	public String toString() {
+		return "AddStudentAction [Student=" + Student + "]";
+	}
 }
