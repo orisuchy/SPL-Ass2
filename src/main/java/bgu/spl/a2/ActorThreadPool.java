@@ -60,7 +60,7 @@ public class ActorThreadPool {
 								currentVersion = version.getVersion();
 								ConcurrentLinkedQueue<Action<?>> queueToRun = actorsQueues.get(actorId);
 								Action<?> action = queueToRun.poll();
-								Simulator.simOut("thread handeling action " + action);
+								Simulator.simOut("thread handeling action: " + action + "    from actor: " + actorId);
 								action.handle(this, actorId, getPrivateState(actorId));
 								version.inc();
 							}
