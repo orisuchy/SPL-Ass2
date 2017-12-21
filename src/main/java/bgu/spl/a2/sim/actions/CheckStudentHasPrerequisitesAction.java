@@ -44,4 +44,10 @@ class CheckStudentHasPrerequisitesAction extends Action<Boolean> {
 		}	
 		complete(studentHasPrequisites);
 	}
+
+	@Override
+	public String toString() {
+		return "CheckStudentHasPrerequisitesAction [prequisites=" + prequisites + "]";
+	}
+	
 }

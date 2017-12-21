@@ -1,6 +1,7 @@
 package bgu.spl.a2.sim.actions;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import bgu.spl.a2.Action;
@@ -18,13 +19,6 @@ import bgu.spl.a2.sim.privateStates.StudentPrivateState;
  */
 
 class RegisterWithPreferences extends Action<Boolean> {
-	
-	/*
-	"Action": "Register With Preferences",
-	"Student": "5959595959",
-	"Preferences": ["Data Bases","SPL"],
-	"Grade": ["98","56"]
-	*/
 	
 	private int currCourse;
 	private String Student;
@@ -92,4 +86,13 @@ class RegisterWithPreferences extends Action<Boolean> {
 		}
 		return true;
 	}
+
+
+	@Override
+	public String toString() {
+		return "RegisterWithPreferences [currCourse=" + currCourse + ", Student=" + Student + ", Preferences="
+				+ Arrays.toString(Preferences) + ", Grade=" + Arrays.toString(Grade) + "]";
+	}
+	
+	
 }

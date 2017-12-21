@@ -1,6 +1,7 @@
 package bgu.spl.a2.sim.actions;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import bgu.spl.a2.Action;
@@ -91,4 +92,12 @@ class ParticipatingInCourseAction extends Action<Boolean> {
 	private boolean courseHasAvailableSpace() {
 		return (courseState.getAvailableSpots()>0);
 	}
+
+	@Override
+	public String toString() {
+		return "ParticipatingInCourseAction [Course=" + Course + ", Student=" + Student + ", Grade="
+				+ Arrays.toString(Grade) + "]";
+	}
+	
+	
 }
