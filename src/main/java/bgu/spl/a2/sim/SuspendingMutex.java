@@ -42,7 +42,7 @@ public class SuspendingMutex {
 			Simulator.simOut("MUTEX DOWN: compared and set(0,1) - first!");
 			returnedPromise.resolve(_computer);
 		} else { //must wait in line
-			Simulator.simOut("MUTEX DOWN: waiting in line number" + _numberOfRequests.getAndIncrement());
+			Simulator.simOut("MUTEX DOWN: waiting in line number" + _numberOfRequests.incrementAndGet());
 			_promiseQueue.add(returnedPromise);
 		}
 		
@@ -57,11 +57,12 @@ public class SuspendingMutex {
 			Simulator.simOut("MUTEX UP: compared and set(1,0) - last one");
 			return;
 		} else {
-			Simulator.simOut("MUTEX UP: " + _numberOfRequests.getAndDecrement());
+			Simulator.simOut("MUTEX UP: " + _numberOfRequests.decrementAndGet());
 			Promise<Computer> nextPromiseToHandle = _promiseQueue.poll();
 			if(nextPromiseToHandle == null) {
 				throw new RuntimeException("Popped NULL promise from mutex queue");
 			}
+			nextPromiseToHandle.resolve(_computer);
 		}
 	}
 	
