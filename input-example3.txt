@@ -123,6 +123,13 @@
 "Students": ["Yossi","Moshe"],
 "Computer": "A",
 "Conditions" : ["SPL", "Data Structures"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "Math",
+"Students": ["Kobi"],
+"Computer": "A",
+"Conditions" : ["Alg1", "Logic"]
 }
 ]
 }
