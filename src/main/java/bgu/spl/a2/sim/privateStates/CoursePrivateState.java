@@ -83,6 +83,10 @@ public class CoursePrivateState extends PrivateState{
 	public void removeCourseSpots() {
 		availableSpots = -1;
 	}
+	
+	public boolean containsStudent(String student) {
+		return regStudents.contains(student);
+	}
 
 	@Override
 	public String toString() {

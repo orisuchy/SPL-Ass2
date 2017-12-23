@@ -49,12 +49,14 @@ class ParticipatingInCourseAction extends Action<Boolean> {
 		throwExceptionForInvalidActorStateType(CoursePrivateState.class);
 		courseState = (CoursePrivateState)getCurrentPrivateState();
 		
+		addFlag(courseState);
 		List<Action<Boolean>> depencencies = new ArrayList<Action<Boolean>>();
 		
 		//create CheckStudentHasPrequisitesAction
 		List<String> prerequisite = courseState.getPrequisites();
 		Action<Boolean> checkStudentHasPrerequisites = new CheckStudentHasPrerequisitesAction(prerequisite);
-		Promise<Boolean> studentHasPrerequisitesPromise = (Promise<Boolean>) sendMessage(checkStudentHasPrerequisites, Student, new StudentPrivateState());
+		Promise<Boolean> studentHasPrerequisitesPromise = 
+				(Promise<Boolean>) sendMessage(checkStudentHasPrerequisites, Student, new StudentPrivateState());
 		
 		//create callback
 		depencencies.add(checkStudentHasPrerequisites);	
@@ -76,10 +78,12 @@ class ParticipatingInCourseAction extends Action<Boolean> {
 				depencencies.add(addCourseAndGrade);
 				Promise<Boolean> courseGradeAdded = (Promise<Boolean>) sendMessage(addCourseAndGrade, Student, new StudentPrivateState());
 				then(depencencies, ()->{
+					removeFlag(courseState);
 					complete(courseGradeAdded.get());
 				});
 				
 			}else {
+				removeFlag(courseState);
 				complete(false);
 			}	
 		});
@@ -94,6 +98,20 @@ class ParticipatingInCourseAction extends Action<Boolean> {
 		return (courseState.getAvailableSpots()>0);
 	}
 
+	private void addFlag(CoursePrivateState actor) {
+		actor.getLogger().add(progressFlag());
+	}
+	
+	private void removeFlag(CoursePrivateState actor) {
+		actor.getLogger().remove(progressFlag());
+	}
+	
+	private String progressFlag() {
+		 return Student+"@"+this.getClass().getName() + "@" + Integer.toHexString(this.hashCode());
+	}
+	
+	
+	
 	@Override
 	public String toString() {
 		return "ParticipatingInCourseAction [Course=" + Course + ", Student=" + Student + ", Grade="
