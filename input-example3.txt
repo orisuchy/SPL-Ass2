@@ -130,6 +130,20 @@
 "Students": ["Kobi"],
 "Computer": "A",
 "Conditions" : ["Alg1", "Logic"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "Math",
+"Students": ["Kobi"],
+"Computer": "A",
+"Conditions" : ["Alg1", "Logic"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "Math",
+"Students": ["Kobi"],
+"Computer": "A",
+"Conditions" : ["Alg1", "Logic"]
 }
 ]
 }
