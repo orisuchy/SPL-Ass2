@@ -100,12 +100,6 @@
 "Grade": ["94"]
 },
 {
-"Action": "Participate In Course",
-"Student": "Close",
-"Course": "Intro To CS",
-"Grade": ["94"]
-},
-{
 "Action": "Add Spaces",
 "Course": "SPL",
 "Number": "100"
@@ -129,13 +123,6 @@
 "Students": ["Yossi","Moshe"],
 "Computer": "A",
 "Conditions" : ["SPL", "Data Structures"]
-},
-{
-"Action" : "Administrative Check",
-"Department": "Math",
-"Students": ["Kobi"],
-"Computer": "A",
-"Conditions" : ["Alg1", "Logic"]
 }
 ]
 }
