@@ -3,11 +3,13 @@ package bgu.spl.a2.sim.actions;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import bgu.spl.a2.Action;
 import bgu.spl.a2.Promise;
 import bgu.spl.a2.sim.privateStates.CoursePrivateState;
 import bgu.spl.a2.sim.privateStates.StudentPrivateState;
+
+//TODO- delete! and simout
+import bgu.spl.a2.sim.Simulator;
 
 /**
  * 
@@ -53,6 +55,9 @@ class RegisterWithPreferences extends Action<Boolean> {
 		//Create ParticipatingInCourseAction for the student and the current course
 		String course = Preferences[currCourse];
 		String grade = Grade[currCourse];
+		
+		Simulator.simOut("Trying to register student to " + Preferences[currCourse]);
+		
 		Action<Boolean> attemptToRegisterStudent = new ParticipatingInCourseAction(course, Student ,new String[] {grade});
 		Promise<Boolean> registerResult = (Promise<Boolean>) sendMessage(attemptToRegisterStudent, course, new CoursePrivateState());
 		

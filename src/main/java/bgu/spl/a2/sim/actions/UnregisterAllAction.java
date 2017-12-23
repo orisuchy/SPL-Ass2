@@ -45,20 +45,24 @@ class UnregisterAllAction extends Action<Boolean> {
 		for(String student : students) {
 			Action<Boolean> action = new UnregisterAction(student, _course);
 			dependencies.add(action);
-			getActorThreadPool().submit(action, _course, _courseState);
+			sendMessage(action, _course, _courseState);
 		}
 		
-		then(dependencies, ()->{
-			
-			boolean success = true;
-			for (Action<Boolean> action : dependencies) {
-				if(!action.getResult().get()) {
-					success = false;
-					break;
+		
+		if(dependencies.isEmpty()) { //course has no students registered
+			complete(true);
+		} else {
+			then(dependencies, ()->{
+				boolean success = true;
+				for (Action<Boolean> action : dependencies) {
+					if(!action.getResult().get()) {
+						success = false;
+						break;
+					}
 				}
 				complete(success);
-			}
-		});
+			});
+		}
 	}
 
 
