@@ -7,7 +7,6 @@
 "Sig Fail": "999283"
 }
 ],
-
 "Phase 1" : [
 {
 "Action":"Open Course",
@@ -81,10 +80,7 @@
 "Student": "Kobi"
 }
 ],
-
-
 "Phase 2" : [
-
 {
 "Action": "Register With Preferences",
 "Student": "Yossi",
@@ -118,10 +114,8 @@
 "Action": "Close Course",
 "Department": "CS",
 "Course": "Intro To CS"
-},
+}
 ],
-
-
 "Phase 3": [
 {
 "Action": "Participate In Course",
@@ -136,7 +130,6 @@
 "Computer": "A",
 "Conditions" : ["SPL", "Data Structures"]
 },
-,
 {
 "Action" : "Administrative Check",
 "Department": "Math",
