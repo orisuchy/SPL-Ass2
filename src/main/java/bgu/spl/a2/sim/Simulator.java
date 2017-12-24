@@ -182,7 +182,11 @@ public class Simulator {
 		actorThreadPool = myActorThreadPool;
 	}
 	
-	
+	/**
+	* attach a Warehouse to the Simulator, this Warehouse will be used to run the simulation
+	* 
+	* @param myWarehouse - the Warehouse which will be used by the simulator
+	*/
 	public static void attachWarehouse(Warehouse myWarehouse) {
 		warehouse = myWarehouse;
 	}
@@ -191,7 +195,7 @@ public class Simulator {
 	* shut down the simulation
 	* returns list of private states
 	*/
-	public static HashMap<String,PrivateState> end(){
+	public static HashMap<String, PrivateState> end(){
 		try {
 			actorThreadPool.shutdown();
 		} catch (InterruptedException e) {}
@@ -205,12 +209,20 @@ public class Simulator {
 		return ret;
 	}
 	
-	private static String readFile(String path, Charset encoding) throws IOException 
+	/**
+	 * reads from txt file to string
+	 * 
+	 * @param path
+	 * @return
+	 * @throws IOException
+	 */
+	private static String readFile(String path) throws IOException 
 	{
 	  byte[] encoded = Files.readAllBytes(Paths.get(path));
-	  return new String(encoded, encoding);
+	  return new String(encoded);
 	}
 	
+
 	public static Warehouse getWarehouse() {
 		return warehouse;
 	}
@@ -228,7 +240,7 @@ public class Simulator {
 		String path = args[0];
 		
 		try {
-			JSONinput = readFile(path, StandardCharsets.UTF_8);
+			JSONinput = readFile(path);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

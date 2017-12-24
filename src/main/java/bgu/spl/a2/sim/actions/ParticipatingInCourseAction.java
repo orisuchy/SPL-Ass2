@@ -98,19 +98,30 @@ class ParticipatingInCourseAction extends Action<Boolean> {
 		return (courseState.getAvailableSpots()>0);
 	}
 
+	/**
+	 * Adds a flag to the log of the Course actor that indicates that there 
+	 * is a registration in progress
+	 * @param actor
+	 */
 	private void addFlag(CoursePrivateState actor) {
 		actor.getLogger().add(progressFlag());
 	}
 	
+	/**
+	 * Removes the flag from the log of the Course actor
+	 * @param actor
+	 */
 	private void removeFlag(CoursePrivateState actor) {
 		actor.getLogger().remove(progressFlag());
 	}
 	
+	/**
+	 * Returns a unique flag for this action
+	 * @return
+	 */
 	private String progressFlag() {
 		 return Student+"@"+this.getClass().getName() + "@" + Integer.toHexString(this.hashCode());
 	}
-	
-	
 	
 	@Override
 	public String toString() {

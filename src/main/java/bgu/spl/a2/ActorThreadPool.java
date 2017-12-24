@@ -123,7 +123,6 @@ public class ActorThreadPool {
 			actorsStatus.put(actorId, new AtomicBoolean());
 		}
 		else {
-			//TODO - ori, shouldn't we check that the action is not null?
 			actorsQueues.get(actorId).add(action); //Add action to actors queue
 		}
 		if(action!=null) {

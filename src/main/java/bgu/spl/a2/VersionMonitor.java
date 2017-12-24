@@ -56,7 +56,6 @@ public class VersionMonitor {
     	//wait until _version >= version
     	while(getVersion()<version) {
     		this.wait();
-    	//	Thread.currentThread().sleep(100);;
     	}
     }
 }
