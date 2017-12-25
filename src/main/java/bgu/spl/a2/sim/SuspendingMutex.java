@@ -42,7 +42,6 @@ public class SuspendingMutex {
 			returnedPromise.resolve(_computer);
 		} else { //must wait in line
 			_numberOfRequests.incrementAndGet();
-			Simulator.simOut("MUTEX DOWN: waiting in line " + _numberOfRequests.get() + " " + _promiseQueue.size());
 			_promiseQueue.add(returnedPromise);
 		}
 		
@@ -57,7 +56,6 @@ public class SuspendingMutex {
 			return;
 		} else {
 			_numberOfRequests.decrementAndGet();
-			Simulator.simOut("MUTEX UP: " + _numberOfRequests.get() + " " + _promiseQueue.size());
 			Promise<Computer> nextPromiseToHandle = _promiseQueue.poll();
 			if(nextPromiseToHandle != null) {
 				//throw new RuntimeException("Popped NULL promise from mutex queue");
@@ -67,13 +65,6 @@ public class SuspendingMutex {
 		}
 	}
 	
-	
-	private void resolveTop() {
-		if(!_promiseQueue.isEmpty()) {
-			Promise<Computer> toResolve = _promiseQueue.peek();
-			toResolve.resolve(_computer);
-		}
-	}
 	
 	/**
 	 * get the type of the computer

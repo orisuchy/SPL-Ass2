@@ -25,8 +25,6 @@ import bgu.spl.a2.sim.actions.SubmittableActionBoxFactory;
  */
 public class Simulator {
 
-	private static boolean DEBUG_MODE = false;
-	
 	private static String JSONinput;
 	private static ActorThreadPool actorThreadPool;
 	private static Warehouse warehouse;
