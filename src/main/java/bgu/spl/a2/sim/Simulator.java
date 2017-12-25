@@ -25,7 +25,7 @@ import bgu.spl.a2.sim.actions.SubmittableActionBoxFactory;
  */
 public class Simulator {
 
-	private static boolean DEBUG_MODE = true;
+	private static boolean DEBUG_MODE = false;
 	
 	private static String JSONinput;
 	private static ActorThreadPool actorThreadPool;
@@ -238,7 +238,7 @@ public class Simulator {
 		String path = args[0];
 		
 		
-		for(int i=0; i<25000; i++) {
+		for(int i=0; i<100000; i++) {
 			System.out.println(i);
 			
 		try {
