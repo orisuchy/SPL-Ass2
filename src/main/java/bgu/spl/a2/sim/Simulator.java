@@ -25,7 +25,7 @@ import bgu.spl.a2.sim.actions.SubmittableActionBoxFactory;
  */
 public class Simulator {
 
-	private static boolean DEBUG_MODE = false;
+	private static boolean DEBUG_MODE = true;
 	
 	private static String JSONinput;
 	private static ActorThreadPool actorThreadPool;
@@ -218,8 +218,8 @@ public class Simulator {
 	public static void main(String [] args){
 		String path = args[0];
 		
-		for(int i=0; i<100000; i++) {
-		System.out.println(i);
+		//for(int i=0; i<100000; i++) {
+		//System.out.println(i);
 		try {
 			JSONinput = readFile(path);
 		} catch (IOException e) {
@@ -241,6 +241,6 @@ public class Simulator {
 		start();
 		
 		System.out.println("end");
-		}
+		//}
 	}
 }
