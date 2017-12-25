@@ -36,11 +36,13 @@ public class SuspendingMutex {
 	 * 
 	 * @return a promise for the requested computer
 	 */
-	public Promise<Computer> down(){
+	public synchronized Promise<Computer> down(){
 		Promise<Computer> returnedPromise = new Promise<Computer>();
 		if(_numberOfRequests.compareAndSet(0, 1)) { //Was first to request computer
 			returnedPromise.resolve(_computer);
 		} else { //must wait in line
+			_numberOfRequests.incrementAndGet();
+			Simulator.simOut("MUTEX DOWN: waiting in line " + _numberOfRequests.get() + " " + _promiseQueue.size());
 			_promiseQueue.add(returnedPromise);
 		}
 		
@@ -50,18 +52,28 @@ public class SuspendingMutex {
 	 * Computer return procedure
 	 * releases a computer which becomes available in the warehouse upon completion
 	 */
-	public void up(){	
+	public synchronized void up(){	
 		if(_numberOfRequests.compareAndSet(1, 0)) {
 			return;
 		} else {
+			_numberOfRequests.decrementAndGet();
+			Simulator.simOut("MUTEX UP: " + _numberOfRequests.get() + " " + _promiseQueue.size());
 			Promise<Computer> nextPromiseToHandle = _promiseQueue.poll();
-			if(nextPromiseToHandle == null) {
-				throw new RuntimeException("Popped NULL promise from mutex queue");
+			if(nextPromiseToHandle != null) {
+				//throw new RuntimeException("Popped NULL promise from mutex queue");
+				nextPromiseToHandle.resolve(_computer);
 			}
-			nextPromiseToHandle.resolve(_computer);
+			
 		}
 	}
 	
+	
+	private void resolveTop() {
+		if(!_promiseQueue.isEmpty()) {
+			Promise<Computer> toResolve = _promiseQueue.peek();
+			toResolve.resolve(_computer);
+		}
+	}
 	
 	/**
 	 * get the type of the computer
