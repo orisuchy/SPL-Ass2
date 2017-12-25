@@ -125,14 +125,14 @@ public abstract class Action<R> {
      * @return promise that will hold the result of the sent action
      */
 	public Promise<?> sendMessage(Action<?> action, String actorId, PrivateState actorState){
-		_pool.submit(action, actorId, actorState); //add dependecy action to pool
-   
 		Promise<?> promise = action.getResult();
 		promise.subscribe(() ->{
 			
 			_pool.submit(this, _actorId, _actorState); //add callback to be put back into the pool when promise is resolved
 		});
-
+		
+		_pool.submit(action, actorId, actorState); //add dependecy action to pool
+		
         return promise;
 	}
 	
