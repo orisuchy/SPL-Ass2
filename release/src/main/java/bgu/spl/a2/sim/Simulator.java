@@ -25,8 +25,6 @@ import bgu.spl.a2.sim.actions.SubmittableActionBoxFactory;
  */
 public class Simulator {
 
-	private static boolean DEBUG_MODE = false;
-	
 	private static String JSONinput;
 	private static ActorThreadPool actorThreadPool;
 	private static Warehouse warehouse;
@@ -217,11 +215,12 @@ public class Simulator {
 	
 	public static void main(String [] args){
 		String path = args[0];
-		
+			
 		try {
 			JSONinput = readFile(path);
 		} catch (IOException e) {
 			e.printStackTrace();
+			return;
 		}
 		Gson gson = new Gson();
 		
@@ -237,5 +236,6 @@ public class Simulator {
 		attachWarehouse(newWarehouse);
 	
 		start();
+
 	}
 }

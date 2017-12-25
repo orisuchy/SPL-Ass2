@@ -220,6 +220,7 @@ public class Simulator {
 			JSONinput = readFile(path);
 		} catch (IOException e) {
 			e.printStackTrace();
+			return;
 		}
 		Gson gson = new Gson();
 		
