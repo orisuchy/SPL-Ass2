@@ -43,7 +43,7 @@ public class SuspendingMutex {
 			returnedPromise.resolve(_computer);
 		} else { //must wait in line
 			_numberOfRequests.incrementAndGet();
-			Simulator.simOut("MUTEX DOWN: waiting in line");
+			Simulator.simOut("MUTEX DOWN: waiting in line ");
 			_promiseQueue.add(returnedPromise);
 		}
 		
