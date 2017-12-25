@@ -60,7 +60,7 @@ public class SuspendingMutex {
 			Simulator.simOut("MUTEX UP: " + _numberOfRequests.decrementAndGet());
 			Promise<Computer> nextPromiseToHandle = _promiseQueue.poll();
 			if(nextPromiseToHandle == null) {
-				throw new RuntimeException("Popped NULL promise from mutex queue");
+				//throw new RuntimeException("Popped NULL promise from mutex queue");
 			}
 			nextPromiseToHandle.resolve(_computer);
 		}
