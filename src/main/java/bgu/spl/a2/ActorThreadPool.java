@@ -137,6 +137,9 @@ public class ActorThreadPool {
 		for (int i=0; i<numOfThreads; i++) {
 			threadsArray[i].interrupt();
 		}
+		for (int i=0; i<numOfThreads; i++) {
+			threadsArray[i].join();
+		}
 		
 	}
 
