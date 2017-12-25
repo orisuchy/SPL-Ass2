@@ -36,7 +36,7 @@ public class SuspendingMutex {
 	 * 
 	 * @return a promise for the requested computer
 	 */
-	public Promise<Computer> down(){
+	public synchronized Promise<Computer> down(){
 		Promise<Computer> returnedPromise = new Promise<Computer>();
 		if(_numberOfRequests.compareAndSet(0, 1)) { //Was first to request computer
 			Simulator.simOut("MUTEX DOWN: compared and set(0,1) - first!");
@@ -53,7 +53,7 @@ public class SuspendingMutex {
 	 * Computer return procedure
 	 * releases a computer which becomes available in the warehouse upon completion
 	 */
-	public void up(){	
+	public synchronized void up(){	
 		if(_numberOfRequests.compareAndSet(1, 0)) {
 			Simulator.simOut("MUTEX UP: compared and set(1,0) - last one");
 			return;
