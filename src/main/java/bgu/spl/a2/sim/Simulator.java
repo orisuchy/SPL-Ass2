@@ -9,8 +9,6 @@ import com.google.gson.Gson;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
@@ -27,7 +25,7 @@ import bgu.spl.a2.sim.actions.SubmittableActionBoxFactory;
  */
 public class Simulator {
 
-	private static boolean DEBUG_MODE = true;
+	private static boolean DEBUG_MODE = false;
 	
 	private static String JSONinput;
 	private static ActorThreadPool actorThreadPool;
@@ -80,12 +78,9 @@ public class Simulator {
     /**
      * submit actions in phase1
      */
-    private static void runPhase1() {
-    	simOut("********************************************************************** STARTING PHASE 1 **********************************************************************");
-    	
+    private static void runPhase1() {	
     	subscribeToPromiseList(phase1, ()->{
     		countDownLatch1.countDown();
-    		simOut("LATCH 1 DOWN "  + countDownLatch1.getCount());
     		});
     	submitAllActions(simInput.getPhase1()); 
     }
@@ -93,12 +88,9 @@ public class Simulator {
     /**
      * submit actions in phase2 only if the actions in phase1 are resolved
      */
-    private static void runPhase2() {
-    	simOut("********************************************************************** STARTING PHASE 2 **********************************************************************");
-    	
+    private static void runPhase2() {   	
     	subscribeToPromiseList(phase2, ()->{
     		countDownLatch2.countDown();
-    		simOut("LATCH 2 DOWN " + countDownLatch2.getCount());
     		});
     	submitAllActions(simInput.getPhase2());
     }
@@ -106,12 +98,9 @@ public class Simulator {
     /**
      * submit actions in phase3 only if the actions in phase2 are resolved
      */
-    private static void runPhase3() {
-    	simOut("*********************************************************************** STARTING PHASE 3 **********************************************************************");
-    	
+    private static void runPhase3() {    	
     	subscribeToPromiseList(phase3, ()->{
     		countDownLatch3.countDown();
-    		simOut("LATCH 3 DOWN "  + countDownLatch3.getCount());
     		});
     	submitAllActions(simInput.getPhase3());
     }
@@ -120,7 +109,6 @@ public class Simulator {
      * shutdown the threadpool if phase3 is resolved and save result in file
      */
     private static void endPhase() {
-    	simOut("*********************************************************************** STARTING PHASE END **********************************************************************");
 		HashMap<String, PrivateState> SimulationResult;
 		SimulationResult = end();
 		try {
@@ -132,8 +120,7 @@ public class Simulator {
 		catch(IOException e) {
 			e.printStackTrace();
 		}	
-		simOut("*********************************************************************** END **********************************************************************");
-    }
+	}
     
     
     /**
@@ -182,7 +169,11 @@ public class Simulator {
 		actorThreadPool = myActorThreadPool;
 	}
 	
-	
+	/**
+	* attach a Warehouse to the Simulator, this Warehouse will be used to run the simulation
+	* 
+	* @param myWarehouse - the Warehouse which will be used by the simulator
+	*/
 	public static void attachWarehouse(Warehouse myWarehouse) {
 		warehouse = myWarehouse;
 	}
@@ -191,7 +182,7 @@ public class Simulator {
 	* shut down the simulation
 	* returns list of private states
 	*/
-	public static HashMap<String,PrivateState> end(){
+	public static HashMap<String, PrivateState> end(){
 		try {
 			actorThreadPool.shutdown();
 		} catch (InterruptedException e) {}
@@ -205,30 +196,30 @@ public class Simulator {
 		return ret;
 	}
 	
-	private static String readFile(String path, Charset encoding) throws IOException 
+	/**
+	 * reads from txt file to string
+	 * 
+	 * @param path
+	 * @return
+	 * @throws IOException
+	 */
+	private static String readFile(String path) throws IOException 
 	{
 	  byte[] encoded = Files.readAllBytes(Paths.get(path));
-	  return new String(encoded, encoding);
+	  return new String(encoded);
 	}
 	
+
 	public static Warehouse getWarehouse() {
 		return warehouse;
 	}
 	
-	/**
-	 * used for printing out to the console if DEBUG_MODE == true
-	 */
-	public static void simOut(String output) {
-		if(DEBUG_MODE) {
-			System.out.println(Thread.currentThread().getName() + ": " + output);
-		}
-	}	
 	
 	public static void main(String [] args){
 		String path = args[0];
 		
 		try {
-			JSONinput = readFile(path, StandardCharsets.UTF_8);
+			JSONinput = readFile(path);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

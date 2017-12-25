@@ -5,7 +5,7 @@ import bgu.spl.a2.Promise;
 import bgu.spl.a2.sim.privateStates.DepartmentPrivateState;
 import bgu.spl.a2.sim.privateStates.StudentPrivateState;
 
-/*
+/**
 Add Student:
 	- Behavior: This action adds a new student to a specied department.
 	- Actor: Must be initially submitted to the Department's actor.

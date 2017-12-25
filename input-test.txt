@@ -1,0 +1,178 @@
+{
+"threads": 3,
+"Computers" : [
+{
+"Type":"A",
+"Sig Success": "010101",
+"Sig Fail": "65656565"
+},
+{
+"Type":"B",
+"Sig Success": "0000000",
+"Sig Fail": "666666666"
+}
+],
+"Phase 1" : [
+{
+"Action":"Open Course",
+"Department": "CS",
+"Course": "Intro To CS",
+"Space": "1",
+"Prerequisites" : []
+},
+{
+"Action":"Open Course",
+"Department": "CS",
+"Course": "DataStructures",
+"Space": "1",
+"Prerequisites" : ["Intro To CS"]
+},
+{
+"Action":"Open Course",
+"Department": "CS",
+"Course": "SPL",
+"Space": "1",
+"Prerequisites" : ["DataStructures"]
+},
+{
+"Action":"Open Course",
+"Department": "Math",
+"Course": "Alg1",
+"Space": "10",
+"Prerequisites" :  []
+},
+{
+"Action":"Open Course",
+"Department": "Math",
+"Course": "Alg2",
+"Space": "10",
+"Prerequisites" :  ["Alg1"]
+},
+{
+"Action":"Open Course",
+"Department": "Math",
+"Course": "logic",
+"Space": "10",
+"Prerequisites" :  []
+},
+{
+"Action":"Open Course",
+"Department": "Math",
+"Course": "Combi",
+"Space": "10",
+"Prerequisites" :  ["logic"]
+},
+{
+"Action":"Open Course",
+"Department": "CS",
+"Course": "Automata",
+"Space": "1",
+"Prerequisites" :  ["Combi"]
+},
+{
+"Action":"Open Course",
+"Department": "Bio",
+"Course": "Cell",
+"Space": "1",
+"Prerequisites" :  []
+},
+{
+"Action":"Open Course",
+"Department": "Bio",
+"Course": "Neuro",
+"Space": "10",
+"Prerequisites" :  []
+},
+{
+"Action": "Add Student",
+"Department": "Bio",
+"Student": "Yuval"
+},
+{
+"Action": "Add Student",
+"Department": "Math",
+"Student": "Jon"
+},
+{
+"Action": "Add Student",
+"Department": "Math",
+"Student": "Shira"
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "Ori"
+},
+{
+"Action": "Close Course",
+"Department": "Bio",
+"Course": "Neuro"
+}
+],
+"Phase 2" : [
+{
+"Action": "Participate In Course",
+"Student": "Yuval",
+"Course": "Cell",
+"Grade": ["94"]
+},
+{
+"Action": "Register With Preferences",
+"Student": "Jon",
+"Preferences": ["Cell","logic","Intro To CS"],
+"Grade": ["98","56","69"]
+},
+{
+"Action": "Register With Preferences",
+"Student": "Ori",
+"Preferences": ["SPL","Databases","Intro To CS", "Neuro"],
+"Grade": ["98","57","55","80"]
+},
+{
+"Action": "Participate In Course",
+"Student": "Shira",
+"Course": "Alg1",
+"Grade": ["90"]
+},
+{
+"Action": "Participate In Course",
+"Student": "Shira",
+"Course": "logic",
+"Grade": ["85"]
+},
+{
+"Action": "Participate In Course",
+"Student": "Shira",
+"Course": "Alg2",
+"Grade": ["100"]
+},
+{
+"Action": "Add Spaces",
+"Course": "Neuro",
+"Number": "99"
+}
+],
+"Phase 3": [
+{
+"Action" : "Administrative Check",
+"Department": "CS",
+"Students": ["Ori"],
+"Computer": "B",
+"Conditions" : ["DataStructures"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "Math",
+"Students": ["Jon","Shira"],
+"Computer": "B",
+"Conditions" : ["logic"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "Bio",
+"Students": ["Yuval"],
+"Computer": "B",
+"Conditions" : ["Cell"]
+}
+]
+}

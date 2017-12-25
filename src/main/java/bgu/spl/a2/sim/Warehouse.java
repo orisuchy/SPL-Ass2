@@ -45,6 +45,10 @@ public class Warehouse {
 	}
 	
 	
+	/**
+	 * adds a computer to the warehouse
+	 * @param computer
+	 */
 	public void addComputer(Computer computer) {
 		_computerMutexes.put(computer.getComputerType(), new SuspendingMutex(computer));
 	}
