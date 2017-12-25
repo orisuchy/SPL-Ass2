@@ -102,6 +102,11 @@
 "Action": "Add Student",
 "Department": "CS",
 "Student": "Ori"
+},
+{
+"Action": "Close Course",
+"Department": "Bio",
+"Course": "Neuro"
 }
 ],
 "Phase 2" : [
@@ -140,11 +145,6 @@
 "Student": "Shira",
 "Course": "Alg2",
 "Grade": ["100"]
-},
-{
-"Action": "Close Course",
-"Department": "Bio",
-"Course": "Neuro"
 },
 {
 "Action": "Add Spaces",
