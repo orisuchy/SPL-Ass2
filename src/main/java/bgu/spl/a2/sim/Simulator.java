@@ -215,10 +215,6 @@ public class Simulator {
 	
 	public static void main(String [] args){
 		String path = args[0];
-		
-		
-		for(int i=0; i<100000; i++) {
-			System.out.println(i);
 			
 		try {
 			JSONinput = readFile(path);
@@ -239,7 +235,6 @@ public class Simulator {
 		attachWarehouse(newWarehouse);
 	
 		start();
-		System.out.println("end");
-		}
+
 	}
 }
