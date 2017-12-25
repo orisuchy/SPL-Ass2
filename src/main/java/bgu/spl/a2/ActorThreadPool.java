@@ -4,9 +4,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-//TODO - delete when done and remove simOut!!
-import bgu.spl.a2.sim.Simulator;
-
 
 /**
  * represents an actor thread pool - to understand what this class does please
@@ -60,7 +57,6 @@ public class ActorThreadPool {
 								currentVersion = version.getVersion();
 								ConcurrentLinkedQueue<Action<?>> queueToRun = actorsQueues.get(actorId);
 								Action<?> action = queueToRun.poll();
-								Simulator.simOut("thread handeling action: " + action + "    from actor: " + actorId);
 								action.handle(this, actorId, getPrivateState(actorId));
 								version.inc();
 							}
@@ -69,9 +65,7 @@ public class ActorThreadPool {
 					}
 					try 
 					{ 
-						//Simulator.simOut("thread waiting for version " + (currentVersion+1));
 						version.await(currentVersion+1);
-						//Simulator.simOut("thread woken up");
 					}
 					catch (InterruptedException e) {
 						Thread.currentThread().interrupt();
@@ -124,9 +118,6 @@ public class ActorThreadPool {
 		}
 		else {
 			actorsQueues.get(actorId).add(action); //Add action to actors queue
-		}
-		if(action!=null) {
-			Simulator.simOut("Added action to ActorThreadPool:" + action.toString() + "  To Actor: " + actorId);
 		}
 		version.inc();
 
