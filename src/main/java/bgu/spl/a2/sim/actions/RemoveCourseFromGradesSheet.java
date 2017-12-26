@@ -14,7 +14,7 @@ public class RemoveCourseFromGradesSheet extends Action<Boolean> {
 	 * @param course - String of course's name
 	 */
 	public RemoveCourseFromGradesSheet(String course) {
-		setPromise(new Promise<Boolean>());
+		super();
 		setActionName("Remove Course " + course + " From Grades Sheet");
 		this.course = course;
 		}

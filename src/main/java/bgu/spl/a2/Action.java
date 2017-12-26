@@ -193,8 +193,4 @@ public abstract class Action<R> {
 	protected String getActorId() {
 		return _actorId;
 	}
-	
-	protected void setPromise(Promise<R> promise) {
-		_result = promise;
-	}
 }
