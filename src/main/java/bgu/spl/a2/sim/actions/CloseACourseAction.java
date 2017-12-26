@@ -27,7 +27,7 @@ class CloseACourseAction extends Action<Boolean> {
 	 * @param name of course
 	 */
 	public CloseACourseAction(String course) {
-		setPromise(new Promise<Boolean>());
+		super();
 		setActionName("Close Course");
 		_course = course;
 	}

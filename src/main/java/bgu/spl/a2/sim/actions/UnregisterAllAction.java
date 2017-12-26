@@ -21,7 +21,7 @@ class UnregisterAllAction extends Action<Boolean> {
 	 * @param _course
 	 */
 	public UnregisterAllAction(String _course) {
-		setPromise(new Promise<Boolean>());
+		super();
 		setActionName("Close Course");
 		this._course = _course;
 	}
