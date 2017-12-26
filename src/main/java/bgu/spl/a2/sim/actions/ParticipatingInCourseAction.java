@@ -54,6 +54,8 @@ class ParticipatingInCourseAction extends Action<Boolean> {
 		
 		//create CheckStudentHasPrequisitesAction
 		List<String> prerequisite = courseState.getPrequisites();
+		List<String> prerequisiteCopy = new ArrayList<String>();
+		prerequisiteCopy.addAll(prerequisite);
 		Action<Boolean> checkStudentHasPrerequisites = new CheckStudentHasPrerequisitesAction(prerequisite);
 		Promise<Boolean> studentHasPrerequisitesPromise = 
 				(Promise<Boolean>) sendMessage(checkStudentHasPrerequisites, Student, new StudentPrivateState());
