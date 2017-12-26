@@ -8,7 +8,7 @@
 },
 {
 "Type":"B",
-"Sig Success": "0000000",
+"Sig Success": "0000011111",
 "Sig Fail": "666666666"
 }
 ],
