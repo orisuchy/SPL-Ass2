@@ -14,7 +14,7 @@ class AddSpacesAction extends Action<Boolean> {
 	 * @param How much space to add
 	 */
 	public AddSpacesAction(int spaceToAdd) {
-		setPromise(new Promise<Boolean>());
+		super();
 		setActionName("Add Spaces");
 		this.spaceToAdd = spaceToAdd;
 	}
