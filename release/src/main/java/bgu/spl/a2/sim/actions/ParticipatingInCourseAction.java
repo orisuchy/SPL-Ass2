@@ -31,7 +31,7 @@ class ParticipatingInCourseAction extends Action<Boolean> {
 	 * @param grade of the student in the course (grade.size()==1)
 	 */
 	public ParticipatingInCourseAction(String course, String student, String[] grade) {
-		setPromise(new Promise<Boolean>());
+		super();
 		setActionName("Participate In Course");
 		this.Course = course;
 		this.Student = student;
@@ -54,6 +54,8 @@ class ParticipatingInCourseAction extends Action<Boolean> {
 		
 		//create CheckStudentHasPrequisitesAction
 		List<String> prerequisite = courseState.getPrequisites();
+		List<String> prerequisiteCopy = new ArrayList<String>();
+		prerequisiteCopy.addAll(prerequisite);
 		Action<Boolean> checkStudentHasPrerequisites = new CheckStudentHasPrerequisitesAction(prerequisite);
 		Promise<Boolean> studentHasPrerequisitesPromise = 
 				(Promise<Boolean>) sendMessage(checkStudentHasPrerequisites, Student, new StudentPrivateState());

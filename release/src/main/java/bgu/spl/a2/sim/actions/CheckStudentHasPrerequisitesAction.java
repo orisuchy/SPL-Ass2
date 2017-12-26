@@ -17,7 +17,7 @@ class CheckStudentHasPrerequisitesAction extends Action<Boolean> {
 	 * @param prequisites - list of courses to check
 	 */
 	public CheckStudentHasPrerequisitesAction(List<String> prequisites) {
-		setPromise(new Promise<Boolean>());
+		super();
 		setActionName("Check student has prerequisites");
 		this.prequisites = new ArrayList<>();
 		for(String course : prequisites) {
