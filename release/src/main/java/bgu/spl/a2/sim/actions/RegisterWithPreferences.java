@@ -32,7 +32,7 @@ class RegisterWithPreferences extends Action<Boolean> {
 	 * @param grade
 	 */
 	public RegisterWithPreferences(String student, String[] preferences, String[] grade) {
-		setPromise(new Promise<Boolean>());
+		super();
 		setActionName("Register With Preferences");
 		currCourse = 0;
 		Student = student;

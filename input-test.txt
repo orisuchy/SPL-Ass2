@@ -8,7 +8,7 @@
 },
 {
 "Type":"B",
-"Sig Success": "0000000",
+"Sig Success": "0000011111",
 "Sig Fail": "666666666"
 }
 ],
@@ -102,11 +102,6 @@
 "Action": "Add Student",
 "Department": "CS",
 "Student": "Ori"
-},
-{
-"Action": "Close Course",
-"Department": "Bio",
-"Course": "Neuro"
 }
 ],
 "Phase 2" : [
@@ -119,7 +114,7 @@
 {
 "Action": "Register With Preferences",
 "Student": "Jon",
-"Preferences": ["Cell","logic","Intro To CS"],
+"Preferences": ["logic","Intro To CS"],
 "Grade": ["98","56","69"]
 },
 {
@@ -127,6 +122,11 @@
 "Student": "Ori",
 "Preferences": ["SPL","Databases","Intro To CS", "Neuro"],
 "Grade": ["98","57","55","80"]
+},
+{
+"Action": "Close Course",
+"Department": "Bio",
+"Course": "Neuro"
 },
 {
 "Action": "Participate In Course",

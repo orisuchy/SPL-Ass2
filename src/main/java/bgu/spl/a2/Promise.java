@@ -61,12 +61,16 @@ public class Promise<T>{
 	 * resolved via the {@link #subscribe(callback)} method should
 	 * be executed before this method returns
 	 *
+	 * Method is synchronized to make sure we do not "miss" a callback in the queue when
+	 * resolving the promise
+	 * 
+	 *
      * @throws IllegalStateException
      * 			in the case where this object is already resolved
 	 * @param value
 	 *            - the value to resolve this promise object with
 	 */
-	public void resolve(T value){
+	public synchronized void resolve(T value){
 		if (!isResolved()) 
 		{
 			result = value;
@@ -87,10 +91,13 @@ public class Promise<T>{
 	 * callback got called, this object should not hold its reference any
 	 * longer.
 	 *
+	 * Method is synchronized to make sure we do not "miss" a callback in the queue when
+	 * resolving the promise
+	 * 
 	 * @param callback
 	 *            the callback to be called when the promise object is resolved
 	 */
-	public void subscribe(callback callback) {
+	public synchronized void subscribe(callback callback) {
 		if (!isResolved())
 		callbacksList.add(callback); //Add callback to callback list
 		else

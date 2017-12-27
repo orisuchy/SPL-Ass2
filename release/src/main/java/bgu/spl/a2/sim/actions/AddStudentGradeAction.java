@@ -22,7 +22,7 @@ class AddStudentGradeAction extends Action<Boolean> {
 	 * @param grade
 	 */
 	public AddStudentGradeAction(String course, int grade){
-		setPromise(new Promise<Boolean>());
+		super();
 		setActionName("Participate In Course");
 		this.course = course;
 		this.grade = grade;

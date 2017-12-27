@@ -28,6 +28,13 @@ public abstract class Action<R> {
 	
 	
 	/**
+	 * Constructor
+	 */
+	public Action() {
+		_result = new Promise<>();
+	}
+	
+	/**
      * start handling the action - note that this method is protected, a thread
      * cannot call it directly.
      */
@@ -185,9 +192,5 @@ public abstract class Action<R> {
 	
 	protected String getActorId() {
 		return _actorId;
-	}
-	
-	protected void setPromise(Promise<R> promise) {
-		_result = promise;
 	}
 }

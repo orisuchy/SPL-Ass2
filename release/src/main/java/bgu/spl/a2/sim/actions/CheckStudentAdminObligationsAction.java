@@ -20,7 +20,7 @@ class CheckStudentAdminObligationsAction extends Action<Boolean> {
 	 * @param conditions - list of courses student must pass
 	 */
 	public CheckStudentAdminObligationsAction(Computer computer, String[] conditions) {
-		setPromise(new Promise<Boolean>());
+		super();
 		setActionName("Administrative Check");
 		Computer = computer;
 		Conditions = new ArrayList<String>();
