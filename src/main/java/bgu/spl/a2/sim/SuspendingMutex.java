@@ -36,16 +36,24 @@ public class SuspendingMutex {
 	 * 
 	 * @return a promise for the requested computer
 	 */
-	public synchronized Promise<Computer> down(){
+	public Promise<Computer> down(){
 		Promise<Computer> returnedPromise = new Promise<Computer>();
-		if(_numberOfRequests.compareAndSet(0, 1)) { //Was first to request computer
+		_promiseQueue.add(returnedPromise);
+		if(_numberOfRequests.incrementAndGet()==1) {
 			returnedPromise.resolve(_computer);
-		} else { //must wait in line
-			_numberOfRequests.incrementAndGet();
-			_promiseQueue.add(returnedPromise);
+			_promiseQueue.remove(returnedPromise);
 		}
-		
 		return returnedPromise;
+		
+//		Promise<Computer> returnedPromise = new Promise<Computer>();
+//		if(_numberOfRequests.compareAndSet(0, 1)) { //Was first to request computer
+//			returnedPromise.resolve(_computer);
+//		} else { //must wait in line
+//			_numberOfRequests.incrementAndGet();
+//			_promiseQueue.add(returnedPromise);
+//		}
+//		
+//		return returnedPromise;
 	}
 	/**
 	 * Computer return procedure
