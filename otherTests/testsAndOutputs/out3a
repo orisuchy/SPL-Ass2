@@ -1,0 +1,118 @@
+{
+"Departments" : [
+{
+ "Department" : "CS",
+"actions":["Open Course", "Add Student", "Add Student", "Add Student", "Add Student", "Add Student", "Add Student", "Add Student", "Add Student", "Add Student", "Add Student", "Add Student", "Add Student", "Add Student", "Add Student", "Add Student", "Add Student", "Administrative Check",],
+"courseList": ["c1"],
+"studentList": ["s1","s2","s3","s4","s5","s6","s7","s8","s9","s10","s11","s12","s13","s14","s15","s16"]
+},
+],
+"Courses" : [
+{
+ "Course" : "c1",
+"actions":["Participate In Course","Participate In Course","Participate In Course","Participate In Course","Participate In Course","Participate In Course","Participate In Course","Participate In Course","Participate In Course","Participate In Course","Participate In Course","Participate In Course","Participate In Course","Participate In Course","Participate In Course","Participate In Course","Unregister","Unregister","Unregister","Unregister","Unregister","Unregister","Unregister","Unregister","Unregister","Unregister","Unregister","Unregister","Unregister","Unregister","Unregister","Unregister","Participate In Course","Participate In Course","Participate In Course","Participate In Course","Participate In Course","Participate In Course","Participate In Course","Participate In Course","Unregister","Unregister","Unregister","Participate In Course","Participate In Course","Unregister","Unregister","Unregister","Participate In Course","Participate In Course","Unregister","Unregister","Unregister","Unregister","Unregister"],
+"availableSpots": "18",
+"registered": "2",
+"regStudents" : [ "s12","s11"],
+"prequisites" : []
+},
+],
+"Students": [
+{
+ "Student": "s3",
+"actions" : [],
+"grades" : [],
+"signature": "999283",
+},
+{
+ "Student": "s4",
+"actions" : [],
+"grades" : [],
+"signature": "999283",
+},
+{
+ "Student": "s5",
+"actions" : [],
+"grades" : [],
+"signature": "999283",
+},
+{
+ "Student": "s6",
+"actions" : [],
+"grades" : [],
+"signature": "999283",
+},
+{
+ "Student": "s7",
+"actions" : [],
+"grades" : [],
+"signature": "999283",
+},
+{
+ "Student": "s8",
+"actions" : [],
+"grades" : [],
+"signature": "999283",
+},
+{
+ "Student": "s9",
+"actions" : [],
+"grades" : [],
+"signature": "999283",
+},
+{
+ "Student": "s11",
+"actions" : [],
+"grades" : [ "(c1,73)",],
+"signature": "1234666",
+},
+{
+ "Student": "s10",
+"actions" : [],
+"grades" : [],
+"signature": "999283",
+},
+{
+ "Student": "s13",
+"actions" : [],
+"grades" : [],
+"signature": "999283",
+},
+{
+ "Student": "s12",
+"actions" : [],
+"grades" : [ "(c1,74)",],
+"signature": "1234666",
+},
+{
+ "Student": "s15",
+"actions" : [],
+"grades" : [],
+"signature": "999283",
+},
+{
+ "Student": "s14",
+"actions" : [],
+"grades" : [],
+"signature": "999283",
+},
+{
+ "Student": "s16",
+"actions" : [],
+"grades" : [],
+"signature": "999283",
+},
+{
+ "Student": "s1",
+"actions" : [],
+"grades" : [],
+"signature": "999283",
+},
+{
+ "Student": "s2",
+"actions" : [],
+"grades" : [],
+"signature": "999283",
+},
+]
+}

@@ -1,0 +1,76 @@
+{
+"Departments" : [
+{
+ "Department" : "Dep1",
+"actions":["Open Course", "Open Course", "Add Student", "Add Student", "Add Student", "Add Student",],
+"courseList": ["A","B"],
+"studentList": ["1","2","3","4"]
+},
+{
+ "Department" : "Dep2",
+"actions":["Open Course", "Open Course",],
+"courseList": ["C","D"],
+"studentList": []
+},
+],
+"Courses" : [
+{
+ "Course" : "A",
+"actions":["Participate In Course","Participate In Course","Participate In Course","Unregister","Participate In Course","Unregister","Participate In Course","Unregister","Participate In Course","Unregister","Participate In Course","Unregister"],
+"availableSpots": "9",
+"registered": "1",
+"regStudents" : [ "3"],
+"prequisites" : []
+},
+{
+ "Course" : "B",
+"actions":["Participate In Course","Participate In Course"],
+"availableSpots": "3",
+"registered": "2",
+"regStudents" : [ "1","3"],
+"prequisites" : []
+},
+{
+ "Course" : "C",
+"actions":["Participate In Course","Participate In Course","Participate In Course","Unregister","Unregister"],
+"availableSpots": "2",
+"registered": "0",
+"regStudents" : [],
+"prequisites" : [ "A", "B",]
+},
+{
+ "Course" : "D",
+"actions":["Participate In Course","Participate In Course","Participate In Course","Participate In Course"],
+"availableSpots": "0",
+"registered": "2",
+"regStudents" : [ "1","3"],
+"prequisites" : [ "A", "B",]
+},
+],
+"Students": [
+{
+ "Student": "1",
+"actions" : [],
+"grades" : [ "(B,-1)", "(D,10)",],
+"signature": "0",
+},
+{
+ "Student": "2",
+"actions" : [],
+"grades" : [],
+"signature": "0",
+},
+{
+ "Student": "3",
+"actions" : [],
+"grades" : [ "(A,60)", "(B,40)", "(D,30)",],
+"signature": "0",
+},
+{
+ "Student": "4",
+"actions" : [],
+"grades" : [],
+"signature": "0",
+},
+]
+}

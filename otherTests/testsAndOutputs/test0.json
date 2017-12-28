@@ -1,0 +1,676 @@
+{
+"threads": 50,
+"Computers" : [
+{
+"Type":"A",
+"Sig Success": "100",
+"Sig Fail": "666"
+},
+{
+"Type":"B",
+"Sig Success": "200",
+"Sig Fail": "555"
+},
+{
+"Type":"C",
+"Sig Success": "300",
+"Sig Fail": "444"
+}
+],
+"Phase 1" : [
+{
+"Action":"Open Course",
+"Department": "D1",
+"Course": "c1",
+"Space": "10",
+"Prerequisites" : []
+},
+{
+"Action":"Open Course",
+"Department": "D2",
+"Course": "c2",
+"Space": "10",
+"Prerequisites" : []
+},
+{
+"Action":"Open Course",
+"Department": "D3",
+"Course": "c3",
+"Space": "10",
+"Prerequisites" : []
+},
+{
+"Action":"Open Course",
+"Department": "D4",
+"Course": "c4",
+"Space": "10",
+"Prerequisites" : []
+},
+{
+"Action":"Open Course",
+"Department": "D5",
+"Course": "c5",
+"Space": "10",
+"Prerequisites" : []
+},
+{
+"Action":"Open Course",
+"Department": "D6",
+"Course": "c6",
+"Space": "10",
+"Prerequisites" : []
+},
+{
+"Action":"Open Course",
+"Department": "D7",
+"Course": "c7",
+"Space": "10",
+"Prerequisites" : []
+},
+{
+"Action":"Open Course",
+"Department": "D8",
+"Course": "c8",
+"Space": "10",
+"Prerequisites" : []
+},
+{
+"Action":"Open Course",
+"Department": "D9",
+"Course": "c9",
+"Space": "10",
+"Prerequisites" : []
+},
+{
+"Action":"Open Course",
+"Department": "D10",
+"Course": "c10",
+"Space": "10",
+"Prerequisites" : []
+},
+{
+"Action":"Open Course",
+"Department": "D11",
+"Course": "c11",
+"Space": "10",
+"Prerequisites" : []
+},
+{
+"Action":"Open Course",
+"Department": "D12",
+"Course": "c12",
+"Space": "10",
+"Prerequisites" : []
+},
+{
+"Action":"Open Course",
+"Department": "D13",
+"Course": "c13",
+"Space": "10",
+"Prerequisites" : []
+},
+{
+"Action":"Open Course",
+"Department": "D14",
+"Course": "c14",
+"Space": "10",
+"Prerequisites" : []
+},
+{
+"Action":"Open Course",
+"Department": "D15",
+"Course": "c15",
+"Space": "10",
+"Prerequisites" : []
+},
+{
+"Action":"Open Course",
+"Department": "D16",
+"Course": "c16",
+"Space": "10",
+"Prerequisites" : []
+},
+{
+"Action":"Open Course",
+"Department": "D17",
+"Course": "c17",
+"Space": "10",
+"Prerequisites" : []
+},
+{
+"Action":"Open Course",
+"Department": "D18",
+"Course": "c18",
+"Space": "10",
+"Prerequisites" : []
+},
+{
+"Action":"Open Course",
+"Department": "D19",
+"Course": "c19",
+"Space": "10",
+"Prerequisites" : []
+},
+{
+"Action":"Open Course",
+"Department": "D20",
+"Course": "c20",
+"Space": "10",
+"Prerequisites" : []
+},
+{
+"Action":"Open Course",
+"Department": "D21",
+"Course": "c21",
+"Space": "10",
+"Prerequisites" : []
+},
+{
+"Action":"Open Course",
+"Department": "D22",
+"Course": "c22",
+"Space": "10",
+"Prerequisites" : []
+},
+{
+"Action":"Open Course",
+"Department": "D23",
+"Course": "c23",
+"Space": "10",
+"Prerequisites" : []
+},
+{
+"Action":"Open Course",
+"Department": "D24",
+"Course": "c24",
+"Space": "10",
+"Prerequisites" : []
+},
+{
+"Action":"Open Course",
+"Department": "D25",
+"Course": "c25",
+"Space": "10",
+"Prerequisites" : []
+},
+{
+"Action":"Open Course",
+"Department": "D26",
+"Course": "c26",
+"Space": "10",
+"Prerequisites" : []
+},
+{
+"Action": "Add Student",
+"Department": "D1",
+"Student": "s1"
+},
+{
+"Action": "Add Student",
+"Department": "D2",
+"Student": "s2"
+},
+{
+"Action": "Add Student",
+"Department": "D3",
+"Student": "s3"
+},
+{
+"Action": "Add Student",
+"Department": "D4",
+"Student": "s4"
+},
+{
+"Action": "Add Student",
+"Department": "D5",
+"Student": "s5"
+},
+{
+"Action": "Add Student",
+"Department": "D6",
+"Student": "s6"
+},
+{
+"Action": "Add Student",
+"Department": "D7",
+"Student": "s7"
+},
+{
+"Action": "Add Student",
+"Department": "D8",
+"Student": "s8"
+},
+{
+"Action": "Add Student",
+"Department": "D9",
+"Student": "s9"
+},
+{
+"Action": "Add Student",
+"Department": "D10",
+"Student": "s10"
+},
+{
+"Action": "Add Student",
+"Department": "D11",
+"Student": "s11"
+},
+{
+"Action": "Add Student",
+"Department": "D12",
+"Student": "s12"
+},
+{
+"Action": "Add Student",
+"Department": "D13",
+"Student": "s13"
+},
+{
+"Action": "Add Student",
+"Department": "D14",
+"Student": "s14"
+},
+{
+"Action": "Add Student",
+"Department": "D15",
+"Student": "s15"
+},
+{
+"Action": "Add Student",
+"Department": "D16",
+"Student": "s16"
+},
+{
+"Action": "Add Student",
+"Department": "D17",
+"Student": "s17"
+},
+{
+"Action": "Add Student",
+"Department": "D18",
+"Student": "s18"
+},
+{
+"Action": "Add Student",
+"Department": "D19",
+"Student": "s19"
+},
+{
+"Action": "Add Student",
+"Department": "D20",
+"Student": "s20"
+},
+{
+"Action": "Add Student",
+"Department": "D21",
+"Student": "s21"
+},
+{
+"Action": "Add Student",
+"Department": "D22",
+"Student": "s22"
+},
+{
+"Action": "Add Student",
+"Department": "D23",
+"Student": "s23"
+},
+{
+"Action": "Add Student",
+"Department": "D24",
+"Student": "s24"
+},
+{
+"Action": "Add Student",
+"Department": "D25",
+"Student": "s25"
+},
+{
+"Action": "Add Student",
+"Department": "D26",
+"Student": "s26"
+}
+],
+"Phase 2" : [
+{
+"Action": "Participate In Course",
+"Student": "s1",
+"Course": "c1",
+"Grade": ["55"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s2",
+"Course": "c2",
+"Grade": ["55"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s3",
+"Course": "c3",
+"Grade": ["55"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s4",
+"Course": "c4",
+"Grade": ["55"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s5",
+"Course": "c5",
+"Grade": ["55"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s6",
+"Course": "c6",
+"Grade": ["55"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s7",
+"Course": "c7",
+"Grade": ["55"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s8",
+"Course": "c8",
+"Grade": ["55"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s9",
+"Course": "c9",
+"Grade": ["55"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s10",
+"Course": "c10",
+"Grade": ["55"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s11",
+"Course": "c11",
+"Grade": ["55"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s12",
+"Course": "c12",
+"Grade": ["55"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s13",
+"Course": "c13",
+"Grade": ["55"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s14",
+"Course": "c14",
+"Grade": ["55"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s15",
+"Course": "c15",
+"Grade": ["55"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s16",
+"Course": "c16",
+"Grade": ["55"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s17",
+"Course": "c17",
+"Grade": ["55"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s18",
+"Course": "c18",
+"Grade": ["55"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s19",
+"Course": "c19",
+"Grade": ["55"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s20",
+"Course": "c20",
+"Grade": ["55"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s21",
+"Course": "c21",
+"Grade": ["55"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s22",
+"Course": "c22",
+"Grade": ["55"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s23",
+"Course": "c23",
+"Grade": ["55"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s24",
+"Course": "c24",
+"Grade": ["55"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s25",
+"Course": "c25",
+"Grade": ["55"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s26",
+"Course": "c26",
+"Grade": ["55"]
+}
+],
+"Phase 3": [
+{
+"Action" : "Administrative Check",
+"Department": "D1",
+"Students": ["s1"],
+"Computer": "A",
+"Conditions" : ["c1"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "D2",
+"Students": ["s2"],
+"Computer": "A",
+"Conditions" : ["c2"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "D3",
+"Students": ["s3"],
+"Computer": "A",
+"Conditions" : ["c3"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "D4",
+"Students": ["s4"],
+"Computer": "A",
+"Conditions" : ["c4"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "D5",
+"Students": ["s5"],
+"Computer": "A",
+"Conditions" : ["c5"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "D6",
+"Students": ["s6"],
+"Computer": "A",
+"Conditions" : ["c6"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "D7",
+"Students": ["s7"],
+"Computer": "A",
+"Conditions" : ["c7"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "D8",
+"Students": ["s8"],
+"Computer": "A",
+"Conditions" : ["c8"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "D9",
+"Students": ["s9"],
+"Computer": "A",
+"Conditions" : ["c9"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "D10",
+"Students": ["s10"],
+"Computer": "A",
+"Conditions" : ["c10"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "D11",
+"Students": ["s11"],
+"Computer": "A",
+"Conditions" : ["c11"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "D12",
+"Students": ["s12"],
+"Computer": "A",
+"Conditions" : ["c12"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "D13",
+"Students": ["s13"],
+"Computer": "A",
+"Conditions" : ["c13"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "D14",
+"Students": ["s14"],
+"Computer": "A",
+"Conditions" : ["c14"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "D15",
+"Students": ["s15"],
+"Computer": "A",
+"Conditions" : ["c15"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "D16",
+"Students": ["s16"],
+"Computer": "A",
+"Conditions" : ["c16"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "D17",
+"Students": ["s17"],
+"Computer": "A",
+"Conditions" : ["c17"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "D18",
+"Students": ["s18"],
+"Computer": "A",
+"Conditions" : ["c18"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "D19",
+"Students": ["s19"],
+"Computer": "A",
+"Conditions" : ["c19"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "D20",
+"Students": ["s20"],
+"Computer": "A",
+"Conditions" : ["c20"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "D21",
+"Students": ["s21"],
+"Computer": "A",
+"Conditions" : ["c21"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "D22",
+"Students": ["s22"],
+"Computer": "A",
+"Conditions" : ["c22"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "D23",
+"Students": ["s23"],
+"Computer": "A",
+"Conditions" : ["c23"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "D24",
+"Students": ["s24"],
+"Computer": "A",
+"Conditions" : ["c24"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "D25",
+"Students": ["s25"],
+"Computer": "A",
+"Conditions" : ["c25"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "D26",
+"Students": ["s26"],
+"Computer": "A",
+"Conditions" : ["c26"]
+}
+]
+}

@@ -1,0 +1,34 @@
+{
+"Departments" : [
+{
+ "Department" : "CS",
+"actions":["Open Course", "Add Student", "Add Student", "Administrative Check",],
+"courseList": ["c1"],
+"studentList": ["s1","s2"]
+},
+],
+"Courses" : [
+{
+ "Course" : "c1",
+"actions":["Participate In Course","Participate In Course","Add Spaces","Unregister","Participate In Course"],
+"availableSpots": "0",
+"registered": "1",
+"regStudents" : [ "s1"],
+"prequisites" : []
+},
+],
+"Students": [
+{
+ "Student": "s1",
+"actions" : [],
+"grades" : [ "(c1,71)",],
+"signature": "100",
+},
+{
+ "Student": "s2",
+"actions" : [],
+"grades" : [],
+"signature": "666",
+},
+]
+}

@@ -1,0 +1,116 @@
+{
+"threads": 50,
+"Computers" : [
+{
+"Type":"A",
+"Sig Success": "100",
+"Sig Fail": "666"
+},
+{
+"Type":"B",
+"Sig Success": "200",
+"Sig Fail": "555"
+}
+],
+"Phase 1" : [
+{
+"Action":"Open Course",
+"Department": "CS",
+"Course": "c1",
+"Space": "1",
+"Prerequisites" : []
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s1"
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s2"
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s3"
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s4"
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s5"
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s6"
+}
+],
+"Phase 2" : [
+{
+"Action": "Participate In Course",
+"Student": "s1",
+"Course": "c1",
+"Grade": ["71"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s2",
+"Course": "c1",
+"Grade": ["72"]
+},
+{
+"Action": "Add Spaces",
+"Course": "c1",
+"Number": "1"
+},
+{
+"Action": "Participate In Course",
+"Student": "s3",
+"Course": "c1",
+"Grade": ["73"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s4",
+"Course": "c1",
+"Grade": ["74"]
+},
+{
+"Action": "Add Spaces",
+"Course": "c1",
+"Number": "1"
+},
+{
+"Action": "Add Spaces",
+"Course": "c1",
+"Number": "0"
+},
+{
+"Action": "Participate In Course",
+"Student": "s5",
+"Course": "c1",
+"Grade": ["75"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s6",
+"Course": "c1",
+"Grade": ["76"]
+}
+],
+"Phase 3": [
+{
+"Action" : "Administrative Check",
+"Department": "CS",
+"Students": ["s1","s2","s3","s4","s5","s6"],
+"Computer": "A",
+"Conditions" : ["c1"]
+}
+]
+}

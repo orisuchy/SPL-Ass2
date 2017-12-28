@@ -1,0 +1,88 @@
+{
+"Departments" : [
+{
+ "Department" : "Dep1",
+"actions":["Open Course", "Open Course", "Open Course", "Open Course",],
+"courseList": ["Cou1","Cou2","Cou3","Cou4"],
+"studentList": []
+},
+{
+ "Department" : "Dep2",
+"actions":["Open Course",],
+"courseList": ["Cou5"],
+"studentList": []
+},
+{
+ "Department" : "Dep3",
+"actions":["Open Course",],
+"courseList": ["Cou6"],
+"studentList": []
+},
+{
+ "Department" : "Dep4",
+"actions":["Open Course",],
+"courseList": ["Cou7"],
+"studentList": []
+},
+],
+"Courses" : [
+{
+ "Course" : "Cou1",
+"actions":],
+"availableSpots": "20",
+"registered": "0",
+"regStudents" : [],
+"prequisites" : []
+},
+{
+ "Course" : "Cou2",
+"actions":],
+"availableSpots": "100",
+"registered": "0",
+"regStudents" : [],
+"prequisites" : [ "A", "B",]
+},
+{
+ "Course" : "Cou3",
+"actions":],
+"availableSpots": "0",
+"registered": "0",
+"regStudents" : [],
+"prequisites" : [ "C",]
+},
+{
+ "Course" : "Cou4",
+"actions":],
+"availableSpots": "10",
+"registered": "0",
+"regStudents" : [],
+"prequisites" : [ "D", "G", "J",]
+},
+{
+ "Course" : "Cou5",
+"actions":],
+"availableSpots": "15",
+"registered": "0",
+"regStudents" : [],
+"prequisites" : [ "1",]
+},
+{
+ "Course" : "Cou6",
+"actions":],
+"availableSpots": "18",
+"registered": "0",
+"regStudents" : [],
+"prequisites" : [ "2", "3",]
+},
+{
+ "Course" : "Cou7",
+"actions":],
+"availableSpots": "15",
+"registered": "0",
+"regStudents" : [],
+"prequisites" : [ "1",]
+},
+],
+"Students": [
+]
+}

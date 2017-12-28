@@ -1,0 +1,114 @@
+{
+"threads": 50,
+"Computers" : [
+{
+"Type":"A",
+"Sig Success": "100",
+"Sig Fail": "666"
+},
+{
+"Type":"B",
+"Sig Success": "200",
+"Sig Fail": "555"
+}
+],
+"Phase 1" : [
+{
+"Action":"Open Course",
+"Department": "CS",
+"Course": "c1",
+"Space": "2",
+"Prerequisites" : []
+},
+{
+"Action":"Open Course",
+"Department": "CS",
+"Course": "c2",
+"Space": "200",
+"Prerequisites" : []
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s1"
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s2"
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s3"
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s4"
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s5"
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s6"
+}
+],
+"Phase 2" : [
+
+{
+"Action": "Add Spaces",
+"Course": "c1",
+"Number": "2"
+},
+{
+"Action": "Register With Preferences",
+"Student": "s1",
+"Preferences": ["c1", "c2"],
+"Grade": ["71","61"]
+},
+{
+"Action": "Register With Preferences",
+"Student": "s2",
+"Preferences": ["c1", "c2"],
+"Grade": ["72","62"]
+},
+{
+"Action": "Register With Preferences",
+"Student": "s3",
+"Preferences": ["c1", "c2"],
+"Grade": ["73","63"]
+},
+{
+"Action": "Register With Preferences",
+"Student": "s4",
+"Preferences": ["c1", "c2"],
+"Grade": ["74","64"]
+},
+{
+"Action": "Register With Preferences",
+"Student": "s5",
+"Preferences": ["c1", "c2"],
+"Grade": ["75","65"]
+},
+{
+"Action": "Register With Preferences",
+"Student": "s6",
+"Preferences": ["c1", "c2"],
+"Grade": ["76","66"]
+}
+],
+"Phase 3": [
+{
+"Action" : "Administrative Check",
+"Department": "CS",
+"Students": ["s1","s2","s3","s4","s5","s6"],
+"Computer": "A",
+"Conditions" : ["c1"]
+}
+]
+}

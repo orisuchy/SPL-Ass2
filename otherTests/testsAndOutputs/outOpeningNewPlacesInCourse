@@ -1,0 +1,38 @@
+{
+"Departments" : [
+{
+ "Department" : "Dep1",
+"actions":["Open Course", "Open Course", "Open Course",],
+"courseList": ["Cou1","Cou2","Cou3"],
+"studentList": []
+},
+],
+"Courses" : [
+{
+ "Course" : "Cou1",
+"actions":["Add Spaces","Add Spaces","Add Spaces"],
+"availableSpots": "90",
+"registered": "0",
+"regStudents" : [],
+"prequisites" : []
+},
+{
+ "Course" : "Cou2",
+"actions":["Add Spaces"],
+"availableSpots": "115",
+"registered": "0",
+"regStudents" : [],
+"prequisites" : [ "A", "B",]
+},
+{
+ "Course" : "Cou3",
+"actions":["Add Spaces","Add Spaces"],
+"availableSpots": "20",
+"registered": "0",
+"regStudents" : [],
+"prequisites" : [ "D", "G", "J",]
+},
+],
+"Students": [
+]
+}

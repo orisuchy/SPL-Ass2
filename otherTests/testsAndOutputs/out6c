@@ -1,0 +1,60 @@
+{
+"Departments" : [
+{
+ "Department" : "CS",
+"actions":["Open Course", "Open Course", "Open Course", "Open Course", "Open Course", "Add Student", "Close Course", "Administrative Check",],
+"courseList": ["c2","c3","c4","c5"],
+"studentList": ["s1"]
+},
+],
+"Courses" : [
+{
+ "Course" : "c3",
+"actions":["Participate In Course"],
+"availableSpots": "200",
+"registered": "0",
+"regStudents" : [],
+"prequisites" : [ "c2",]
+},
+{
+ "Course" : "c4",
+"actions":["Participate In Course"],
+"availableSpots": "200",
+"registered": "0",
+"regStudents" : [],
+"prequisites" : [ "c2",]
+},
+{
+ "Course" : "c5",
+"actions":["Participate In Course"],
+"availableSpots": "200",
+"registered": "0",
+"regStudents" : [],
+"prequisites" : [ "c3", "c4",]
+},
+{
+ "Course" : "c1",
+"actions":["Participate In Course","Unregister"],
+"availableSpots": "-1",
+"registered": "0",
+"regStudents" : [],
+"prequisites" : []
+},
+{
+ "Course" : "c2",
+"actions":["Participate In Course","Unregister"],
+"availableSpots": "200",
+"registered": "0",
+"regStudents" : [],
+"prequisites" : [ "c1",]
+},
+],
+"Students": [
+{
+ "Student": "s1",
+"actions" : [],
+"grades" : [],
+"signature": "666",
+},
+]
+}

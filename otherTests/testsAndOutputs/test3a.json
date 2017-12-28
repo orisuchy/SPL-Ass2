@@ -1,0 +1,418 @@
+{
+"threads": 50,
+"Computers" : [
+{
+"Type":"A",
+"Sig Success": "1234666",
+"Sig Fail": "999283"
+},
+{
+"Type":"B",
+"Sig Success": "4424232",
+"Sig Fail": "5555353"
+}
+],
+"Phase 1" : [
+{
+"Action":"Open Course",
+"Department": "CS",
+"Course": "c1",
+"Space": "20",
+"Prerequisites" : []
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s1"
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s2"
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s3"
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s4"
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s5"
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s6"
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s7"
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s8"
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s9"
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s10"
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s11"
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s12"
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s13"
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s14"
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s15"
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s16"
+}
+],
+"Phase 2" : [
+{
+"Action": "Participate In Course",
+"Student": "s1",
+"Course": "c1",
+"Grade": ["71"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s2",
+"Course": "c1",
+"Grade": ["72"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s3",
+"Course": "c1",
+"Grade": ["73"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s4",
+"Course": "c1",
+"Grade": ["74"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s5",
+"Course": "c1",
+"Grade": ["71"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s6",
+"Course": "c1",
+"Grade": ["72"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s7",
+"Course": "c1",
+"Grade": ["73"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s8",
+"Course": "c1",
+"Grade": ["74"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s9",
+"Course": "c1",
+"Grade": ["71"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s10",
+"Course": "c1",
+"Grade": ["72"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s11",
+"Course": "c1",
+"Grade": ["73"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s12",
+"Course": "c1",
+"Grade": ["74"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s13",
+"Course": "c1",
+"Grade": ["71"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s14",
+"Course": "c1",
+"Grade": ["72"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s15",
+"Course": "c1",
+"Grade": ["73"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s16",
+"Course": "c1",
+"Grade": ["74"]
+},
+{
+"Action": "Unregister",
+"Student": "s1",
+"Course": "c1"
+},
+{
+"Action": "Unregister",
+"Student": "s2",
+"Course": "c1"
+},
+{
+"Action": "Unregister",
+"Student": "s3",
+"Course": "c1"
+},
+{
+"Action": "Unregister",
+"Student": "s4",
+"Course": "c1"
+},
+{
+"Action": "Unregister",
+"Student": "s5",
+"Course": "c1"
+},
+{
+"Action": "Unregister",
+"Student": "s6",
+"Course": "c1"
+},
+{
+"Action": "Unregister",
+"Student": "s7",
+"Course": "c1"
+},
+{
+"Action": "Unregister",
+"Student": "s8",
+"Course": "c1"
+},
+{
+"Action": "Unregister",
+"Student": "s9",
+"Course": "c1"
+},
+{
+"Action": "Unregister",
+"Student": "s10",
+"Course": "c1"
+},
+{
+"Action": "Unregister",
+"Student": "s11",
+"Course": "c1"
+},
+{
+"Action": "Unregister",
+"Student": "s12",
+"Course": "c1"
+},
+{
+"Action": "Unregister",
+"Student": "s13",
+"Course": "c1"
+},
+{
+"Action": "Unregister",
+"Student": "s14",
+"Course": "c1"
+},
+{
+"Action": "Unregister",
+"Student": "s15",
+"Course": "c1"
+},
+{
+"Action": "Unregister",
+"Student": "s16",
+"Course": "c1"
+},
+{
+"Action": "Participate In Course",
+"Student": "s9",
+"Course": "c1",
+"Grade": ["71"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s10",
+"Course": "c1",
+"Grade": ["72"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s11",
+"Course": "c1",
+"Grade": ["73"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s12",
+"Course": "c1",
+"Grade": ["74"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s13",
+"Course": "c1",
+"Grade": ["71"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s14",
+"Course": "c1",
+"Grade": ["72"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s15",
+"Course": "c1",
+"Grade": ["73"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s16",
+"Course": "c1",
+"Grade": ["74"]
+},
+{
+"Action": "Unregister",
+"Student": "s13",
+"Course": "c1"
+},
+{
+"Action": "Unregister",
+"Student": "s14",
+"Course": "c1"
+},
+{
+"Action": "Unregister",
+"Student": "s9",
+"Course": "c1"
+},
+{
+"Action": "Participate In Course",
+"Student": "s9",
+"Course": "c1",
+"Grade": ["71"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s13",
+"Course": "c1",
+"Grade": ["71"]
+},
+{
+"Action": "Unregister",
+"Student": "s15",
+"Course": "c1"
+},
+{
+"Action": "Unregister",
+"Student": "s13",
+"Course": "c1"
+},
+{
+"Action": "Unregister",
+"Student": "s16",
+"Course": "c1"
+},
+{
+"Action": "Participate In Course",
+"Student": "s14",
+"Course": "c1",
+"Grade": ["72"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s13",
+"Course": "c1",
+"Grade": ["71"]
+},
+{
+"Action": "Unregister",
+"Student": "s14",
+"Course": "c1"
+},
+{
+"Action": "Unregister",
+"Student": "s13",
+"Course": "c1"
+},
+{
+"Action": "Unregister",
+"Student": "s14",
+"Course": "c1"
+},
+{
+"Action": "Unregister",
+"Student": "s10",
+"Course": "c1"
+},
+{
+"Action": "Unregister",
+"Student": "s9",
+"Course": "c1"
+}
+],
+"Phase 3": [
+{
+"Action" : "Administrative Check",
+"Department": "CS",
+"Students": ["s1","s2","s3","s4","s5","s6","s7","s8","s9","s10","s11","s12","s13","s14","s15","s16"],
+"Computer": "A",
+"Conditions" : ["c1"]
+}
+]
+}

@@ -1,0 +1,528 @@
+{
+"Departments" : [
+{
+ "Department" : "D21",
+"actions":["Open Course", "Add Student", "Administrative Check",],
+"courseList": ["c21"],
+"studentList": ["s21"]
+},
+{
+ "Department" : "D20",
+"actions":["Open Course", "Add Student", "Administrative Check",],
+"courseList": ["c20"],
+"studentList": ["s20"]
+},
+{
+ "Department" : "D23",
+"actions":["Open Course", "Add Student", "Administrative Check",],
+"courseList": ["c23"],
+"studentList": ["s23"]
+},
+{
+ "Department" : "D22",
+"actions":["Open Course", "Add Student", "Administrative Check",],
+"courseList": ["c22"],
+"studentList": ["s22"]
+},
+{
+ "Department" : "D25",
+"actions":["Open Course", "Add Student", "Administrative Check",],
+"courseList": ["c25"],
+"studentList": ["s25"]
+},
+{
+ "Department" : "D24",
+"actions":["Open Course", "Add Student", "Administrative Check",],
+"courseList": ["c24"],
+"studentList": ["s24"]
+},
+{
+ "Department" : "D26",
+"actions":["Open Course", "Add Student", "Administrative Check",],
+"courseList": ["c26"],
+"studentList": ["s26"]
+},
+{
+ "Department" : "D10",
+"actions":["Open Course", "Add Student", "Administrative Check",],
+"courseList": ["c10"],
+"studentList": ["s10"]
+},
+{
+ "Department" : "D12",
+"actions":["Open Course", "Add Student", "Administrative Check",],
+"courseList": ["c12"],
+"studentList": ["s12"]
+},
+{
+ "Department" : "D11",
+"actions":["Open Course", "Add Student", "Administrative Check",],
+"courseList": ["c11"],
+"studentList": ["s11"]
+},
+{
+ "Department" : "D14",
+"actions":["Open Course", "Add Student", "Administrative Check",],
+"courseList": ["c14"],
+"studentList": ["s14"]
+},
+{
+ "Department" : "D13",
+"actions":["Open Course", "Add Student", "Administrative Check",],
+"courseList": ["c13"],
+"studentList": ["s13"]
+},
+{
+ "Department" : "D16",
+"actions":["Open Course", "Add Student", "Administrative Check",],
+"courseList": ["c16"],
+"studentList": ["s16"]
+},
+{
+ "Department" : "D15",
+"actions":["Open Course", "Add Student", "Administrative Check",],
+"courseList": ["c15"],
+"studentList": ["s15"]
+},
+{
+ "Department" : "D18",
+"actions":["Open Course", "Add Student", "Administrative Check",],
+"courseList": ["c18"],
+"studentList": ["s18"]
+},
+{
+ "Department" : "D17",
+"actions":["Open Course", "Add Student", "Administrative Check",],
+"courseList": ["c17"],
+"studentList": ["s17"]
+},
+{
+ "Department" : "D1",
+"actions":["Open Course", "Add Student", "Administrative Check",],
+"courseList": ["c1"],
+"studentList": ["s1"]
+},
+{
+ "Department" : "D19",
+"actions":["Open Course", "Add Student", "Administrative Check",],
+"courseList": ["c19"],
+"studentList": ["s19"]
+},
+{
+ "Department" : "D2",
+"actions":["Open Course", "Add Student", "Administrative Check",],
+"courseList": ["c2"],
+"studentList": ["s2"]
+},
+{
+ "Department" : "D3",
+"actions":["Open Course", "Add Student", "Administrative Check",],
+"courseList": ["c3"],
+"studentList": ["s3"]
+},
+{
+ "Department" : "D4",
+"actions":["Open Course", "Add Student", "Administrative Check",],
+"courseList": ["c4"],
+"studentList": ["s4"]
+},
+{
+ "Department" : "D5",
+"actions":["Open Course", "Add Student", "Administrative Check",],
+"courseList": ["c5"],
+"studentList": ["s5"]
+},
+{
+ "Department" : "D6",
+"actions":["Open Course", "Add Student", "Administrative Check",],
+"courseList": ["c6"],
+"studentList": ["s6"]
+},
+{
+ "Department" : "D7",
+"actions":["Open Course", "Add Student", "Administrative Check",],
+"courseList": ["c7"],
+"studentList": ["s7"]
+},
+{
+ "Department" : "D8",
+"actions":["Open Course", "Add Student", "Administrative Check",],
+"courseList": ["c8"],
+"studentList": ["s8"]
+},
+{
+ "Department" : "D9",
+"actions":["Open Course", "Add Student", "Administrative Check",],
+"courseList": ["c9"],
+"studentList": ["s9"]
+},
+],
+"Courses" : [
+{
+ "Course" : "c1",
+"actions":["Participate In Course"],
+"availableSpots": "9",
+"registered": "1",
+"regStudents" : [ "s1"],
+"prequisites" : []
+},
+{
+ "Course" : "c2",
+"actions":["Participate In Course"],
+"availableSpots": "9",
+"registered": "1",
+"regStudents" : [ "s2"],
+"prequisites" : []
+},
+{
+ "Course" : "c3",
+"actions":["Participate In Course"],
+"availableSpots": "9",
+"registered": "1",
+"regStudents" : [ "s3"],
+"prequisites" : []
+},
+{
+ "Course" : "c4",
+"actions":["Participate In Course"],
+"availableSpots": "9",
+"registered": "1",
+"regStudents" : [ "s4"],
+"prequisites" : []
+},
+{
+ "Course" : "c5",
+"actions":["Participate In Course"],
+"availableSpots": "9",
+"registered": "1",
+"regStudents" : [ "s5"],
+"prequisites" : []
+},
+{
+ "Course" : "c6",
+"actions":["Participate In Course"],
+"availableSpots": "9",
+"registered": "1",
+"regStudents" : [ "s6"],
+"prequisites" : []
+},
+{
+ "Course" : "c7",
+"actions":["Participate In Course"],
+"availableSpots": "9",
+"registered": "1",
+"regStudents" : [ "s7"],
+"prequisites" : []
+},
+{
+ "Course" : "c8",
+"actions":["Participate In Course"],
+"availableSpots": "9",
+"registered": "1",
+"regStudents" : [ "s8"],
+"prequisites" : []
+},
+{
+ "Course" : "c9",
+"actions":["Participate In Course"],
+"availableSpots": "9",
+"registered": "1",
+"regStudents" : [ "s9"],
+"prequisites" : []
+},
+{
+ "Course" : "c11",
+"actions":["Participate In Course"],
+"availableSpots": "9",
+"registered": "1",
+"regStudents" : [ "s11"],
+"prequisites" : []
+},
+{
+ "Course" : "c10",
+"actions":["Participate In Course"],
+"availableSpots": "9",
+"registered": "1",
+"regStudents" : [ "s10"],
+"prequisites" : []
+},
+{
+ "Course" : "c13",
+"actions":["Participate In Course"],
+"availableSpots": "9",
+"registered": "1",
+"regStudents" : [ "s13"],
+"prequisites" : []
+},
+{
+ "Course" : "c12",
+"actions":["Participate In Course"],
+"availableSpots": "9",
+"registered": "1",
+"regStudents" : [ "s12"],
+"prequisites" : []
+},
+{
+ "Course" : "c15",
+"actions":["Participate In Course"],
+"availableSpots": "9",
+"registered": "1",
+"regStudents" : [ "s15"],
+"prequisites" : []
+},
+{
+ "Course" : "c14",
+"actions":["Participate In Course"],
+"availableSpots": "9",
+"registered": "1",
+"regStudents" : [ "s14"],
+"prequisites" : []
+},
+{
+ "Course" : "c17",
+"actions":["Participate In Course"],
+"availableSpots": "9",
+"registered": "1",
+"regStudents" : [ "s17"],
+"prequisites" : []
+},
+{
+ "Course" : "c16",
+"actions":["Participate In Course"],
+"availableSpots": "9",
+"registered": "1",
+"regStudents" : [ "s16"],
+"prequisites" : []
+},
+{
+ "Course" : "c19",
+"actions":["Participate In Course"],
+"availableSpots": "9",
+"registered": "1",
+"regStudents" : [ "s19"],
+"prequisites" : []
+},
+{
+ "Course" : "c18",
+"actions":["Participate In Course"],
+"availableSpots": "9",
+"registered": "1",
+"regStudents" : [ "s18"],
+"prequisites" : []
+},
+{
+ "Course" : "c20",
+"actions":["Participate In Course"],
+"availableSpots": "9",
+"registered": "1",
+"regStudents" : [ "s20"],
+"prequisites" : []
+},
+{
+ "Course" : "c22",
+"actions":["Participate In Course"],
+"availableSpots": "9",
+"registered": "1",
+"regStudents" : [ "s22"],
+"prequisites" : []
+},
+{
+ "Course" : "c21",
+"actions":["Participate In Course"],
+"availableSpots": "9",
+"registered": "1",
+"regStudents" : [ "s21"],
+"prequisites" : []
+},
+{
+ "Course" : "c24",
+"actions":["Participate In Course"],
+"availableSpots": "9",
+"registered": "1",
+"regStudents" : [ "s24"],
+"prequisites" : []
+},
+{
+ "Course" : "c23",
+"actions":["Participate In Course"],
+"availableSpots": "9",
+"registered": "1",
+"regStudents" : [ "s23"],
+"prequisites" : []
+},
+{
+ "Course" : "c26",
+"actions":["Participate In Course"],
+"availableSpots": "9",
+"registered": "1",
+"regStudents" : [ "s26"],
+"prequisites" : []
+},
+{
+ "Course" : "c25",
+"actions":["Participate In Course"],
+"availableSpots": "9",
+"registered": "1",
+"regStudents" : [ "s25"],
+"prequisites" : []
+},
+],
+"Students": [
+{
+ "Student": "s1",
+"actions" : [],
+"grades" : [ "(c1,56)",],
+"signature": "100",
+},
+{
+ "Student": "s2",
+"actions" : [],
+"grades" : [ "(c2,56)",],
+"signature": "100",
+},
+{
+ "Student": "s3",
+"actions" : [],
+"grades" : [ "(c3,56)",],
+"signature": "100",
+},
+{
+ "Student": "s4",
+"actions" : [],
+"grades" : [ "(c4,56)",],
+"signature": "100",
+},
+{
+ "Student": "s5",
+"actions" : [],
+"grades" : [ "(c5,56)",],
+"signature": "100",
+},
+{
+ "Student": "s6",
+"actions" : [],
+"grades" : [ "(c6,56)",],
+"signature": "100",
+},
+{
+ "Student": "s7",
+"actions" : [],
+"grades" : [ "(c7,56)",],
+"signature": "100",
+},
+{
+ "Student": "s8",
+"actions" : [],
+"grades" : [ "(c8,56)",],
+"signature": "100",
+},
+{
+ "Student": "s9",
+"actions" : [],
+"grades" : [ "(c9,56)",],
+"signature": "100",
+},
+{
+ "Student": "s11",
+"actions" : [],
+"grades" : [ "(c11,56)",],
+"signature": "100",
+},
+{
+ "Student": "s10",
+"actions" : [],
+"grades" : [ "(c10,56)",],
+"signature": "100",
+},
+{
+ "Student": "s13",
+"actions" : [],
+"grades" : [ "(c13,56)",],
+"signature": "100",
+},
+{
+ "Student": "s12",
+"actions" : [],
+"grades" : [ "(c12,56)",],
+"signature": "100",
+},
+{
+ "Student": "s15",
+"actions" : [],
+"grades" : [ "(c15,56)",],
+"signature": "200",
+},
+{
+ "Student": "s14",
+"actions" : [],
+"grades" : [ "(c14,56)",],
+"signature": "200",
+},
+{
+ "Student": "s17",
+"actions" : [],
+"grades" : [ "(c17,56)",],
+"signature": "200",
+},
+{
+ "Student": "s16",
+"actions" : [],
+"grades" : [ "(c16,56)",],
+"signature": "200",
+},
+{
+ "Student": "s19",
+"actions" : [],
+"grades" : [ "(c19,56)",],
+"signature": "200",
+},
+{
+ "Student": "s18",
+"actions" : [],
+"grades" : [ "(c18,56)",],
+"signature": "200",
+},
+{
+ "Student": "s20",
+"actions" : [],
+"grades" : [ "(c20,56)",],
+"signature": "200",
+},
+{
+ "Student": "s22",
+"actions" : [],
+"grades" : [ "(c22,56)",],
+"signature": "300",
+},
+{
+ "Student": "s21",
+"actions" : [],
+"grades" : [ "(c21,56)",],
+"signature": "200",
+},
+{
+ "Student": "s24",
+"actions" : [],
+"grades" : [ "(c24,56)",],
+"signature": "300",
+},
+{
+ "Student": "s23",
+"actions" : [],
+"grades" : [ "(c23,56)",],
+"signature": "300",
+},
+{
+ "Student": "s26",
+"actions" : [],
+"grades" : [ "(c26,56)",],
+"signature": "300",
+},
+{
+ "Student": "s25",
+"actions" : [],
+"grades" : [ "(c25,56)",],
+"signature": "300",
+},
+]
+}

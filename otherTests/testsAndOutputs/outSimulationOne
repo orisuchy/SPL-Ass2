@@ -1,0 +1,100 @@
+{
+"Departments" : [
+{
+ "Department" : "Dep1",
+"actions":["Open Course", "Open Course", "Add Student", "Add Student", "Add Student", "Add Student",],
+"courseList": ["A","B"],
+"studentList": ["1","2","3","4"]
+},
+{
+ "Department" : "Dep2",
+"actions":["Open Course", "Open Course", "Add Student", "Add Student", "Add Student", "Add Student", "Add Student", "Add Student", "Add Student", "Add Student",],
+"courseList": ["C","D"],
+"studentList": ["1","2","3","4","5","6","7","8"]
+},
+],
+"Courses" : [
+{
+ "Course" : "A",
+"actions":["Participate In Course","Participate In Course","Participate In Course"],
+"availableSpots": "7",
+"registered": "3",
+"regStudents" : [ "2","3","1"],
+"prequisites" : []
+},
+{
+ "Course" : "B",
+"actions":["Participate In Course","Participate In Course","Participate In Course","Participate In Course","Participate In Course","Participate In Course","Participate In Course","Unregister","Add Spaces","Participate In Course","Participate In Course"],
+"availableSpots": "1",
+"registered": "5",
+"regStudents" : [ "3","4","5","7","8"],
+"prequisites" : []
+},
+{
+ "Course" : "C",
+"actions":],
+"availableSpots": "5",
+"registered": "0",
+"regStudents" : [],
+"prequisites" : [ "A", "B",]
+},
+{
+ "Course" : "D",
+"actions":],
+"availableSpots": "5",
+"registered": "0",
+"regStudents" : [],
+"prequisites" : [ "A", "B",]
+},
+],
+"Students": [
+{
+ "Student": "1",
+"actions" : [],
+"grades" : [ "(A,90)",],
+"signature": "0",
+},
+{
+ "Student": "2",
+"actions" : [],
+"grades" : [ "(A,45)",],
+"signature": "0",
+},
+{
+ "Student": "3",
+"actions" : [],
+"grades" : [ "(A,60)", "(B,40)",],
+"signature": "0",
+},
+{
+ "Student": "4",
+"actions" : [],
+"grades" : [ "(B,80)",],
+"signature": "0",
+},
+{
+ "Student": "5",
+"actions" : [],
+"grades" : [ "(B,99)",],
+"signature": "0",
+},
+{
+ "Student": "6",
+"actions" : [],
+"grades" : [],
+"signature": "0",
+},
+{
+ "Student": "7",
+"actions" : [],
+"grades" : [ "(B,89)",],
+"signature": "0",
+},
+{
+ "Student": "8",
+"actions" : [],
+"grades" : [ "(B,20)",],
+"signature": "0",
+},
+]
+}

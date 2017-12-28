@@ -1,0 +1,46 @@
+{
+"Departments" : [
+{
+ "Department" : "CS",
+"actions":["Open Course", "Add Student", "Add Student", "Add Student", "Add Student", "Administrative Check",],
+"courseList": ["c1"],
+"studentList": ["s1","s2","s3","s4"]
+},
+],
+"Courses" : [
+{
+ "Course" : "c1",
+"actions":["Participate In Course","Participate In Course","Participate In Course","Participate In Course"],
+"availableSpots": "0",
+"registered": "2",
+"regStudents" : [ "s1","s2"],
+"prequisites" : []
+},
+],
+"Students": [
+{
+ "Student": "s3",
+"actions" : [],
+"grades" : [],
+"signature": "999283",
+},
+{
+ "Student": "s4",
+"actions" : [],
+"grades" : [],
+"signature": "999283",
+},
+{
+ "Student": "s1",
+"actions" : [],
+"grades" : [ "(c1,71)",],
+"signature": "1234666",
+},
+{
+ "Student": "s2",
+"actions" : [],
+"grades" : [ "(c1,72)",],
+"signature": "1234666",
+},
+]
+}

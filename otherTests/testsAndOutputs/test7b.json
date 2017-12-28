@@ -1,0 +1,73 @@
+{
+"threads": 50,
+"Computers" : [
+{
+"Type":"A",
+"Sig Success": "100",
+"Sig Fail": "666"
+},
+{
+"Type":"B",
+"Sig Success": "200",
+"Sig Fail": "555"
+}
+],
+"Phase 1" : [
+{
+"Action":"Open Course",
+"Department": "CS",
+"Course": "c1",
+"Space": "2",
+"Prerequisites" : []
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s1"
+},
+{
+"Action": "Add Student",
+"Department": "CS",
+"Student": "s2"
+}
+],
+"Phase 2" : [
+{
+"Action": "Participate In Course",
+"Student": "s1",
+"Course": "c1",
+"Grade": ["71"]
+},
+{
+"Action": "Participate In Course",
+"Student": "s2",
+"Course": "c1",
+"Grade": ["72"]
+},
+{
+"Action": "Add Spaces",
+"Course": "c1",
+"Number": "-1"
+},
+{
+"Action": "Unregister",
+"Student": "s2",
+"Course": "c1"
+}
+],
+"Phase 3": [
+{
+"Action": "Participate In Course",
+"Student": "s2",
+"Course": "c1",
+"Grade": ["72"]
+},
+{
+"Action" : "Administrative Check",
+"Department": "CS",
+"Students": ["s1","s2"],
+"Computer": "A",
+"Conditions" : ["c1"]
+}
+]
+}
